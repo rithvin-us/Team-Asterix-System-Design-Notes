@@ -10,7 +10,7 @@ sure where something goes.
 **Folders encode the method. They do not encode the domain.**
 
 Automotive material and software material sit next to each other inside
-`03-examples/` and `04-case-studies/`. There is deliberately no top-level split
+`03-case-studies/`. There is deliberately no top-level split
 between hardware and software, mechanical and digital, ATV and cloud.
 
 Why: the five moves — decompose, interfaces, flows, constraints, trade-offs — are the
@@ -28,31 +28,27 @@ This layout is tuned so that almost never happens.
 | Folder | Holds | Does not hold |
 |---|---|---|
 | `01-method/` | The five moves. Process, not vocabulary. | Definitions of terms. |
-| `02-concepts/` | Ideas and vocabulary. One idea per file. | Worked examples. |
-| `03-examples/` | Small illustrations of a single point. | Full systems. |
-| `04-case-studies/` | Whole systems traced end to end. | Things you build. |
-| `05-exercises/` | Short practice tasks, 15–60 min. | Multi-week work. |
-| `06-projects/` | Substantial builds with a full design record. | Quick practice. |
-| `07-workshop/` | Asterix session material, prompts, mini project. | Reusable knowledge. |
-| `99-inbox/` | Unverified and unfiled. Quarantine. | Anything canonical. |
+| `02-concepts/` | Ideas and vocabulary. One idea per file. | Whole systems. |
+| `03-case-studies/` | Whole systems traced end to end, plus the reference list. | Things you build. |
+| `04-exercises/` | Short practice tasks, 15–60 min. | Multi-week work. |
+| `05-projects/` | Substantial builds with a full design record. | Quick practice. |
+| `06-workshop/` | Asterix session material, prompts, mini project. | Reusable knowledge. |
 
-The numeric prefixes exist only so GitHub lists them in a sensible order. `99-inbox`
-is numbered to sort last, because it is the least authoritative thing here and should
-look that way.
+The numeric prefixes exist only so GitHub lists them in a sensible order.
 
-### Example vs case study
+### Index files are not called README.md
 
-The line that gets blurred most often:
+Every folder's index is named after what it holds — `the-five-moves.md`,
+`concepts-index.md`, `workshop-guide.md`, `case-studies-index.md`.
 
-- **Example** — illustrates *one point*. "Here is what a badly drawn power flow looks
-  like." Short, lives to make a single idea concrete. Often one diagram plus a
-  paragraph.
-- **Case study** — traces a *whole system* through all five moves. "Here is the ATV
-  telemetry system, from requirements to trade-offs." Long, self-contained, has a
-  complete design record.
+The cost: GitHub no longer auto-renders an intro page when you click into a folder.
+The benefit: search results, editor tabs and open-file lists show a real name instead
+of eight identical `README.md` entries. The root `README.md` indexes everything, so
+nobody needs to browse folders to find a page — which makes the cost small and the
+benefit felt daily.
 
-If it exists to explain a concept, it is an example. If it exists to be studied as a
-system, it is a case study.
+`README.md` survives in exactly one place: the repository root, where GitHub's
+auto-render genuinely matters.
 
 ### Exercise vs project
 
@@ -70,15 +66,14 @@ status fields to maintain. Where a file lives tells you what it is.
 
 | Tier | Where | Means |
 |---|---|---|
-| **Canonical** | Anywhere outside `99-inbox/` | Written or rewritten deliberately. Stands behind it. |
+| **Canonical** | Everything in this repository | Written or rewritten deliberately. Stands behind it. |
 | **Stub** | Marked `> **Status:** stub` at the top | Structure is real, prose is not written yet. |
-| **Raw** | `99-inbox/notebooklm-raw/` | Machine-generated. Unverified. Nobody's understanding. |
-| **Unfiled** | `99-inbox/unfiled.md` | Captured, not yet thought about. |
 
-Why location and not tags: a tagging system requires effort on every single file, and
-a tagging system you abandon in week two is worse than no system — it leaves half the
-repo labelled and half not, which is less trustworthy than none of it being labelled.
-Folders cost nothing to maintain and cannot silently rot.
+Two tiers, one marker. Everything committed here is meant to be someone's considered
+understanding; a stub is an honest admission that a page is still scaffolding.
+
+There is no quarantine folder for raw or machine-generated material, because the rule
+below makes one unnecessary: unverified text never gets committed in the first place.
 
 ---
 
@@ -91,7 +86,7 @@ Folders cost nothing to maintain and cannot silently rot.
   a filename with a version in it is a filename that will be wrong.
 - `README.md` in every directory. It is the index for that directory and the thing
   GitHub shows when you click in.
-- `_TEMPLATE.md` and `_TEMPLATE/` — leading underscore marks a template, not content.
+- `case-study-template.md` and `_TEMPLATE/` — leading underscore marks a template, not content.
 - `99-` prefix and `_` prefix are the only prefixes used. Do not invent more.
 
 ### Headings inside a file
@@ -133,7 +128,7 @@ with actual content stay `.drawio.svg`.
 at the root.
 
 ```
-04-case-studies/automotive/atv-telemetry/
+03-case-studies/automotive/atv-telemetry/
 ├── README.md
 └── diagrams/
     ├── atv-telemetry-hld.drawio.svg
@@ -180,43 +175,31 @@ diagrams.
 
 ## NotebookLM and other machine-generated material
 
-**Rule: machine output is never canonical.**
+**Rule: machine output never gets pasted into this repository.**
 
 The failure this prevents: a repo where AI-generated text and the author's actual
 understanding are mixed together and indistinguishable, so a year later nobody — the
 author included — can tell which parts were thought through and which were generated
 and skimmed.
 
-How it works:
+The rule, which needs no folder and no tagging:
 
-1. Raw NotebookLM output goes into `99-inbox/notebooklm-raw/`. Nowhere else.
-2. That folder has a README stating plainly that its contents are unverified.
-3. To promote something into `02-concepts/` or anywhere else canonical, you
-   **rewrite it in your own words**. Not reformat. Not lightly edit. Rewrite, from
-   understanding.
-4. If you cannot rewrite it without looking at it, you do not understand it yet, and
-   it is not ready to be promoted. That test is the whole mechanism.
-5. Sources are recorded as **links only** in `99-inbox/notebooklm-raw/sources.md`.
-   No PDF or article copies — this repo is public and that is a copyright problem
-   nobody needs.
+1. Read the generated text. Check it against the source it came from.
+2. **Close it.**
+3. Write the explanation in your own words, straight into the page where it belongs.
+4. If you cannot write it with the source closed, you do not understand it yet. Read
+   more; do not paste.
 
-The rewrite requirement is not about style. Copy-pasting a correct explanation
-produces a repo that is correct and useless, because the understanding never moved
-from the source into you.
+Step 2 is the whole mechanism. Copy-pasting a correct explanation produces a repo that
+is correct and useless, because the understanding never moved from the source into you.
 
----
+**Where the raw material lives:** in [NotebookLM](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73), not in git. That is the right
+home for it — it is searchable, it cites its sources, and keeping it out of the
+repository means the repository stays entirely canonical. Source documents are
+referenced by link, never copied in; this repo is public, and storing other people's
+PDFs is a copyright problem nothing here requires.
 
-## Unfiled notes
-
-`99-inbox/unfiled.md` exists for the thing you discover mid-session with nowhere to
-put it.
-
-Append to the bottom. One `##` heading with the date, then whatever you have. Do not
-tidy it, do not decide where it belongs, do not create a folder for it.
-
-File it later, in batches, when you can see the shape of several notes at once. The
-cost of capture must stay near zero or you will not capture, and the notes you lose
-that way are the good ones — the ones that only occur to you while teaching.
+See also: [when AI is wrong](06-workshop/ai-prompts/when-ai-is-wrong.md).
 
 ---
 
@@ -228,7 +211,7 @@ one of them, so nothing ever needs to be selected by hand.
 | Mechanism | Where it appears | Used here for |
 |---|---|---|
 | **Copy button on a code block** | Top-right of every fenced block | Prompts, the rubric self-check, the diagram legend, the unfiled entry format |
-| **Copy raw file** | Top-right of any file page, next to Raw | Templates — `_TEMPLATE.md`, `_TEMPLATE/README.md` |
+| **Copy raw file** | Top-right of any file page, next to Raw | Templates — `case-study-template.md`, `_TEMPLATE/README.md` |
 | **Raw URL** | `raw.githubusercontent.com/...` | Fetching a template from a terminal or an agent |
 
 **Consequence for authors:** anything a reader is meant to reuse goes in a **fenced
@@ -293,7 +276,6 @@ only when a specific problem forces it, not in anticipation.
 |---|---|
 | A new note has two plausible homes | Categories overlap. Merge them. |
 | Folders with one file that has no diagram | Over-nested. Flatten. |
-| `99-inbox/` growing and never draining | Promotion is too hard, or the inbox is being used as storage. |
 | A directory `README.md` index that is out of date | It is doing work the file tree already does. Cut it back to links. |
 | Hesitating before adding a note | **The most important signal.** Friction here means the structure is losing. Fix the structure, not your habits. |
 

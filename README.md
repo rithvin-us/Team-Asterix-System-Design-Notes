@@ -1,9 +1,9 @@
 # System Design — Team Asterix
 
 [![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
-[![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](07-workshop/ai-prompts/)
+[![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](06-workshop/ai-prompts/prompts-index.md)
 [![Diagrams](https://img.shields.io/badge/diagrams-.drawio.svg-blue?style=flat-square&logo=diagramsdotnet&logoColor=white)](CONVENTIONS.md#diagrams)
-[![NotebookLM](https://img.shields.io/badge/NotebookLM-sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](99-inbox/notebooklm-raw/)
+[![NotebookLM](https://img.shields.io/badge/NotebookLM-ask_the_sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 
 A working notebook for learning to design systems: how to take something complicated,
@@ -27,15 +27,15 @@ You need no prior knowledge. Thirty minutes gets you from zero to your first des
 
 | | Do this | Why |
 |---|---|---|
-| **1** | Read **[What system design actually is](01-method/README.md)** | The five moves that every design is made of. One page. |
+| **1** | Read **[What system design actually is](01-method/the-five-moves.md)** | The five moves that every design is made of. One page. |
 | **2** | Read **[Block diagramming conventions](02-concepts/block-diagramming-conventions.md)** | How to draw one so other people can read it. |
-| **3** | Design something, using **[the design prompt](07-workshop/ai-prompts/design-something-new.md)** | An AI interviews you through the five moves. You do the thinking. |
+| **3** | Design something, using **[the design prompt](06-workshop/ai-prompts/design-something-new.md)** | An AI interviews you through the five moves. You do the thinking. |
 
-Then run **[the review prompt](07-workshop/ai-prompts/review-my-design.md)** on what
+Then run **[the review prompt](06-workshop/ai-prompts/review-my-design.md)** on what
 you made.
 
 > **Important:** the AI prompts here will not design for you. They ask questions and
-> refuse to hand over answers, on purpose. [Why.](07-workshop/ai-prompts/README.md#the-rule-all-three-enforce)
+> refuse to hand over answers, on purpose. [Why.](06-workshop/ai-prompts/prompts-index.md#the-rule-all-three-enforce)
 
 ---
 
@@ -43,27 +43,49 @@ you made.
 
 | I want to… | Go to |
 |---|---|
-| Understand how designing works at all | [01-method](01-method/) |
-| Look up a term or an idea | [02-concepts](02-concepts/) · [Glossary](GLOSSARY.md) |
-| See a small worked example | [03-examples](03-examples/) |
-| Study a full system end to end | [04-case-studies](04-case-studies/) |
-| Practise something small | [05-exercises](05-exercises/) |
-| Build something substantial | [06-projects](06-projects/) |
-| Follow the workshop sessions | [07-workshop](07-workshop/) |
-| Get the AI prompts | [07-workshop/ai-prompts](07-workshop/ai-prompts/) |
-| See automotive / ATV material | [examples](03-examples/automotive/) · [case studies](04-case-studies/automotive/) |
-| See software / backend material | [examples](03-examples/software/) · [case studies](04-case-studies/software/) |
+| Understand how designing works at all | [01-method](01-method/the-five-moves.md) |
+| Look up a term or an idea | [02-concepts](02-concepts/concepts-index.md) · [Glossary](GLOSSARY.md) |
+| Study a full system end to end | [03-case-studies](03-case-studies/case-studies-index.md) |
+| Read a real company's architecture | [Reference architectures](03-case-studies/reference-architectures.md) |
+| Practise something small | [04-exercises](04-exercises/exercises-index.md) |
+| Build something substantial | [05-projects](05-projects/projects-index.md) |
+| Find a project worth doing | [Suggested projects](05-projects/suggested-projects.md) |
+| Follow the workshop sessions | [06-workshop](06-workshop/workshop-guide.md) |
+| Get the AI prompts | [06-workshop/ai-prompts](06-workshop/ai-prompts/prompts-index.md) |
 | Learn HLD vs LLD | [hld-vs-lld.md](02-concepts/hld-vs-lld.md) |
 | Start a diagram without a blank page | [Starter template](02-concepts/diagrams/starter-template.drawio.svg) |
-| Know where AI gets this wrong | [when-ai-is-wrong.md](07-workshop/ai-prompts/when-ai-is-wrong.md) |
-| Ask questions of the source material | [NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73) ⚠️ |
+| Know where AI gets this wrong | [when-ai-is-wrong.md](06-workshop/ai-prompts/when-ai-is-wrong.md) |
+| Ask the sources a question | [NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73) |
 | Know how this repo is organised | [CONVENTIONS.md](CONVENTIONS.md) |
 
-> ⚠️ **The NotebookLM notebook is source material, not teaching material.** It
-> answers *"what does this source say about X?"* — it does not know this repo's
-> conventions or Team Asterix's actual constraints. Nothing it generates is
-> canonical here. [How to use it, and how to promote something out of
-> it.](99-inbox/notebooklm-raw/)
+---
+
+## 📓 The team NotebookLM notebook
+
+<table><tr><td>
+
+### [→ Open the System Design notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
+
+An AI trained **only on our source material** — the books, papers and articles behind
+these sessions. Ask it anything and it answers *from those sources*, with citations,
+rather than from the open internet.
+
+**Use it for:** *"what does this source say about X?"* · *"explain interfaces again,
+simpler"* · *"where did this idea come from?"* · generate an **Audio Overview** and
+revise on the bus.
+
+**Do not use it for:** reviewing your design. It knows the sources. It does not know
+your budget, your parts or your ATV.
+[Use these prompts for that.](06-workshop/ai-prompts/prompts-index.md)
+
+> **Access:** notebooks are private by default. If you hit a permission error, ask an
+> instructor to share it — the link alone does not grant access.
+>
+> **Nothing it writes is canonical here.** To bring something from it into this repo,
+> rewrite it in your own words.
+> [Why that matters.](06-workshop/ai-prompts/when-ai-is-wrong.md)
+
+</td></tr></table>
 
 ---
 
@@ -85,7 +107,7 @@ It loops. You do not finish move 5 and stop — a trade-off reveals a part you m
 and you go round again at a finer level of detail. That loop is what HLD and LLD
 actually are: the same five moves at two levels of zoom.
 
-Read it properly: **[01-method](01-method/)**
+Read it properly: **[01-method](01-method/the-five-moves.md)**
 
 ---
 
@@ -101,7 +123,7 @@ Plain text, no setup, no special syntax.
 ### 🏗️ Design Something New
 *You have a problem but no design yet.* An interviewer that walks you through all
 five moves and refuses to answer for you. 30–60 min. · **~510 tokens** ·
-[full page](07-workshop/ai-prompts/design-something-new.md)
+[full page](06-workshop/ai-prompts/design-something-new.md)
 
 <details>
 <summary><b>▸ Open and copy</b></summary>
@@ -144,7 +166,7 @@ Add what you want to design on that last line.
 ### 🔍 Review My Design
 *You have a design and want it audited.* Findings only, severity-tagged. It will not
 rewrite it for you. · **~360 tokens** ·
-[full page](07-workshop/ai-prompts/review-my-design.md)
+[full page](06-workshop/ai-prompts/review-my-design.md)
 
 <details>
 <summary><b>▸ Open and copy</b></summary>
@@ -190,7 +212,7 @@ Paste your design under it — description, screenshot, or doc.
 ### ⚠️ Check My Change
 *Something changed — what broke?* Traces the blast radius two or three hops out. Run
 this often. · **~320 tokens** ·
-[full page](07-workshop/ai-prompts/check-my-change.md)
+[full page](06-workshop/ai-prompts/check-my-change.md)
 
 <details>
 <summary><b>▸ Open and copy</b></summary>
@@ -234,7 +256,7 @@ Paste your design, then what changed.
 `.cursorrules` (Cursor), `.windsurfrules` (Windsurf), or
 `.github/copilot-instructions.md`. Then it applies to every conversation without
 pasting anything. · **~460 tokens** ·
-[full page](07-workshop/ai-prompts/agent-rules.md)
+[full page](06-workshop/ai-prompts/agent-rules.md)
 
 <details>
 <summary><b>▸ Open and copy</b></summary>
@@ -284,13 +306,13 @@ when I am about to lock in a decision I have not noticed making.
 
 ### 📋 The Rubric — no AI needed
 The full checklist all of the above compress. Also what the mini project is graded
-against. → **[07-workshop/ai-prompts/design-rubric.md](07-workshop/ai-prompts/design-rubric.md)**
+against. → **[06-workshop/ai-prompts/design-rubric.md](06-workshop/ai-prompts/design-rubric.md)**
 
 </td></tr>
 </table>
 
 > **All four refuse to design for you.** That is the feature, not a limitation.
-> [Why.](07-workshop/ai-prompts/README.md#the-rule-all-three-enforce)
+> [Why.](06-workshop/ai-prompts/prompts-index.md#the-rule-all-three-enforce)
 
 
 ---
@@ -300,28 +322,32 @@ against. → **[07-workshop/ai-prompts/design-rubric.md](07-workshop/ai-prompts/
 ```
 START-HERE.md       Gentle on-ramp. No prior knowledge assumed.
 AGENTS.md           Rules for AI agents. Copy into your own project.
+CONVENTIONS.md      How this repo is organised, and why.
+GLOSSARY.md         Every term, in plain words.
+
 01-method/          The five moves. The spine of everything here.
 02-concepts/        Vocabulary and ideas. Look things up here.
-03-examples/        Small, single-point illustrations.
-04-case-studies/    Whole systems, traced end to end.
-05-exercises/       Short practice tasks.
-06-projects/        Substantial builds, with full design records.
-07-workshop/        Asterix session material + the AI prompts.
-99-inbox/           Unverified input and unfiled notes. Not canonical.
+03-case-studies/    Whole systems traced end to end, plus real-world references.
+04-exercises/       Short practice tasks.
+05-projects/        Substantial builds, with full design records.
+06-workshop/        Asterix session material + the AI prompts.
 ```
+
+Each folder's index is **named after what it holds** — `the-five-moves.md`,
+`concepts-index.md`, `workshop-guide.md` — rather than every one being `README.md`.
+Easier to tell apart in search results, in editor tabs, and in a list of open files.
 
 Two things worth knowing about how this is laid out:
 
 **Folders are the method, not the domain.** Automotive and software material sit side
-by side inside `03-examples/` and `04-case-studies/`, because they genuinely are the
+by side inside `03-case-studies/`, because they genuinely are the
 same five moves with different nouns. There is no top-level split between hardware
 and software, and there will not be one.
 
-**`99-inbox/` is quarantine.** Anything in there is raw input — machine-generated
-notes, half-formed thoughts, things captured at 11pm with nowhere to file them. It is
-*not* verified and *not* anyone's considered understanding. Everything outside
-`99-inbox/` has been written or rewritten deliberately. That line is the main thing
-keeping this repo trustworthy as it grows.
+**Machine output is never canonical.** Nothing from an AI or from NotebookLM gets
+pasted into a page here. To bring an idea in, you rewrite it in your own words — and
+if you cannot rewrite it without looking at it, you do not understand it well enough
+yet. That rule is the main thing keeping this repo trustworthy as it grows.
 
 Details: **[CONVENTIONS.md](CONVENTIONS.md)**
 
@@ -354,6 +380,6 @@ Early. The structure is settled; the content is being written. Pages marked
 `> **Status:** stub` are scaffolds — the headings and the questions are there, the
 prose is not yet.
 
-If you are a workshop participant: the **[AI prompts](07-workshop/ai-prompts/)** and
-the **[rubric](07-workshop/ai-prompts/design-rubric.md)** are complete and usable
+If you are a workshop participant: the **[AI prompts](06-workshop/ai-prompts/prompts-index.md)** and
+the **[rubric](06-workshop/ai-prompts/design-rubric.md)** are complete and usable
 right now.

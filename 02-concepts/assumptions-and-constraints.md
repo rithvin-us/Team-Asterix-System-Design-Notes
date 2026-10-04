@@ -27,4 +27,4 @@ An unstated assumption is indistinguishable from a mistake.
 ## See also
 
 - [Move 4 — Constraints](../01-method/4-constraints.md)
-- [Check My Change prompt](../07-workshop/ai-prompts/check-my-change.md)
+- [Check My Change prompt](../06-workshop/ai-prompts/check-my-change.md)

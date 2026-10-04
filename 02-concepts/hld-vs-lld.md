@@ -35,5 +35,5 @@ their parent with more rectangles.
 
 ## See also
 
-- [01-method](../01-method/) — the loop that produces both
+- [01-method](../01-method/the-five-moves.md) — the loop that produces both
 - [Diagram conventions](../CONVENTIONS.md#diagrams)

@@ -185,7 +185,7 @@ a global image folder. See [CONVENTIONS.md](../CONVENTIONS.md#diagrams).
 - [ ] Readable at the size it will actually be viewed
 - [ ] Saved as `.drawio.svg`
 
-Then run **[the review prompt](../07-workshop/ai-prompts/review-my-design.md)** on it.
+Then run **[the review prompt](../06-workshop/ai-prompts/review-my-design.md)** on it.
 
 ---
 

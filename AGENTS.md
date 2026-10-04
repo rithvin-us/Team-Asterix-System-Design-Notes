@@ -68,8 +68,8 @@ Additional conventions, which matter only here:
   side by side. Never add a top-level hardware/software split.
 - **Diagrams are `.drawio.svg` only** — editable and GitHub-renderable in one file.
   Never commit a `.png` export or a bare `.drawio`.
-- **`99-inbox/` is quarantine.** Nothing in it is canonical. Machine-generated text is
-  never promoted out of it by copying — it must be rewritten from understanding.
+- **Machine-generated text is never canonical.** Anything from an AI or NotebookLM is
+  rewritten from understanding before it enters a page, never pasted.
 - **No CI, no scripts, no generators, no GitHub Pages, no issue templates.** See the
   "do not over-engineer this repository" section in
   [CONVENTIONS.md](CONVENTIONS.md).

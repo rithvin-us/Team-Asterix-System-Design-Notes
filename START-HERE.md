@@ -59,14 +59,14 @@ Do these in order. You will have a real design at the end.
 
 ### Step 1 — Read one page (10 min)
 
-**[What system design actually is](01-method/README.md)**
+**[What system design actually is](01-method/the-five-moves.md)**
 
 It explains the five moves that every design is made of. Read it once. It will not
 fully make sense yet, and that is expected — it clicks after you try it.
 
 ### Step 2 — Open the AI prompt (2 min)
 
-Go to **[Design Something New](07-workshop/ai-prompts/design-something-new.md)**.
+Go to **[Design Something New](06-workshop/ai-prompts/design-something-new.md)**.
 
 You will see a black box of text. Hover over it — a small **copy icon** appears in the
 top-right corner. Click it. The whole thing is now copied.
@@ -92,7 +92,7 @@ document, paper. Those notes are your design.
 > **It will not give you the answers. That is deliberate, not a malfunction.**
 >
 > If you ask it "just tell me what to use", it will refuse and ask you something
-> smaller instead. [Here is why.](07-workshop/ai-prompts/README.md#the-rule-all-three-enforce)
+> smaller instead. [Here is why.](06-workshop/ai-prompts/prompts-index.md#the-rule-all-three-enforce)
 > Short version: a design you did not make is one you cannot defend when someone asks
 > "why?" — and someone always asks.
 
@@ -118,7 +118,7 @@ filling it in, not starting from a blank page.
 
 ### Step 6 — Get it reviewed (5 min)
 
-Open **[Review My Design](07-workshop/ai-prompts/review-my-design.md)**, copy that
+Open **[Review My Design](06-workshop/ai-prompts/review-my-design.md)**, copy that
 prompt, and paste it into a **brand new chat** — not the one you just used.
 
 > **Why a new chat?** The one that helped you design it has absorbed your
@@ -190,7 +190,7 @@ specific, predictable ways — invented part numbers, arithmetic that does not a
 architectures that ignore your actual budget.
 
 Ten minutes, and it will save you a lot of pain:
-**[When AI Is Wrong About System Design](07-workshop/ai-prompts/when-ai-is-wrong.md)**
+**[When AI Is Wrong About System Design](06-workshop/ai-prompts/when-ai-is-wrong.md)**
 
 ---
 
@@ -198,11 +198,11 @@ Ten minutes, and it will save you a lot of pain:
 
 | | |
 |---|---|
-| The five moves, in depth | [01-method](01-method/) |
+| The five moves, in depth | [01-method](01-method/the-five-moves.md) |
 | Look up a word | [Glossary](GLOSSARY.md) |
 | Draw better diagrams | [Block diagramming conventions](02-concepts/block-diagramming-conventions.md) |
-| The workshop sessions | [07-workshop](07-workshop/) |
-| All the AI prompts | [07-workshop/ai-prompts](07-workshop/ai-prompts/) |
+| The workshop sessions | [07-workshop](06-workshop/workshop-guide.md) |
+| All the AI prompts | [06-workshop/ai-prompts](06-workshop/ai-prompts/prompts-index.md) |
 
 You do not need to read everything. Most of this repository is reference — things you
 look up when you need them, not things you study front to back.

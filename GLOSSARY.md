@@ -21,8 +21,9 @@ between them. Not a flowchart: blocks exist simultaneously, they are not steps.
 Must be drawn before interfaces can be defined, because an interface is by definition
 something that crosses it.
 
-**Canonical** — Written or rewritten deliberately, and stood behind. Everything
-outside [`99-inbox/`](99-inbox/).
+**Canonical** — Written or rewritten deliberately, and stood behind. Everything in
+this repository is meant to be canonical; machine-generated text is rewritten before
+it lands here.
 
 **Case study** — A whole system traced end to end through all five moves. Contrast
 with *example*.
@@ -79,9 +80,9 @@ forgotten of the four flows.
 **Project** — Substantial open-ended work with a full design record. Contrast with
 *exercise*.
 
-**Raw** — Unverified machine-generated material. Lives only in
-[`99-inbox/notebooklm-raw/`](99-inbox/notebooklm-raw/) and never gets promoted
-without being rewritten.
+**Raw** — Unverified machine-generated material, for example from the
+[NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73). Never pasted into a page; rewritten from understanding
+first. See [when AI is wrong](06-workshop/ai-prompts/when-ai-is-wrong.md).
 
 **Responsibility** — What a block is for, statable in one sentence without using
 "and" twice.
