@@ -47,7 +47,7 @@ you made.
 | Look up a term or an idea | [02-concepts](02-concepts/concepts-index.md) · [Glossary](GLOSSARY.md) |
 | Study a full system end to end | [Autoware](03-case-studies/autoware/autoware.md) · [Netflix](03-case-studies/netflix-streaming/netflix-streaming.md) |
 | Learn to draw one yourself | [How to draw a system](03-case-studies/how-to-draw-a-system.md) |
-| **Score your design** | **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — interactive |
+| **Score your design** | **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — paste it in and get scored |
 | Read a real company's architecture | [Reference architectures](03-case-studies/reference-architectures.md) |
 | Practise something small | [04-exercises](04-exercises/exercises-index.md) |
 | Build something substantial | [05-projects](05-projects/projects-index.md) |

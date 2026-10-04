@@ -7,7 +7,7 @@ complete design record.
 |---|---|
 | 🛠 **[How to draw a system](how-to-draw-a-system.md)** | The six-pass method. Read this before studying anything. |
 | 📚 **[Reference architectures](reference-architectures.md)** | Real systems with public sources — Autoware, Apollo, ROS 2, CAN/AUTOSAR, Netflix, Uber, Discord, the classic papers |
-| 📊 **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Score a design on six counted metrics and eight judged dimensions |
+| 📊 **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Paste your design and have it scored, or count the six metrics yourself |
 | 📝 **[Case study template](case-study-template.md)** | The structure every study here follows |
 
 ---

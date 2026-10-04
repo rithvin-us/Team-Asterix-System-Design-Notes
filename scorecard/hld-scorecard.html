@@ -81,6 +81,19 @@ button:hover{opacity:.88}
 .flag.ex{color:var(--signal)}
 textarea{width:100%;height:150px;font-family:var(--mono);font-size:11px;background:var(--bg);color:var(--ink);
   border:1px solid var(--rule);border-radius:3px;padding:9px;margin-top:10px;resize:vertical}
+.auto{border:2px solid var(--signal);border-radius:4px;padding:16px;margin-top:20px;background:var(--panel)}
+.auto-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.auto h2{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.auto textarea{height:132px}
+.auto-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.auto-row button{width:auto}
+.filelab{font-size:12.5px;color:var(--ink-dim);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.status{font-size:12.5px;color:var(--ink-dim);min-width:0;flex:1}
+.unknowns{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-dim)}
+.unknowns b{color:var(--signal)}
+.unknowns ul{margin:6px 0 0;padding-left:18px}
+.why{font-size:12px;color:var(--signal);margin:4px 0 0;font-style:italic}
+.proposed input[type=number],.proposed select{border-color:var(--signal)}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-dim)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -95,6 +108,26 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <p class="note"><span class="flag ex">example values loaded</span> &nbsp;Figures below are a worked example so you
 can see how it reads. Replace them with your own.</p>
+
+<div class="auto" id="auto" hidden>
+  <div class="auto-head">
+    <h2 style="margin:0;border:0;padding:0">Score it for me</h2>
+    <span class="flag ex" id="auto_flag">reads your design, fills the numbers</span>
+  </div>
+  <p class="hint">Paste your design — block list, arrow list, requirements, trade-offs, or the whole document.
+  Claude reads it and proposes every number below. <b>You then check each one.</b> It will mark anything your
+  design does not say rather than inventing it.</p>
+  <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing — reads wheel RPM&#10;- Control Unit — decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because..."
+    aria-label="Your design"></textarea>
+  <div class="auto-row">
+    <button id="evaluate">Evaluate my design</button>
+    <button class="ghost" id="stop" hidden>Stop</button>
+    <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
+    <label for="shot" class="filelab" id="shotlab" hidden>+ add a photo of the diagram</label>
+    <span class="status" id="status"></span>
+  </div>
+  <div id="unknowns" class="unknowns" hidden></div>
+</div>
 
 <div class="cols">
 <section>
@@ -442,4 +475,144 @@ $('reset').addEventListener('click', () => {
 
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
 load(); update();
+
+/* ---------- Score it for me ---------- */
+const SCHEMA = `Reply with ONLY this JSON object, no other text:
+{"metrics":{"arrowsLabelled":0,"arrowsTotal":0,"orphans":0,"powerApplicable":true,
+"consumersSupplied":0,"consumersTotal":0,"nfrMeasurable":0,"nfrTotal":0,
+"tradeoffsComplete":0,"tradeoffsTotal":0,"zoomConsistent":false},
+"dimensions":{"bnd":0,"blk":0,"ifc":0,"flw":0,"req":0,"asm":0,"tdo":0,"clr":0},
+"reasons":{"bnd":"","blk":"","ifc":"","flw":"","req":"","asm":"","tdo":"","clr":""},
+"unknowns":[""]}`;
+
+function buildPrompt(design, hasImage){
+  const anchors = DIMS.map(d => `${d.k} (${d.label}): ` + d.a.map((t,i)=>`${i}=${t}`).join(' ')).join('\n');
+  return `You are scoring a student's high-level system design for an engineering workshop.
+${hasImage ? 'An image of their block diagram is attached. Read it together with the text below.\n' : ''}
+Count strictly from what is actually present. Where the design does not say something, score it low and add a
+short note to "unknowns". NEVER invent a component, a number, or a requirement they did not give. Being
+generous teaches them nothing.
+
+METRICS to count:
+- arrowsTotal / arrowsLabelled: connections between blocks, and how many state what travels (content, and rate
+  or units where a quantity is involved). "data" or "signal" alone does NOT count as labelled.
+- orphans: blocks whose output nothing consumes, plus blocks whose input nothing produces.
+- powerApplicable: false only if this is a software-only system with no electrical power to trace.
+- consumersTotal / consumersSupplied: things needing electrical power, and how many have a supply path drawn.
+- nfrTotal / nfrMeasurable: non-functional requirements, and how many carry an actual number. "fast" is not a
+  number; "under 200 ms" is.
+- tradeoffsTotal / tradeoffsComplete: decisions described, and how many name the REJECTED option.
+- zoomConsistent: true only if every block sits at the same level of detail.
+
+DIMENSIONS, scored 0-3 using exactly these anchors:
+${anchors}
+
+REASONS: one short sentence per dimension saying what in their design decided the score. Quote their own words
+where you can. Be specific and direct; no praise that is not load-bearing.
+
+UNKNOWNS: list what you could not determine from what they gave you, as short phrases. If everything was
+determinable, use an empty array.
+
+${SCHEMA}
+
+THE DESIGN:
+${design}`;
+}
+
+(async () => {
+  const sample = await claude.use('sample');
+  if (!sample) return;                          // not available: manual mode only
+  const panel = $('auto'); panel.hidden = false;
+
+  let caps = null;
+  try { caps = await sample.limits(); } catch(e) {}
+  if (caps && caps.images) { $('shot').hidden = false; $('shotlab').hidden = false; }
+
+  let ctl = null;
+  const status = $('status');
+  const setBusy = on => {
+    $('evaluate').disabled = on;
+    $('stop').hidden = !on;
+  };
+
+  $('shot').addEventListener('change', () => {
+    const f = $('shot').files[0];
+    $('shotlab').textContent = f ? '📎 ' + f.name : '+ add a photo of the diagram';
+  });
+
+  $('stop').addEventListener('click', () => ctl && ctl.abort());
+
+  $('evaluate').addEventListener('click', async () => {
+    const design = $('design').value.trim();
+    const file = $('shot').files && $('shot').files[0];
+    if (!design && !file) { status.textContent = 'Paste your design first, or attach a diagram.'; return; }
+
+    ctl = new AbortController();
+    setBusy(true);
+    status.textContent = 'Reading your design…';
+    $('unknowns').hidden = true;
+
+    const opts = { signal: ctl.signal, modelTier: 'default', cache: false,
+      onText: () => { status.textContent = 'Scoring…'; } };
+    if (file && caps && caps.images) opts.images = file;
+
+    try {
+      const r = await sample.json(buildPrompt(design || '(no text given — read the attached diagram)', !!file), opts);
+      applyResult(r);
+      status.textContent = 'Proposed. Check every number before you trust it.';
+      panel.classList.add('done');
+    } catch (e) {
+      const c = e && e.code;
+      if (c === 'cancelled') { status.textContent = 'Stopped.'; }
+      else if (c === 'not_granted' || c === 'sampling_disabled' || c === 'not_declared'
+            || c === 'capability_disabled' || c === 'capability_removed') { panel.hidden = true; }
+      else if (c === 'rate_limited') { status.textContent = 'Too many requests just now. Wait a minute and try again.'; }
+      else if (c === 'session_expired') { status.textContent = 'Sign in to Claude again, then retry.'; }
+      else if (c === 'image_rejected') { status.textContent = 'That image was refused. Try a smaller PNG or JPEG.'; }
+      else if (c === 'invalid_json') { status.textContent = 'The reply came back malformed. Try again, or shorten your design.'; }
+      else if (c === 'prompt_too_large') { status.textContent = 'That is too long. Paste the key sections only.'; }
+      else { status.textContent = 'That did not work. Try again, or fill the numbers in yourself.'; }
+    } finally {
+      setBusy(false); ctl = null;
+    }
+  });
+
+  function num(v){ const n = Number(v); return Number.isFinite(n) && n >= 0 ? Math.round(n) : 0; }
+
+  function applyResult(r){
+    const m = (r && r.metrics) || {}, d = (r && r.dimensions) || {}, why = (r && r.reasons) || {};
+    const set = (id,v) => { $(id).value = num(v); };
+    set('ifc_n', m.arrowsLabelled); set('ifc_d', m.arrowsTotal);
+    set('orp', m.orphans);
+    $('pwr_na').value = (m.powerApplicable === false) ? 'yes' : 'no';
+    set('pwr_n', m.consumersSupplied); set('pwr_d', m.consumersTotal);
+    set('req_n', m.nfrMeasurable); set('req_d', m.nfrTotal);
+    set('tdo_n', m.tradeoffsComplete); set('tdo_d', m.tradeoffsTotal);
+    $('zoom').value = m.zoomConsistent === true ? '1' : '0';
+
+    DIMS.forEach(x => {
+      const v = num(d[x.k]);
+      $('s_'+x.k).value = Math.min(3, v);
+      let p = document.getElementById('w_'+x.k);
+      if (!p) { p = document.createElement('p'); p.className = 'why'; p.id = 'w_'+x.k;
+                $('a_'+x.k).insertAdjacentElement('afterend', p); }
+      p.textContent = why[x.k] ? '— ' + why[x.k] : '';
+    });
+
+    document.querySelectorAll('.metric').forEach(el => el.classList.add('proposed'));
+    document.querySelector('.note').innerHTML =
+      '<span class="flag ex">proposed by Claude</span> &nbsp;Every number below was read off your design. ' +
+      'Check each one — it is a reviewer, not an authority.';
+
+    const u = Array.isArray(r && r.unknowns) ? r.unknowns.filter(x => x && String(x).trim()) : [];
+    const box = $('unknowns');
+    if (u.length) {
+      box.innerHTML = '<b>Could not tell from what you gave:</b><ul>' +
+        u.map(x => '<li>' + String(x).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])) + '</li>').join('') +
+        '</ul>';
+      box.hidden = false;
+    }
+    update();
+  }
+})();
 </script>
