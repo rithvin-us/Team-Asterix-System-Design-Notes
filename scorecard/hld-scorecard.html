@@ -1,0 +1,445 @@
+<title>HLD Scorecard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: instrument panel — measured column of gauges, readout fixed to the right on desktop, stacked on phone */
+:root{
+  --bg:#f2f1ee; --panel:#fbfaf8; --ink:#1b1d21; --ink-dim:#5e6470; --rule:#d8d6d0;
+  --signal:#b45309; --good:#3f7d4e; --warn:#b4720c; --bad:#a63028; --grid:#cfcdc6;
+  --display:"IBM Plex Sans Condensed","Helvetica Neue",sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15171a; --panel:#1d2024; --ink:#e8e6e1; --ink-dim:#9aa0ab; --rule:#2f343a;
+  --signal:#e8a33d; --good:#5fb574; --warn:#e0a33a; --bad:#e0685c; --grid:#333940;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#15171a; --panel:#1d2024; --ink:#e8e6e1; --ink-dim:#9aa0ab; --rule:#2f343a;
+  --signal:#e8a33d; --good:#5fb574; --warn:#e0a33a; --bad:#e0685c; --grid:#333940;
+  color-scheme:dark;}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 56px;padding-left:20px;padding-right:20px}
+header{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin:0 0 6px}
+h1{font-family:var(--display);font-size:clamp(28px,6vw,44px);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--ink-dim);margin:10px 0 0;max-width:62ch;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;margin-top:26px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+section{min-width:0}
+h2{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);
+   margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+h2:first-child{margin-top:0}
+.hint{font-size:12.5px;color:var(--ink-dim);margin:0 0 14px}
+
+/* computed metrics */
+.metric{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--rule)}
+.metric .name{font-weight:600;font-size:14px}
+.metric .formula{font-family:var(--mono);font-size:11px;color:var(--ink-dim);grid-column:1;margin-top:2px}
+.inputs{display:flex;gap:6px;align-items:center;grid-column:2;grid-row:1/3}
+input[type=number]{width:58px;padding:5px 6px;font-family:var(--mono);font-size:13px;text-align:right;
+  background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:3px}
+input[type=number]:focus-visible,select:focus-visible,button:focus-visible,input[type=range]:focus-visible{
+  outline:2px solid var(--signal);outline-offset:2px}
+.slash{color:var(--ink-dim);font-family:var(--mono)}
+.readout{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:15px;font-weight:600;
+  min-width:62px;text-align:right}
+.bar{grid-column:1/-1;height:5px;background:var(--rule);border-radius:3px;overflow:hidden;margin-top:2px}
+.bar i{display:block;height:100%;width:0;background:var(--good);transition:width .25s,background .25s}
+select{padding:5px 8px;font-family:var(--body);font-size:13px;background:var(--panel);color:var(--ink);
+  border:1px solid var(--rule);border-radius:3px}
+
+/* scored dimensions */
+.dim{padding:12px 0;border-bottom:1px solid var(--rule)}
+.dim .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.dim .label{font-weight:600;font-size:14px}
+.dim .val{font-family:var(--mono);font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;margin:9px 0 4px;accent-color:var(--signal)}
+.anchor{font-size:12.5px;color:var(--ink-dim);min-height:2.6em}
+
+/* right rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);display:flex;flex-direction:column;gap:14px}
+@media(max-width:860px){.rail{position:static}}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:16px}
+.card h3{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-dim);margin:0 0 10px}
+canvas{width:100%;height:auto;display:block}
+.verdict{font-family:var(--display);font-size:30px;line-height:1.05;margin:0 0 4px}
+.verdict small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;font-weight:400}
+.weak{font-size:13px;color:var(--ink-dim);margin:10px 0 0;padding-top:10px;border-top:1px solid var(--rule)}
+.weak b{color:var(--bad)}
+button{font-family:var(--body);font-size:13px;font-weight:600;padding:9px 14px;cursor:pointer;
+  background:var(--ink);color:var(--bg);border:1px solid var(--ink);border-radius:3px;width:100%}
+button.ghost{background:transparent;color:var(--ink)}
+button:hover{opacity:.88}
+.note{font-size:11.5px;color:var(--ink-dim);margin:10px 0 0}
+.flag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:2px;border:1px solid currentColor}
+.flag.ex{color:var(--signal)}
+textarea{width:100%;height:150px;font-family:var(--mono);font-size:11px;background:var(--bg);color:var(--ink);
+  border:1px solid var(--rule);border-radius:3px;padding:9px;margin-top:10px;resize:vertical}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-dim)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Team Asterix · System Design</p>
+  <h1>HLD Scorecard</h1>
+  <p class="sub">Measure a high-level design instead of describing it. Six numbers you count straight off the
+  diagram, eight judgements you make yourself. Nothing is saved anywhere but this browser.</p>
+</header>
+
+<p class="note"><span class="flag ex">example values loaded</span> &nbsp;Figures below are a worked example so you
+can see how it reads. Replace them with your own.</p>
+
+<div class="cols">
+<section>
+
+  <h2>Counted from the diagram</h2>
+  <p class="hint">Open your HLD and count. These are facts, not opinions — two people counting the same diagram
+  should get the same answer.</p>
+
+  <div class="metric">
+    <span class="name">Interface completeness</span>
+    <span class="formula">labelled arrows ÷ total arrows</span>
+    <span class="inputs">
+      <input type="number" id="ifc_n" min="0" value="9" aria-label="labelled arrows">
+      <span class="slash">/</span>
+      <input type="number" id="ifc_d" min="0" value="14" aria-label="total arrows">
+      <span class="readout" id="ifc_out">—</span>
+    </span>
+    <span class="bar"><i id="ifc_bar"></i></span>
+  </div>
+
+  <div class="metric">
+    <span class="name">Orphan blocks</span>
+    <span class="formula">outputs nobody consumes + inputs nobody produces</span>
+    <span class="inputs"><input type="number" id="orp" min="0" value="2" aria-label="orphan count">
+      <span class="readout" id="orp_out">—</span></span>
+    <span class="bar"><i id="orp_bar"></i></span>
+  </div>
+
+  <div class="metric">
+    <span class="name">Power coverage</span>
+    <span class="formula">consumers with a supply path ÷ all consumers</span>
+    <span class="inputs">
+      <select id="pwr_na" aria-label="power applicable">
+        <option value="no">applies</option><option value="yes">software only — N/A</option>
+      </select>
+      <input type="number" id="pwr_n" min="0" value="4" aria-label="consumers supplied">
+      <span class="slash">/</span>
+      <input type="number" id="pwr_d" min="0" value="6" aria-label="total consumers">
+      <span class="readout" id="pwr_out">—</span>
+    </span>
+    <span class="bar"><i id="pwr_bar"></i></span>
+  </div>
+
+  <div class="metric">
+    <span class="name">Requirement measurability</span>
+    <span class="formula">non-functional reqs with a number ÷ all non-functional reqs</span>
+    <span class="inputs">
+      <input type="number" id="req_n" min="0" value="3" aria-label="measurable requirements">
+      <span class="slash">/</span>
+      <input type="number" id="req_d" min="0" value="7" aria-label="total requirements">
+      <span class="readout" id="req_out">—</span>
+    </span>
+    <span class="bar"><i id="req_bar"></i></span>
+  </div>
+
+  <div class="metric">
+    <span class="name">Trade-off completeness</span>
+    <span class="formula">decisions naming the rejected option ÷ decisions</span>
+    <span class="inputs">
+      <input type="number" id="tdo_n" min="0" value="1" aria-label="complete trade-offs">
+      <span class="slash">/</span>
+      <input type="number" id="tdo_d" min="0" value="4" aria-label="total decisions">
+      <span class="readout" id="tdo_out">—</span>
+    </span>
+    <span class="bar"><i id="tdo_bar"></i></span>
+  </div>
+
+  <div class="metric">
+    <span class="name">Zoom consistency</span>
+    <span class="formula">all blocks at one level of detail</span>
+    <span class="inputs">
+      <select id="zoom" aria-label="zoom consistency">
+        <option value="1">consistent</option><option value="0" selected>mixed levels</option>
+      </select>
+      <span class="readout" id="zoom_out">—</span>
+    </span>
+    <span class="bar"><i id="zoom_bar"></i></span>
+  </div>
+
+  <h2>Judged by you</h2>
+  <p class="hint">0 = absent · 1 = attempted · 2 = solid · 3 = someone could build from this. Move a slider to see
+  what each level means.</p>
+  <div id="dims"></div>
+
+</section>
+
+<aside class="rail">
+  <div class="card">
+    <h3>Profile</h3>
+    <canvas id="radar" width="620" height="620" role="img"
+      aria-label="Radar chart of the eight scored dimensions"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Readout</h3>
+    <p class="verdict"><small id="band">—</small><span id="score">—</span></p>
+    <p class="weak" id="weak">—</p>
+  </div>
+
+  <div class="card">
+    <h3>Export</h3>
+    <button id="copy">Copy as markdown</button>
+    <button class="ghost" id="reset" style="margin-top:8px">Reset to blank</button>
+    <textarea id="md" readonly aria-label="Markdown export"></textarea>
+    <p class="note">Paste into your project's design record, under a dated heading. Scoring the same design again in
+    three weeks is how you see whether it improved.</p>
+  </div>
+</aside>
+</div>
+
+<footer>
+  A design that scores well is not automatically good — but one that scores badly is reliably incomplete, and
+  incomplete is the failure that actually shows up when you build. Pair this with the written rubric.
+</footer>
+</div>
+
+<script>
+const DIMS = [
+  {k:'bnd', label:'Boundary', a:[
+    'No statement of what is inside or outside.',
+    'Inside is implied; outside is not stated.',
+    'Inside and outside both stated; most dependencies named.',
+    'Inside, outside, every external dependency, and at least two things deliberately excluded.']},
+  {k:'blk', label:'Blocks', a:[
+    'Boxes with no stated responsibility.',
+    'Named, but some do two jobs or sit at the wrong level.',
+    'One responsibility each, mostly consistent zoom.',
+    'One statable responsibility each, consistent zoom, and the cut is justified against an alternative.']},
+  {k:'ifc', label:'Interfaces', a:[
+    'Unlabelled arrows.',
+    'Arrows labelled with a name only — "data", "signal".',
+    'Most carry content and units.',
+    'Every one states what travels, in what form, at what rate, in what units.']},
+  {k:'flw', label:'Flows', a:[
+    'One undifferentiated arrow type.',
+    'Types distinguished but nothing traced end to end.',
+    'Types distinguished, one flow traced fully.',
+    'All applicable flows distinguished and traced; inapplicable ones explicitly ruled out.']},
+  {k:'req', label:'Requirements', a:[
+    'None stated.',
+    'A list, functional and non-functional mixed together.',
+    'Separated; some carry numbers.',
+    'Separated, every non-functional one measurable, each tied to part of the design.']},
+  {k:'asm', label:'Assumptions', a:[
+    'None stated — so they are indistinguishable from facts.',
+    'A few noted in passing.',
+    'Listed separately from facts.',
+    'Listed, each with what breaks if wrong, and the load-bearing one flagged for verification.']},
+  {k:'tdo', label:'Trade-offs', a:[
+    'No decisions identified.',
+    'Choices stated without alternatives — defaults, not decisions.',
+    'Rejected options named.',
+    'Rejected option, reason tied to a constraint, and the cost of the choice all named.']},
+  {k:'clr', label:'Clarity', a:[
+    'Needs the author present to interpret.',
+    'Readable with effort; naming drifts.',
+    'Legend present, naming consistent.',
+    'A stranger could understand the system from the diagram plus one page.']}
+];
+const START = {bnd:2,blk:2,ifc:1,flw:1,req:1,asm:0,tdo:1,clr:2};
+const KEY = 'asterix-hld-scorecard-v1';
+const $ = id => document.getElementById(id);
+const scores = {};
+
+const dimsEl = $('dims');
+DIMS.forEach(d => {
+  const row = document.createElement('div');
+  row.className = 'dim';
+  row.innerHTML = `<div class="top"><span class="label">${d.label}</span>
+      <span class="val" id="v_${d.k}">0 / 3</span></div>
+      <input type="range" min="0" max="3" step="1" id="s_${d.k}" aria-label="${d.label} score">
+      <p class="anchor" id="a_${d.k}"></p>`;
+  dimsEl.appendChild(row);
+  $('s_'+d.k).addEventListener('input', update);
+});
+
+['ifc_n','ifc_d','orp','pwr_n','pwr_d','req_n','req_d','tdo_n','tdo_d','zoom','pwr_na']
+  .forEach(id => $(id).addEventListener('input', update));
+
+function pct(n,d){ d = +d; n = +n; if(!d || d<=0) return null; return Math.max(0,Math.min(1,n/d)); }
+function paint(barId,outId,v,txt){
+  const bar = $(barId), out = $(outId);
+  if(v===null){ bar.style.width='0%'; out.textContent = txt || '—'; out.style.color='var(--ink-dim)'; return; }
+  bar.style.width = (v*100).toFixed(0)+'%';
+  const c = v>=0.9?'var(--good)':v>=0.6?'var(--warn)':'var(--bad)';
+  bar.style.background = c; out.style.color = c;
+  out.textContent = txt !== undefined ? txt : Math.round(v*100)+'%';
+}
+
+let metricScore = 0, metricCount = 0;
+
+function update(){
+  metricScore = 0; metricCount = 0;
+  const add = v => { if(v!==null){ metricScore += v; metricCount++; } };
+
+  let v = pct($('ifc_n').value, $('ifc_d').value); paint('ifc_bar','ifc_out',v); add(v);
+
+  const orphans = Math.max(0, +$('orp').value||0);
+  const ov = orphans===0 ? 1 : orphans<=2 ? 0.5 : 0;
+  paint('orp_bar','orp_out',ov, orphans===0 ? 'none' : orphans+' found'); add(ov);
+
+  const na = $('pwr_na').value === 'yes';
+  $('pwr_n').disabled = na; $('pwr_d').disabled = na;
+  let pv = na ? null : pct($('pwr_n').value, $('pwr_d').value);
+  paint('pwr_bar','pwr_out', pv, na ? 'n/a' : undefined); add(pv);
+
+  v = pct($('req_n').value, $('req_d').value); paint('req_bar','req_out',v); add(v);
+  v = pct($('tdo_n').value, $('tdo_d').value); paint('tdo_bar','tdo_out',v); add(v);
+
+  const z = $('zoom').value === '1' ? 1 : 0;
+  paint('zoom_bar','zoom_out', z, z ? 'pass' : 'fail'); add(z);
+
+  DIMS.forEach(d => {
+    const s = +$('s_'+d.k).value;
+    scores[d.k] = s;
+    $('v_'+d.k).textContent = s + ' / 3';
+    $('a_'+d.k).textContent = d.a[s];
+  });
+
+  const dimAvg = DIMS.reduce((t,d)=>t+scores[d.k],0) / (DIMS.length*3);
+  const metAvg = metricCount ? metricScore/metricCount : 0;
+  const overall = Math.round((dimAvg*0.6 + metAvg*0.4) * 100);
+
+  $('score').textContent = overall + '%';
+  const band = overall>=85 ? 'Buildable' : overall>=65 ? 'Nearly there' : overall>=40 ? 'Incomplete' : 'Early draft';
+  $('band').textContent = band;
+  $('score').style.color = overall>=85?'var(--good)':overall>=65?'var(--warn)':'var(--bad)';
+
+  const lowest = DIMS.reduce((a,b)=> scores[b.k] < scores[a.k] ? b : a);
+  $('weak').innerHTML = `Weakest link: <b>${lowest.label}</b> — ${DIMS.find(d=>d.k===lowest.k).a[scores[lowest.k]]}
+    <br><br>Fix that one before anything else. A design fails at its weakest dimension, not its average.`;
+
+  draw(); writeMd(overall, band); save();
+}
+
+function cssvar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+function draw(){
+  const c = $('radar'), x = c.getContext('2d');
+  const W = c.width, cx = W/2, cy = W/2, R = W*0.275;
+  x.clearRect(0,0,W,W);
+  const n = DIMS.length, grid = cssvar('--grid'), dim = cssvar('--ink-dim'), sig = cssvar('--signal');
+  const ang = i => (Math.PI*2*i/n) - Math.PI/2;
+
+  for(let r=1;r<=3;r++){
+    x.beginPath();
+    for(let i=0;i<n;i++){
+      const a = ang(i), rr = R*r/3;
+      i ? x.lineTo(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr) : x.moveTo(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr);
+    }
+    x.closePath(); x.strokeStyle = grid; x.lineWidth = 1.5; x.stroke();
+  }
+  x.strokeStyle = grid;
+  for(let i=0;i<n;i++){
+    const a = ang(i);
+    x.beginPath(); x.moveTo(cx,cy); x.lineTo(cx+Math.cos(a)*R, cy+Math.sin(a)*R); x.stroke();
+  }
+
+  x.beginPath();
+  for(let i=0;i<n;i++){
+    const a = ang(i), rr = R*(scores[DIMS[i].k]/3);
+    i ? x.lineTo(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr) : x.moveTo(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr);
+  }
+  x.closePath();
+  x.fillStyle = sig + '44'; x.fill();
+  x.strokeStyle = sig; x.lineWidth = 3; x.stroke();
+  for(let i=0;i<n;i++){
+    const a = ang(i), rr = R*(scores[DIMS[i].k]/3);
+    x.beginPath(); x.arc(cx+Math.cos(a)*rr, cy+Math.sin(a)*rr, 5, 0, 7); x.fillStyle = sig; x.fill();
+  }
+
+  x.fillStyle = dim; x.font = '600 19px "IBM Plex Sans", sans-serif';
+  for(let i=0;i<n;i++){
+    const a = ang(i), lx = cx+Math.cos(a)*(R+28), ly = cy+Math.sin(a)*(R+28);
+    x.textAlign = Math.abs(Math.cos(a))<0.25 ? 'center' : (Math.cos(a)>0 ? 'left':'right');
+    x.textBaseline = Math.sin(a)>0.6 ? 'top' : Math.sin(a)<-0.6 ? 'bottom' : 'middle';
+    x.fillText(DIMS[i].label, lx, ly);
+  }
+}
+
+function writeMd(overall, band){
+  const f = id => $(id).value;
+  const na = $('pwr_na').value==='yes';
+  const rows = DIMS.map(d=>`| ${d.label} | ${scores[d.k]}/3 | ${d.a[scores[d.k]]} |`).join('\n');
+  $('md').value =
+`## HLD score — ${new Date().toISOString().slice(0,10)}
+
+**${overall}% · ${band}**
+
+| Metric | Value |
+|---|---|
+| Interface completeness | ${f('ifc_n')}/${f('ifc_d')} arrows labelled |
+| Orphan blocks | ${f('orp')} |
+| Power coverage | ${na ? 'n/a (software only)' : f('pwr_n')+'/'+f('pwr_d')+' consumers supplied'} |
+| Requirement measurability | ${f('req_n')}/${f('req_d')} non-functional reqs have numbers |
+| Trade-off completeness | ${f('tdo_n')}/${f('tdo_d')} decisions name the rejected option |
+| Zoom consistency | ${$('zoom').value==='1' ? 'pass' : 'fail'} |
+
+| Dimension | Score | Where it stands |
+|---|---|---|
+${rows}
+
+**Fix first:** ${DIMS.reduce((a,b)=> scores[b.k]<scores[a.k]?b:a).label}
+`;
+}
+
+function save(){
+  try{
+    const f = id => $(id).value;
+    localStorage.setItem(KEY, JSON.stringify({
+      s:scores, m:['ifc_n','ifc_d','orp','pwr_n','pwr_d','req_n','req_d','tdo_n','tdo_d','zoom','pwr_na']
+        .reduce((o,k)=>(o[k]=f(k),o),{})
+    }));
+  }catch(e){}
+}
+
+function load(){
+  let d = null;
+  try{ d = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+  DIMS.forEach(x => $('s_'+x.k).value = (d && d.s && d.s[x.k] != null) ? d.s[x.k] : START[x.k]);
+  if(d && d.m) Object.entries(d.m).forEach(([k,v]) => { if($(k)) $(k).value = v; });
+}
+
+$('copy').addEventListener('click', async e => {
+  const t = $('md');
+  try{
+    await navigator.clipboard.writeText(t.value);
+    e.target.textContent = 'Copied';
+    setTimeout(()=>e.target.textContent='Copy as markdown', 1600);
+  }catch(err){
+    t.focus(); t.select();
+    e.target.textContent = 'Select and copy';
+    setTimeout(()=>e.target.textContent='Copy as markdown', 2400);
+  }
+});
+
+$('reset').addEventListener('click', () => {
+  DIMS.forEach(d => $('s_'+d.k).value = 0);
+  [['ifc_n',0],['ifc_d',0],['orp',0],['pwr_n',0],['pwr_d',0],['req_n',0],['req_d',0],
+   ['tdo_n',0],['tdo_d',0]].forEach(([k,v]) => $(k).value = v);
+  $('zoom').value='0'; $('pwr_na').value='no';
+  document.querySelector('.note').innerHTML = 'Blank. Open your HLD and start counting.';
+  update();
+});
+
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+load(); update();
+</script>

@@ -45,7 +45,9 @@ you made.
 |---|---|
 | Understand how designing works at all | [01-method](01-method/the-five-moves.md) |
 | Look up a term or an idea | [02-concepts](02-concepts/concepts-index.md) · [Glossary](GLOSSARY.md) |
-| Study a full system end to end | [03-case-studies](03-case-studies/case-studies-index.md) |
+| Study a full system end to end | [Autoware](03-case-studies/autoware/autoware.md) · [Netflix](03-case-studies/netflix-streaming/netflix-streaming.md) |
+| Learn to draw one yourself | [How to draw a system](03-case-studies/how-to-draw-a-system.md) |
+| **Score your design** | **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — interactive |
 | Read a real company's architecture | [Reference architectures](03-case-studies/reference-architectures.md) |
 | Practise something small | [04-exercises](04-exercises/exercises-index.md) |
 | Build something substantial | [05-projects](05-projects/projects-index.md) |
@@ -108,6 +110,83 @@ and you go round again at a finer level of detail. That loop is what HLD and LLD
 actually are: the same five moves at two levels of zoom.
 
 Read it properly: **[01-method](01-method/the-five-moves.md)**
+
+---
+
+## How it all connects
+
+```mermaid
+flowchart TD
+    START("🚩 START-HERE"):::entry
+    METHOD("⬡ The five moves<br/><i>decompose · interfaces · flows<br/>constraints · trade-offs</i>"):::core
+
+    subgraph LEARN ["📖 Understand"]
+        CONCEPTS("Concepts"):::n
+        GLOSSARY("Glossary"):::n
+        CONV("Conventions"):::n
+    end
+
+    subgraph STUDY ["🔭 Study real systems"]
+        HOWTO("How to draw a system"):::n
+        REFS("Reference architectures"):::n
+        AUTO("Autoware"):::leaf
+        NFLX("Netflix"):::leaf
+    end
+
+    subgraph MAKE ["✏️ Make your own"]
+        TMPL("Starter diagram"):::tool
+        EXER("Exercises"):::n
+        PROJ("Projects"):::n
+    end
+
+    subgraph CHECK ["🔍 Check it"]
+        PROMPTS("AI prompts"):::tool
+        SCORE("HLD Scorecard"):::tool
+        RUBRIC("The rubric"):::n
+        AIWRONG("Where AI is wrong"):::n
+    end
+
+    NB("📓 NotebookLM<br/>source material"):::ext
+    WS("🎓 Workshop sessions"):::ws
+
+    START --> METHOD
+    METHOD --> CONCEPTS
+    METHOD --> TMPL
+    CONCEPTS --- GLOSSARY
+    CONCEPTS --> HOWTO
+    REFS --> HOWTO
+    HOWTO --> AUTO
+    HOWTO --> NFLX
+    HOWTO --> TMPL
+    TMPL --> SCORE
+    TMPL --> PROMPTS
+    PROMPTS --> RUBRIC
+    PROMPTS --- AIWRONG
+    SCORE --> PROJ
+    RUBRIC --> EXER
+    EXER --> PROJ
+    AUTO -.-> PROJ
+    NFLX -.-> PROJ
+    NB -.-> CONCEPTS
+    WS --> START
+    WS --> PROMPTS
+    CONV -.- METHOD
+
+    classDef entry stroke:#3fb950,stroke-width:3px,fill:transparent
+    classDef core stroke:#db61a2,stroke-width:3px,fill:transparent
+    classDef n stroke:#4493f8,stroke-width:1.5px,fill:transparent
+    classDef leaf stroke:#4493f8,stroke-width:1.5px,stroke-dasharray:4 3,fill:transparent
+    classDef tool stroke:#f0883e,stroke-width:2px,fill:transparent
+    classDef ext stroke:#a371f7,stroke-width:2px,stroke-dasharray:5 4,fill:transparent
+    classDef ws stroke:#8b949e,stroke-width:2px,fill:transparent
+```
+
+**Reading it:** solid arrows are *do this next*. Dotted lines are *related, go when you
+need it*. Pink is the spine — everything else exists to serve those five moves. Orange
+is a tool you use rather than a page you read.
+
+> GitHub renders this map but cannot make it clickable. Use the table above to
+> navigate, or the [interactive scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR) for the parts that respond.
 
 ---
 
@@ -324,6 +403,8 @@ START-HERE.md       Gentle on-ramp. No prior knowledge assumed.
 AGENTS.md           Rules for AI agents. Copy into your own project.
 CONVENTIONS.md      How this repo is organised, and why.
 GLOSSARY.md         Every term, in plain words.
+
+scorecard/          The HLD Scorecard, as a single HTML file.
 
 01-method/          The five moves. The spine of everything here.
 02-concepts/        Vocabulary and ideas. Look things up here.

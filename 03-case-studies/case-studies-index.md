@@ -5,22 +5,22 @@ complete design record.
 
 | | |
 |---|---|
-| 📚 **[Reference architectures](reference-architectures.md)** | Real systems with public sources — Autoware, Apollo, ROS 2, CAN/AUTOSAR, Netflix, Uber, Discord, the classic papers. **Start here.** |
+| 🛠 **[How to draw a system](how-to-draw-a-system.md)** | The six-pass method. Read this before studying anything. |
+| 📚 **[Reference architectures](reference-architectures.md)** | Real systems with public sources — Autoware, Apollo, ROS 2, CAN/AUTOSAR, Netflix, Uber, Discord, the classic papers |
+| 📊 **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Score a design on six counted metrics and eight judged dimensions |
 | 📝 **[Case study template](case-study-template.md)** | The structure every study here follows |
 
 ---
 
 ## Written up here
 
-| System | Domain | Difficulty | Source |
+| System | Domain | Difficulty | Teaches |
 |---|---|---|---|
-| _none yet_ | | | |
+| **[Autoware](autoware/autoware.md)** | Automotive | Intermediate | Boundaries, stating what you exclude, an architecture rewrite and why |
+| **[Netflix](netflix-streaming/netflix-streaming.md)** | Software | Intermediate | Control vs data flow as separate systems, a published failure mode |
 
-Empty on purpose. A case study is only worth keeping if someone actually read the
-primary source and drew the system themselves — see
-[how to produce one](reference-architectures.md#how-to-actually-use-this-page). A
-paraphrase of a system nobody here has studied is worse than an empty table, because
-it looks like knowledge.
+Both were written with [the six-pass method](how-to-draw-a-system.md) against primary
+sources, and both cite them. A case study with no primary source is a rumour.
 
 ## Good candidates
 
