@@ -11,6 +11,7 @@ permanently.
 | **[Check My Change](check-my-change.md)** | Something changed, what broke? | ~320 tok |
 | **[Agent Rules](agent-rules.md)** | Every session, automatically | ~460 tok |
 | **[The Rubric](design-rubric.md)** | Self-check, no AI needed | — |
+| **[When AI Is Wrong](when-ai-is-wrong.md)** | Before trusting any of it | — |
 
 The three prompts compress [the rubric](design-rubric.md). The rubric is the full
 version and stands alone with no AI involved.

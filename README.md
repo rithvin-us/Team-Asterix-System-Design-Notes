@@ -15,6 +15,12 @@ meant to outlive it.
 
 ---
 
+> ### 👋 Never done this before?
+> **[→ START HERE](START-HERE.md)** — a gentler walkthrough that assumes no knowledge
+> of system design, GitHub, Draw.io or AI tools. Built for first-year students.
+
+---
+
 ## New here? Start with these three
 
 You need no prior knowledge. Thirty minutes gets you from zero to your first design.
@@ -48,6 +54,8 @@ you made.
 | See automotive / ATV material | [examples](03-examples/automotive/) · [case studies](04-case-studies/automotive/) |
 | See software / backend material | [examples](03-examples/software/) · [case studies](04-case-studies/software/) |
 | Learn HLD vs LLD | [hld-vs-lld.md](02-concepts/hld-vs-lld.md) |
+| Start a diagram without a blank page | [Starter template](02-concepts/diagrams/starter-template.drawio.svg) |
+| Know where AI gets this wrong | [when-ai-is-wrong.md](07-workshop/ai-prompts/when-ai-is-wrong.md) |
 | Ask questions of the source material | [NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73) ⚠️ |
 | Know how this repo is organised | [CONVENTIONS.md](CONVENTIONS.md) |
 
@@ -290,6 +298,8 @@ against. → **[07-workshop/ai-prompts/design-rubric.md](07-workshop/ai-prompts/
 ## Repository map
 
 ```
+START-HERE.md       Gentle on-ramp. No prior knowledge assumed.
+AGENTS.md           Rules for AI agents. Copy into your own project.
 01-method/          The five moves. The spine of everything here.
 02-concepts/        Vocabulary and ideas. Look things up here.
 03-examples/        Small, single-point illustrations.
@@ -323,6 +333,14 @@ All diagrams are `.drawio.svg` — a single file that **renders on GitHub** and 
 **still editable** in Draw.io. No separate source and export, so they cannot drift
 apart.
 
+- **Start from the template**, not a blank page — boundary, legend and all four
+  arrow styles already drawn:
+  [`.drawio.svg`](02-concepts/diagrams/starter-template.drawio.svg) (works everywhere,
+  previews on GitHub) or
+  [`.drawio`](02-concepts/diagrams/starter-template.drawio) (desktop app,
+  double-click).
+- A `.drawio.svg` **opens in the desktop app** too — *File → Open*. The editable XML
+  is inside the file; it is not a flat image.
 - Open at **[app.diagrams.net](https://app.diagrams.net)**, or the desktop app, or
   the VS Code extension.
 - Save as `Editable SVG` / `.drawio.svg`, never plain `.svg` or `.png`.

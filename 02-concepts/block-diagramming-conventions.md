@@ -9,6 +9,22 @@ but pick one and hold it.
 
 ---
 
+## Do not start from a blank page
+
+The starter template already has the boundary, the legend, all four arrow styles and
+three placeholder blocks. Rename the boxes, replace the `[ ... ]` labels, delete what
+you do not need.
+
+| Download | Use it in |
+|---|---|
+| **[starter-template.drawio.svg](diagrams/starter-template.drawio.svg)** | Anything. Opens in the browser editor, the desktop app (*File → Open*) and the VS Code extension. Also previews on GitHub. |
+| **[starter-template.drawio](diagrams/starter-template.drawio)** | Desktop app, by double-click. Same diagram, no GitHub preview. |
+
+Either is fine. When you save your own work, save it as **Editable SVG** so it
+previews on GitHub — *File → Save as → Editable SVG*.
+
+---
+
 ## The minimum viable diagram
 
 A block diagram that works has four things. Miss any one and readers start guessing.

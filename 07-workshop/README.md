@@ -14,6 +14,7 @@ still stands on its own.
 
 | | |
 |---|---|
+| **0** | 👋 **[START HERE](../START-HERE.md)** — if this is all new to you |
 | **1** | [What system design actually is](../01-method/) — the five moves, one page |
 | **2** | [Block diagramming conventions](../02-concepts/block-diagramming-conventions.md) — how to draw one |
 | **3** | [The AI prompts](ai-prompts/) — design something, then get it reviewed |

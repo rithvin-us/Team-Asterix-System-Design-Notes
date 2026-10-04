@@ -116,6 +116,14 @@ knows which is current.
 - In Draw.io: **File → Save as → Editable SVG** (or name the file `*.drawio.svg`).
 - Works in [app.diagrams.net](https://app.diagrams.net), the desktop app, and the VS
   Code extension.
+- **A `.drawio.svg` opens in the desktop app like any other diagram** — *File →
+  Open*. The editable XML is embedded in the file. It is not a flat image, and you
+  lose nothing by using this format.
+
+**One exception to the ban on `.drawio`:** blank starter templates. They have nothing
+to render, so the GitHub-preview argument does not apply, and a plain `.drawio` opens
+on double-click. `starter-template.drawio` is whitelisted in `.gitignore`. Diagrams
+with actual content stay `.drawio.svg`.
 - **Never** commit a plain `.png`, `.jpg`, or non-editable `.svg` of a diagram you
   made here. If you did not make it, a plain image is fine — but note where it came from.
 

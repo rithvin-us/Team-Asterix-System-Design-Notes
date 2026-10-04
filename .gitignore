@@ -14,3 +14,6 @@ desktop.ini
 # Never commit non-editable exports of diagrams made here.
 # Use .drawio.svg instead - see CONVENTIONS.md
 *.drawio
+# Exception: blank starter templates have nothing to render, and the plain
+# .drawio opens by double-click in the desktop app.
+!**/starter-template.drawio

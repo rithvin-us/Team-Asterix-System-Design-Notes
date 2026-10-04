@@ -1,0 +1,33 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="starter" name="Page-1"><mxGraphModel dx="1100" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="bnd" value="SYSTEM BOUNDARY &#8212; rename this. Everything inside is what you are designing." style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;strokeColor=#8b949e;fontColor=#8b949e;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="40" y="70" width="740" height="330" as="geometry"/></mxCell>
+    <mxCell id="inp" value="INPUT BLOCK&#10;(rename: what it is responsible for)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#4493f8;fontColor=#4493f8;" vertex="1" parent="1">
+      <mxGeometry x="90" y="180" width="150" height="80" as="geometry"/></mxCell>
+    <mxCell id="prc" value="PROCESSING BLOCK&#10;(one responsibility, no double &quot;and&quot;)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#4493f8;fontColor=#4493f8;" vertex="1" parent="1">
+      <mxGeometry x="335" y="180" width="150" height="80" as="geometry"/></mxCell>
+    <mxCell id="out" value="OUTPUT BLOCK&#10;(rename me)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#4493f8;fontColor=#4493f8;" vertex="1" parent="1">
+      <mxGeometry x="580" y="180" width="150" height="80" as="geometry"/></mxCell>
+    <mxCell id="pwr" value="POWER SOURCE&#10;(outside the boundary)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#f0883e;fontColor=#f0883e;" vertex="1" parent="1">
+      <mxGeometry x="335" y="450" width="150" height="60" as="geometry"/></mxCell>
+    <mxCell id="chs" value="CHASSIS / GROUND&#10;(outside)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
+      <mxGeometry x="580" y="450" width="150" height="60" as="geometry"/></mxCell>
+    <mxCell id="e1" value="[ what, rate, units ]" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4493f8;strokeWidth=2;fontColor=#4493f8;fontSize=10;" edge="1" parent="1" source="inp" target="prc">
+      <mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e2" value="[ what, rate, units ]" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4493f8;strokeWidth=2;fontColor=#4493f8;fontSize=10;" edge="1" parent="1" source="prc" target="out">
+      <mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e3" value="[ command ]" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#3fb950;strokeWidth=2;dashed=1;fontColor=#3fb950;fontSize=10;" edge="1" parent="1" source="prc" target="inp">
+      <mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e4" value="[ 12 V, 4 A ]" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#f0883e;strokeWidth=5;fontColor=#f0883e;fontSize=10;" edge="1" parent="1" source="pwr" target="prc">
+      <mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e5" value="bolted to" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8b949e;strokeWidth=7;endArrow=none;fontColor=#8b949e;fontSize=10;" edge="1" parent="1" source="out" target="chs">
+      <mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="lgd" value="LEGEND&#10;&#10;&#8212;&#8212;  data / signal  (blue, thin)&#10;&#9608;&#9608;&#9608;  power  (orange, thick)&#10;- - -  control  (green, dashed)&#10;&#9644;&#9644;&#9644;  mechanical  (grey, heavy)" style="text;html=1;align=left;verticalAlign=top;fontColor=#8b949e;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="50" y="450" width="240" height="110" as="geometry"/></mxCell>
+    <mxCell id="todo" value="BEFORE YOU FINISH:&#10;1. Rename every block after its RESPONSIBILITY, not a part.&#10;2. Replace every [ ... ] label with what actually travels.&#10;3. Delete blocks you do not need. Add the ones you do.&#10;4. Check nothing draws power with no supply path.&#10;5. Delete this note." style="text;html=1;align=left;verticalAlign=top;fontColor=#8b949e;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="330" y="530" width="450" height="90" as="geometry"/></mxCell>
+  </root></mxGraphModel></diagram>
+</mxfile>
