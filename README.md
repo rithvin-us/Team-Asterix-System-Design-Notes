@@ -1,12 +1,12 @@
 <div align="center">
 
-# System Design for Team Asterix
+# System Design Workshop by Team Asterix
 
 <img src="assets/banner.jpg" alt="Team Asterix System Design" width="100%" />
 
 <br/>
 
-[![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
+[![Status](https://img.shields.io/badge/status-ready-brightgreen?style=flat-square)](START-HERE.md)
 [![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](06-workshop/ai-prompts/prompts-index.md)
 [![Diagrams](https://img.shields.io/badge/diagrams-.drawio.svg-blue?style=flat-square&logo=diagramsdotnet&logoColor=white)](CONVENTIONS.md#diagrams)
 [![NotebookLM](https://img.shields.io/badge/NotebookLM-ask_the_sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
