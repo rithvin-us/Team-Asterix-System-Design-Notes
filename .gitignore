@@ -17,3 +17,7 @@ desktop.ini
 # Exception: blank starter templates have nothing to render, and the plain
 # .drawio opens by double-click in the desktop app.
 !**/starter-template.drawio
+
+# Previews
+.offline-markdown-preview/
+

@@ -1,7 +1,7 @@
 # System Design for Team Asterix
 
 <p align="center">
-  <img src="download%20(5).jpg" alt="Team Asterix System Design" width="100%" />
+  <img src="assets/banner.jpg" alt="Team Asterix System Design" width="100%" />
 </p>
 
 [![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
