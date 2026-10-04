@@ -1,6 +1,6 @@
-# Prompt 1 — Review My Design
+# Prompt 1. Review My Design
 
-Audits a design you already have. Findings only — it will not redesign it for you.
+Audits a design you already have. Findings only, it will not redesign it for you.
 
 Works in any chat assistant and any coding agent: Claude, ChatGPT, Gemini,
 Antigravity, Cursor, Copilot, Windsurf. Plain text, no tool calls, no special syntax.
@@ -11,7 +11,7 @@ Antigravity, Cursor, Copilot, Windsurf. Plain text, no tool calls, no special sy
 
 1. Copy the block (copy button, top-right of the block).
 2. Paste into a new chat.
-3. Paste your design under it — diagram description, screenshot, or design doc.
+3. Paste your design under it, diagram description, screenshot, or design doc.
 4. Fix what it finds. Yourself.
 
 ---
@@ -52,8 +52,8 @@ My design:
 ## Why it refuses to fix things
 
 A design you did not produce is one you cannot defend, cannot modify when a
-requirement moves, and learned nothing from. You will be asked *why* — in a review,
-a viva, an interview — and "the AI suggested it" does not survive that.
+requirement moves, and learned nothing from. You will be asked *why*, in a review,
+a viva, an interview, and "the AI suggested it" does not survive that.
 
 Use it as the reviewer that never tires of asking *what travels along that arrow?*
 Asked a hundred times, that question is most of the skill.
@@ -64,5 +64,5 @@ If it starts handing you an architecture anyway:
 
 ## See also
 
-- [The rubric](design-rubric.md) — the full checklist this compresses
-- [Agent rules](agent-rules.md) — same discipline, installed into a coding agent permanently
+- [The rubric](design-rubric.md), the full checklist this compresses
+- [Agent rules](agent-rules.md), same discipline, installed into a coding agent permanently

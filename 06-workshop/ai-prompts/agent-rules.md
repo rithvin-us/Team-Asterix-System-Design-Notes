@@ -1,4 +1,4 @@
-# Agent Rules — Install the Discipline Permanently
+# Agent Rules. Install the Discipline Permanently
 
 The three prompts are things you paste into a chat. This is the same discipline
 installed into your **coding agent**, so it applies to every conversation without you
@@ -22,7 +22,7 @@ Save the block below as whichever file your tool reads:
 | **Anything else** | paste at the start of a session |
 
 `AGENTS.md` is read by the largest number of tools. If you only make one file, make
-that one — several of the others fall back to it.
+that one, several of the others fall back to it.
 
 ---
 
@@ -69,11 +69,11 @@ when I am about to lock in a decision I have not noticed making.
 ## What changes when this is installed
 
 Without it, you ask an agent about your architecture and it hands you one. Plausible,
-fluent, and built on none of your actual constraints — it does not know your budget,
+fluent, and built on none of your actual constraints, it does not know your budget,
 your parts, your weight limit, or your team.
 
 With it, the same question gets you *"what has to travel between those two, and how
-often?"* — which is the question that was actually blocking you.
+often?"*, which is the question that was actually blocking you.
 
 ## Scope note
 
@@ -84,9 +84,9 @@ part worth doing yourself.
 
 If it ever gets in your way:
 
-> Design rules off for this one — I've settled the structure, help me implement.
+> Design rules off for this one. I've settled the structure, help me implement.
 
 ## See also
 
-- [The three prompts](prompts-index.md) — for one-off use in a chat
-- [The rubric](design-rubric.md) — the full version of the seven checks above
+- [The three prompts](prompts-index.md), for one-off use in a chat
+- [The rubric](design-rubric.md), the full version of the seven checks above

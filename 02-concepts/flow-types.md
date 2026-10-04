@@ -15,7 +15,7 @@ Four kinds of flow. Genuinely different things, routinely drawn with the same ar
 
 - Data vs control: a measurement is not a command, and conflating them hides who decides
 - Power flow and power budgeting; the diagram where nothing supplies the compute
-- Mechanical load paths — what is bolted to what, and where force goes
+- Mechanical load paths, what is bolted to what, and where force goes
 - Visual conventions that survive black and white and colour-blindness
 - Software-only systems: declaring power and mechanical out of scope rather than silently omitting them
 - Tracing a flow end to end out loud, as a review technique
@@ -29,5 +29,5 @@ Four kinds of flow. Genuinely different things, routinely drawn with the same ar
 
 ## See also
 
-- [Move 3 — Flows](../01-method/3-flows.md)
+- [Move 3. Flows](../01-method/3-flows.md)
 - [Block diagramming conventions](block-diagramming-conventions.md)

@@ -1,4 +1,4 @@
-# Netflix — Getting Video to the World's Screens
+# Netflix. Getting Video to the World's Screens
 
 | | |
 |---|---|
@@ -8,7 +8,7 @@
 | **Primary sources** | [Netflix Open Connect](https://openconnect.netflix.com/en/) · [Open Connect Overview (PDF)](https://openconnect.netflix.com/Open-Connect-Overview.pdf) · [Serving 100 Gbps from an Open Connect Appliance](https://netflixtechblog.com/serving-100-gbps-from-an-open-connect-appliance-cdb51dda3b99) · [How Netflix works with ISPs](https://about.netflix.com/en/news/how-netflix-works-with-isps-around-the-globe-to-deliver-a-great-viewing-experience) |
 
 > **Why this one.** It is the cleanest real example of **control flow and data flow
-> being different things** — the distinction students most often collapse into one
+> being different things**, the distinction students most often collapse into one
 > arrow. At Netflix they are not just different arrows; they are different systems, on
 > different hardware, in different buildings, run by different organisations.
 
@@ -19,17 +19,17 @@
 Deliver high-bitrate video to very large numbers of people at once, over networks
 Netflix does not own, without the internet buckling at 8pm.
 
-Video is enormous and extremely repetitive — a very large number of people watch the
+Video is enormous and extremely repetitive, a very large number of people watch the
 same few hundred titles. That one observation drives the entire architecture.
 
 ---
 
-## 2. Boundary — and this is the interesting part
+## 2. Boundary, and this is the interesting part
 
 **Inside Netflix's design:** the control plane in AWS, the Open Connect Appliances
 (OCAs), the encoding pipeline, the client applications.
 
-**Outside but connected:** the viewer's device, **the ISP's network — and the ISP's
+**Outside but connected:** the viewer's device, **the ISP's network, and the ISP's
 own racks**.
 
 Here is what makes this case study unusual: **part of Netflix's system is physically
@@ -52,13 +52,13 @@ hardware on the far side? Who can power it off without telling you?
 
 | | **Control plane** | **Data plane** |
 |---|---|---|
-| **Where** | AWS | OCAs — in ISPs, at IXPs, in 60+ Netflix sites |
+| **Where** | AWS | OCAs, in ISPs, at IXPs, in 60+ Netflix sites |
 | **Carries** | Decisions: who you are, what you may watch, which server to use | The video bytes |
 | **Traffic** | Tiny | Essentially all of it |
 | **Latency need** | Once, at the start of playback | Sustained for the whole film |
 
 In the diagram, control flow is **dashed** and data flow is **thick**. That is not
-decoration — it is the single most important fact about this system.
+decoration, it is the single most important fact about this system.
 
 ### A play, step by step
 
@@ -69,7 +69,7 @@ decoration — it is the single most important fact about this system.
 
 The bytes never touch AWS. The decision never touches the ISP's appliance.
 
-### How content arrives — the asymmetry
+### How content arrives, the asymmetry
 
 OCAs are filled **overnight**, during off-peak hours, under control-plane direction
 that computes what each appliance should store.
@@ -80,7 +80,7 @@ advance.** They do not need to fetch a film when you press play; they can predic
 which films matter in your region and put them nearby while everyone is asleep.
 
 That is not a clever implementation. It is a *modelling* decision about the problem,
-made before any of the implementation existed — and it is why the system is shaped
+made before any of the implementation existed, and it is why the system is shaped
 this way.
 
 ### What runs on an OCA
@@ -103,18 +103,18 @@ documentation requires that appliances reach the control plane services in AWS, 
 an appliance does not serve client traffic until its health checks and routing
 reporting are established with that control plane.
 
-> ⚠️ **Verify this one yourself before repeating it.** The exact behaviour when a
+>  **Verify this one yourself before repeating it.** The exact behaviour when a
 > *running* appliance later loses its control-plane connection is described in
 > Netflix's [deployment guide](https://openconnect.netflix.com/deploymentguide.pdf),
 > which is the authority. This page states the dependency, not a precise failure
 > sequence, because that is as far as the public documentation took us. Treating
 > "it probably fails closed" as fact would be exactly the mistake
-> [when AI is wrong](../../06-workshop/ai-prompts/when-ai-is-wrong.md) warns about —
+> [when AI is wrong](../../06-workshop/ai-prompts/when-ai-is-wrong.md) warns about,
 > including when the author of the page is an AI.
 
 Sit with the dependency anyway, because the design question it raises is real. An
 appliance physically inside your ISP, holding a complete copy of the film, with a
-working network path to you — and it is not autonomous. It answers to a service on
+working network path to you, and it is not autonomous. It answers to a service on
 another continent.
 
 **That is a deliberate trade, not an oversight.** An appliance that kept serving while
@@ -122,7 +122,7 @@ unreachable would be unsteerable, un-updatable, possibly serving withdrawn conte
 and invisible to telemetry. Control costs availability; autonomy costs control.
 
 > **The transferable question:** when your subsystem loses contact with the thing that
-> coordinates it, should it keep going or stop? There is no universally right answer —
+> coordinates it, should it keep going or stop? There is no universally right answer,
 > an ATV's engine-cut logic should probably keep working when telemetry drops. But
 > **it must be a decision, and it must be written down.**
 
@@ -193,9 +193,9 @@ Question 4 maps this entire case study onto something you will actually build.
 
 ## Sources
 
-- [Netflix Open Connect](https://openconnect.netflix.com/en/) — overview and appliance specifications
+- [Netflix Open Connect](https://openconnect.netflix.com/en/), overview and appliance specifications
 - [Open Connect Overview (PDF)](https://openconnect.netflix.com/Open-Connect-Overview.pdf)
-- [Open Connect deployment guide (PDF)](https://openconnect.netflix.com/deploymentguide.pdf) — the authority on appliance and control-plane requirements
+- [Open Connect deployment guide (PDF)](https://openconnect.netflix.com/deploymentguide.pdf), the authority on appliance and control-plane requirements
 - [Serving 100 Gbps from an Open Connect Appliance](https://netflixtechblog.com/serving-100-gbps-from-an-open-connect-appliance-cdb51dda3b99)
 - [How Netflix works with ISPs](https://about.netflix.com/en/news/how-netflix-works-with-isps-around-the-globe-to-deliver-a-great-viewing-experience)
 - [Netflix Technology Blog](https://netflixtechblog.com/)
@@ -203,5 +203,5 @@ Question 4 maps this entire case study onto something you will actually build.
 **Written from Netflix's published material, not from a Netflix engineer.** Hardware
 specifications, the FreeBSD/NGINX/BIRD stack and the two-plane split come from their
 own documentation. Anything this page marks as inference is inference. If you find
-this page contradicts the deployment guide, the deployment guide wins — tell an
+this page contradicts the deployment guide, the deployment guide wins, tell an
 instructor and we will fix it.

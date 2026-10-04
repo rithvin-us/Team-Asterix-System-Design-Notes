@@ -1,4 +1,4 @@
-# Move 3 — Flows
+# Move 3. Flows
 
 > **Status:** stub
 
@@ -6,7 +6,7 @@
 
 ## What this move is
 
-Following one thing all the way through the system. Not one hop — the whole path.
+Following one thing all the way through the system. Not one hop, the whole path.
 
 Four kinds, genuinely different, routinely drawn with the same arrow by people who
 have not been told to separate them.
@@ -38,5 +38,5 @@ have not been told to separate them.
 
 ## See also
 
-- [Move 4 — Constraints](4-constraints.md)
+- [Move 4. Constraints](4-constraints.md)
 - [Block diagramming conventions](../02-concepts/block-diagramming-conventions.md)

@@ -25,7 +25,7 @@ It is not drawing boxes. Boxes are how you record it. The design is the thinking
 Every system design, in any domain, is these five moves. The nouns change completely
 between an ATV and a chat application. The moves do not.
 
-### 1. [Decompose](1-decompose.md) — what are the parts?
+### 1. [Decompose](1-decompose.md), what are the parts?
 
 Cut the system into blocks. Each block gets **one responsibility** you can state in a
 sentence without using "and" twice.
@@ -34,7 +34,7 @@ The cut is a real decision, not a discovery. There are several valid ways to spl
 system and they are not equally good. A bad cut makes everything downstream harder,
 because it puts the boundaries in places where lots of things have to cross them.
 
-### 2. [Interfaces](2-interfaces.md) — what crosses between them?
+### 2. [Interfaces](2-interfaces.md), what crosses between them?
 
 For every block: what goes in, what comes out, and **exactly what is it**.
 
@@ -44,9 +44,9 @@ This is where beginners' designs are weakest and it is the highest-value move of
 five. Pick any arrow in a diagram and ask what travels along it. If there is no
 answer, that arrow is decoration and the design has a hole where a decision should be.
 
-### 3. [Flows](3-flows.md) — trace it end to end
+### 3. [Flows](3-flows.md), trace it end to end
 
-Follow one thing all the way through the system. Not one hop — the whole path.
+Follow one thing all the way through the system. Not one hop, the whole path.
 
 Four kinds, and they are genuinely different things that get drawn with the same
 arrow by people who have not been told to separate them:
@@ -61,21 +61,21 @@ arrow by people who have not been told to separate them:
 Power is the one that gets forgotten. A diagram where four things compute and nothing
 supplies them is a diagram of something that will not switch on.
 
-### 4. [Constraints](4-constraints.md) — what limits you?
+### 4. [Constraints](4-constraints.md), what limits you?
 
 What it must do (functional). How well, **in numbers** (non-functional). What boxes
-you in — budget, available parts, rules, weight, time, your team's skills. And what
+you in, budget, available parts, rules, weight, time, your team's skills. And what
 you are **assuming** without having checked.
 
 An unstated assumption is indistinguishable from a mistake. Writing it down converts
 a future argument into a checkable item.
 
-### 5. [Trade-offs](5-tradeoffs.md) — what did you give up?
+### 5. [Trade-offs](5-tradeoffs.md), what did you give up?
 
 Every real decision costs something. Name the option you **rejected** and why, and
 name what your choice costs you.
 
-A choice with no named alternative was not a decision — it was a default you did not
+A choice with no named alternative was not a decision, it was a default you did not
 notice making. And a trade-off presented with no downside is not a trade-off, it is a
 sales pitch.
 
@@ -139,7 +139,7 @@ ever notices the choices were made.
 
 ## Now do one
 
-1. Pick something — your ATV, a vending machine, a drone, a bus route display.
+1. Pick something, your ATV, a vending machine, a drone, a bus route display.
 2. Open **[the design prompt](../06-workshop/ai-prompts/design-something-new.md)**.
    An AI interviews you through all five moves and refuses to answer for you.
 3. Draw it: **[block diagramming conventions](../02-concepts/block-diagramming-conventions.md)**.

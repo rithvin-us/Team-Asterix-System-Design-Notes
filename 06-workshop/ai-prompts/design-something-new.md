@@ -1,4 +1,4 @@
-# Prompt 2 — Design Something New
+# Prompt 2. Design Something New
 
 A Socratic interviewer. Walks you through the five moves and refuses to answer for
 you. 30–60 minutes, and you end with a real design.
@@ -60,6 +60,6 @@ I want to design:
 
 ## See also
 
-- [The five moves](../../01-method/the-five-moves.md) — what this is walking you through
-- [Diagram conventions](../../02-concepts/block-diagramming-conventions.md) — for the drawing step
-- [Agent rules](agent-rules.md) — same discipline, installed into a coding agent permanently
+- [The five moves](../../01-method/the-five-moves.md), what this is walking you through
+- [Diagram conventions](../../02-concepts/block-diagramming-conventions.md), for the drawing step
+- [Agent rules](agent-rules.md), same discipline, installed into a coding agent permanently

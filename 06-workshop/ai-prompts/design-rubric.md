@@ -13,7 +13,7 @@ actually shows up in practice.
 
 ---
 
-## Pocket version — copy this
+## Pocket version, copy this
 
 Paste into your notes and tick it off before you submit anything. No AI needed.
 
@@ -72,20 +72,20 @@ CLARITY
 ## How to score
 
 Each item is **Pass**, **Partial**, or **Fail**. There is no numeric total, on purpose
-— a single Fail on boundaries matters more than three Partials on naming.
+,  a single Fail on boundaries matters more than three Partials on naming.
 
 Severity tags used by the review prompt:
 
 | Tag | Meaning |
 |---|---|
-| 🔴 **Blocker** | The design cannot be built or evaluated as written. |
-| 🟡 **Gap** | Buildable, but a reviewer or teammate would have to guess something important. |
-| 🔵 **Polish** | Correct and clear; could be tighter. |
-| ❓ **Unclear** | The reviewer could not tell from what was submitted. |
+| **Blocker** | The design cannot be built or evaluated as written. |
+| **Gap** | Buildable, but a reviewer or teammate would have to guess something important. |
+| **Polish** | Correct and clear; could be tighter. |
+| **Unclear** | The reviewer could not tell from what was submitted. |
 
 ---
 
-## 1. Boundaries — what is and is not part of this system
+## 1. Boundaries, what is and is not part of this system
 
 | # | Check |
 |---|---|
@@ -100,7 +100,7 @@ interface is, because an interface is by definition a thing that crosses the bou
 
 ---
 
-## 2. Decomposition — the parts
+## 2. Decomposition, the parts
 
 | # | Check |
 |---|---|
@@ -112,12 +112,12 @@ interface is, because an interface is by definition a thing that crosses the bou
 
 ---
 
-## 3. Interfaces — what crosses between parts
+## 3. Interfaces, what crosses between parts
 
 | # | Check |
 |---|---|
 | 3.1 | Does every block declare its **inputs** and its **outputs**? |
-| 3.2 | For each input and output, is the **type** stated? Not just "data" — *what* data, in what form, at what rate? |
+| 3.2 | For each input and output, is the **type** stated? Not just "data", *what* data, in what form, at what rate? |
 | 3.3 | Are physical interfaces specified where they exist? (voltage, current, connector, torque, mounting) |
 | 3.4 | Is there any block with outputs that nothing consumes, or inputs that nothing produces? |
 | 3.5 | Are units stated everywhere a quantity appears? |
@@ -127,7 +127,7 @@ and say exactly what travels along it.* If you cannot, that arrow is decoration.
 
 ---
 
-## 4. Flows — tracing things end to end
+## 4. Flows, tracing things end to end
 
 A flow is a path through the system, not a single hop. This repo tracks four kinds,
 and they are genuinely different things that beginners routinely draw with the same arrow.
@@ -135,13 +135,13 @@ and they are genuinely different things that beginners routinely draw with the s
 | # | Check |
 |---|---|
 | 4.1 | Are the four flow types **visually distinguished** from each other? |
-| 4.2 | **Data / signal flow** — can you trace a measurement from the sensor that produced it to the thing that acts on it? |
-| 4.3 | **Power flow** — can you trace energy from source to every consumer? Does anything draw power with no supply path drawn? |
-| 4.4 | **Control flow** — who decides? Can you trace a command from the decision to the actuator? |
-| 4.5 | **Mechanical / physical flow** — where are loads, forces, and motion transmitted? What is bolted to what? |
+| 4.2 | **Data / signal flow**, can you trace a measurement from the sensor that produced it to the thing that acts on it? |
+| 4.3 | **Power flow**, can you trace energy from source to every consumer? Does anything draw power with no supply path drawn? |
+| 4.4 | **Control flow**, who decides? Can you trace a command from the decision to the actuator? |
+| 4.5 | **Mechanical / physical flow**, where are loads, forces, and motion transmitted? What is bolted to what? |
 | 4.6 | Is at least one flow traced **completely**, start to finish, without a gap? |
 
-For a purely software system, 4.3 and 4.5 may legitimately not apply — say so explicitly
+For a purely software system, 4.3 and 4.5 may legitimately not apply, say so explicitly
 rather than silently omitting them.
 
 ---
@@ -151,7 +151,7 @@ rather than silently omitting them.
 | # | Check |
 |---|---|
 | 5.1 | Are **functional** requirements listed? (What the system must *do*.) |
-| 5.2 | Are **non-functional** requirements listed, and kept separate? (How *well* — speed, weight, cost, reliability, power budget, latency, safety.) |
+| 5.2 | Are **non-functional** requirements listed, and kept separate? (How *well*, speed, weight, cost, reliability, power budget, latency, safety.) |
 | 5.3 | Is each non-functional requirement **measurable**? "Fast" fails. "Responds in under 100 ms" passes. |
 | 5.4 | Does the design visibly respond to the requirements, or do they sit in a list nobody used? |
 
@@ -197,13 +197,13 @@ from a mistake. Stating it converts a future argument into a checkable item.
 
 Worth reading once before you design anything, and once again before you submit.
 
-1. Arrows with no stated content — decoration posing as design.
+1. Arrows with no stated content, decoration posing as design.
 2. No boundary, so "the system" quietly expands to mean everything.
 3. Mixed zoom levels in one diagram.
 4. Power ignored entirely. Everything draws current from nowhere.
 5. Data flow and control flow drawn as the same arrow, so you cannot tell measurement from command.
 6. Non-functional requirements that are adjectives instead of numbers.
 7. Assumptions presented as facts.
-8. A block named after a technology rather than a responsibility — the choice gets locked in before it was ever a choice.
+8. A block named after a technology rather than a responsibility, the choice gets locked in before it was ever a choice.
 9. Trade-offs listed with no rejected alternative, so nothing was actually traded.
 10. A diagram that is really an org chart or a build sequence, not a system.

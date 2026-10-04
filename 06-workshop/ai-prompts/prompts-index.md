@@ -1,7 +1,7 @@
 # AI Prompts for System Design
 
 Four files. They cover the whole loop: make a design, check a design, keep it honest
-as things change — and one that installs the discipline into your coding agent
+as things change, and one that installs the discipline into your coding agent
 permanently.
 
 | | Use when | Size |
@@ -10,8 +10,8 @@ permanently.
 | **[Review My Design](review-my-design.md)** | Design exists, want it audited | ~360 tok |
 | **[Check My Change](check-my-change.md)** | Something changed, what broke? | ~320 tok |
 | **[Agent Rules](agent-rules.md)** | Every session, automatically | ~460 tok |
-| **[The Rubric](design-rubric.md)** | Self-check, no AI needed | — |
-| **[When AI Is Wrong](when-ai-is-wrong.md)** | Before trusting any of it | — |
+| **[The Rubric](design-rubric.md)** | Self-check, no AI needed |, |
+| **[When AI Is Wrong](when-ai-is-wrong.md)** | Before trusting any of it |, |
 
 The three prompts compress [the rubric](design-rubric.md). The rubric is the full
 version and stands alone with no AI involved.
@@ -22,9 +22,9 @@ Plain text. No tool calls, no XML tags, no model-specific syntax, no markdown th
 model has to parse. Pasting works in Claude, ChatGPT, Gemini, Antigravity, Cursor,
 Copilot, Windsurf, Codex, and anything else that takes text.
 
-[Agent Rules](agent-rules.md) additionally installs as a rules file —
+[Agent Rules](agent-rules.md) additionally installs as a rules file,
 `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `.windsurfrules`,
-`.github/copilot-instructions.md` — so it loads once per session instead of being
+`.github/copilot-instructions.md`, so it loads once per session instead of being
 pasted per message.
 
 ## The rule all three enforce
@@ -40,8 +40,8 @@ processing here instead of on the sensor?"*, the first has nothing and the secon
 a reason tied to a power budget. The diagrams are identical. The engineering is not,
 and the difference surfaces the first time a requirement changes.
 
-Also: an AI with no access to your real constraints — your budget, the parts in your
-lab, your team's skills, the weight you cannot exceed — produces something plausible
+Also: an AI with no access to your real constraints, your budget, the parts in your
+lab, your team's skills, the weight you cannot exceed, produces something plausible
 and wrong. It does not know your ATV. You do.
 
 ## Suggested loop
@@ -71,7 +71,7 @@ and wrong. It does not know your ATV. You do.
 ```
 
 Run Review in a **fresh chat**, not the one you designed in. An assistant that just
-helped you build something is a poor critic of it — it has absorbed your framing and
+helped you build something is a poor critic of it, it has absorbed your framing and
 will defend your choices back to you.
 
 ## Tips
@@ -89,7 +89,7 @@ will defend your choices back to you.
 
 The prompt text appears in two places: the [repo README](../../README.md), so it can
 be copied from the front page, and on each prompt's own page here. If you edit one,
-edit the other. Two copies of twenty lines is a deliberate trade — the alternative
+edit the other. Two copies of twenty lines is a deliberate trade, the alternative
 was making people navigate away from the front page to copy anything.
 
 ## Bringing your own notes
@@ -97,5 +97,5 @@ was making people navigate away from the front page to copy anything.
 The team's **[NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)** holds the source material. Keep the roles
 separate. NotebookLM answers *"what does this source
 say about X?"*. These prompts answer *"is my design any good?"*. Do not ask
-NotebookLM to review your design — it is grounded in your sources, not your
+NotebookLM to review your design, it is grounded in your sources, not your
 constraints.

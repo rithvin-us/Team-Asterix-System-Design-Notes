@@ -1,4 +1,4 @@
-# Move 5 — Trade-offs
+# Move 5. Trade-offs
 
 > **Status:** stub
 
@@ -8,7 +8,7 @@
 
 Naming your real decisions, the options you rejected, and what your choice costs you.
 
-A choice with no named alternative was not a decision — it was a default you did not
+A choice with no named alternative was not a decision, it was a default you did not
 notice making. A trade-off presented with no downside is not a trade-off, it is a
 sales pitch.
 
@@ -32,5 +32,5 @@ sales pitch.
 
 ## See also
 
-- [Back to Move 1 — Decompose](1-decompose.md) — the loop runs again, deeper
+- [Back to Move 1. Decompose](1-decompose.md), the loop runs again, deeper
 - [HLD vs LLD](../02-concepts/hld-vs-lld.md)

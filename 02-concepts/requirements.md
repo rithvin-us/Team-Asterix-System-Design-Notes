@@ -8,7 +8,7 @@ What the system must do, and how well.
 
 - Functional: what it must do. Phrasing, granularity, how many is too many
 - Non-functional: how well. Latency, weight, cost, power budget, reliability, safety, throughput
-- Turning adjectives into numbers — the highest-value habit in this whole area
+- Turning adjectives into numbers, the highest-value habit in this whole area
 - Measurability: stating how a target will be verified, not only the target
 - Requirements that sit in a list nobody used
 - Where requirements come from when nobody hands you any
@@ -23,5 +23,5 @@ What the system must do, and how well.
 
 ## See also
 
-- [Move 4 — Constraints](../01-method/4-constraints.md)
+- [Move 4. Constraints](../01-method/4-constraints.md)
 - [Assumptions and constraints](assumptions-and-constraints.md)

@@ -1,4 +1,4 @@
-# Move 2 — Interfaces
+# Move 2. Interfaces
 
 > **Status:** stub
 
@@ -8,7 +8,7 @@
 
 For every block: what goes in, what comes out, and exactly what those things are.
 
-Not "data" — *which* data, in what form, how often, in what units, how much.
+Not "data", *which* data, in what form, how often, in what units, how much.
 
 This is the highest-value move of the five and where beginner designs are weakest.
 The sharpest test in system design: pick any arrow and say what travels along it. No
@@ -35,5 +35,5 @@ answer means that arrow is decoration standing where a decision should be.
 
 ## See also
 
-- [Move 3 — Flows](3-flows.md)
+- [Move 3. Flows](3-flows.md)
 - [Block diagramming conventions](../02-concepts/block-diagramming-conventions.md)

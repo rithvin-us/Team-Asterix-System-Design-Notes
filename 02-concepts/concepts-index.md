@@ -10,7 +10,7 @@ If you want the *process* rather than the vocabulary, go to [01-method](../01-me
 |---|---|
 | [System thinking](system-thinking.md) | Seeing a thing as parts with relationships |
 | [System boundaries](system-boundaries.md) | Inside, outside, and why this comes first |
-| [Flow types](flow-types.md) | Data, power, control, mechanical — and why they differ |
+| [Flow types](flow-types.md) | Data, power, control, mechanical, and why they differ |
 | [Requirements](requirements.md) | Functional vs non-functional, and making them measurable |
 | [Assumptions and constraints](assumptions-and-constraints.md) | Stating what you believe but have not checked |
 | [Block diagramming conventions](block-diagramming-conventions.md) | How to draw one readably |
@@ -21,8 +21,8 @@ If you want the *process* rather than the vocabulary, go to [01-method](../01-me
 Added to this folder as they come up. Likely next: state machines, protocols,
 event-driven systems, concurrency, reliability, observability, scalability.
 
-Larger future areas — distributed systems, cloud architecture, microservices,
-ROS 2, embedded architecture, AI and agentic system architecture — go here as
+Larger future areas, distributed systems, cloud architecture, microservices,
+ROS 2, embedded architecture, AI and agentic system architecture, go here as
 **files first**. Only if one grows past a handful of files does it earn a
 subfolder. Creating the subfolder first is how you get eight empty directories.
 

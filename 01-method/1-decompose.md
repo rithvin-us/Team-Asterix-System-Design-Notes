@@ -1,4 +1,4 @@
-# Move 1 — Decompose
+# Move 1. Decompose
 
 > **Status:** stub
 
@@ -31,5 +31,5 @@ to cross them, which makes every later move harder.
 
 ## See also
 
-- [Move 2 — Interfaces](2-interfaces.md)
+- [Move 2. Interfaces](2-interfaces.md)
 - [System boundaries](../02-concepts/system-boundaries.md)

@@ -29,11 +29,11 @@ Plus two diagnostic ones, which tend to teach fastest:
 
 ## Adding one
 
-Copy [`exercise-template.md`](exercise-template.md) — open it on GitHub and hit **Copy raw file**
+Copy [`exercise-template.md`](exercise-template.md), open it on GitHub and hit **Copy raw file**
 (top-right, next to Raw). One file per exercise. Add a row above.
 
 Reference solutions go in the same file, inside a collapsed `<details>` block, so a
-reader has to choose to look. That is enough separation — this repo is shared after
+reader has to choose to look. That is enough separation, this repo is shared after
 the sessions, so there is nothing to hide.
 
 **Not every concept needs an exercise.** Forcing one per concept produces filler

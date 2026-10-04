@@ -13,7 +13,7 @@ Automotive material and software material sit next to each other inside
 `03-case-studies/`. There is deliberately no top-level split
 between hardware and software, mechanical and digital, ATV and cloud.
 
-Why: the five moves — decompose, interfaces, flows, constraints, trade-offs — are the
+Why: the five moves, decompose, interfaces, flows, constraints, trade-offs, are the
 same regardless of what you are designing. Splitting by domain at the top would
 duplicate the entire method tree twice and force every new note into an arbitrary
 side. Splitting by method keeps one tree and makes domain a detail.
@@ -38,13 +38,13 @@ The numeric prefixes exist only so GitHub lists them in a sensible order.
 
 ### Index files are not called README.md
 
-Every folder's index is named after what it holds — `the-five-moves.md`,
+Every folder's index is named after what it holds, `the-five-moves.md`,
 `concepts-index.md`, `workshop-guide.md`, `case-studies-index.md`.
 
 The cost: GitHub no longer auto-renders an intro page when you click into a folder.
 The benefit: search results, editor tabs and open-file lists show a real name instead
 of eight identical `README.md` entries. The root `README.md` indexes everything, so
-nobody needs to browse folders to find a page — which makes the cost small and the
+nobody needs to browse folders to find a page, which makes the cost small and the
 benefit felt daily.
 
 `README.md` survives in exactly one place: the repository root, where GitHub's
@@ -52,14 +52,14 @@ auto-render genuinely matters.
 
 ### Exercise vs project
 
-- **Exercise** — one sitting. Tests one skill. Has a defined answer or a short
+- **Exercise**, one sitting. Tests one skill. Has a defined answer or a short
   reference solution.
-- **Project** — days or weeks. Open-ended. Produces a design record, diagrams, and a
+- **Project**, days or weeks. Open-ended. Produces a design record, diagrams, and a
   retrospective.
 
 ---
 
-## Knowledge tiers — what you can trust
+## Knowledge tiers, what you can trust
 
 Four tiers, distinguished by **location only**. No per-file tags, no frontmatter, no
 status fields to maintain. Where a file lives tells you what it is.
@@ -79,14 +79,14 @@ below makes one unnecessary: unverified text never gets committed in the first p
 
 ## File naming
 
-- `kebab-case.md` — lowercase, hyphens, no spaces, no underscores, no capitals.
+- `kebab-case.md`, lowercase, hyphens, no spaces, no underscores, no capitals.
 - Name after the **idea**, not the format: `block-diagramming-conventions.md`, not
   `notes-on-diagrams-v2.md`.
 - No dates, no version numbers, no `-final`, no `-v3`. Git already holds history, and
   a filename with a version in it is a filename that will be wrong.
 - `README.md` in every directory. It is the index for that directory and the thing
   GitHub shows when you click in.
-- `case-study-template.md` and `_TEMPLATE/` — leading underscore marks a template, not content.
+- `case-study-template.md` and `_TEMPLATE/`, leading underscore marks a template, not content.
 - `99-` prefix and `_` prefix are the only prefixes used. Do not invent more.
 
 ### Headings inside a file
@@ -94,7 +94,7 @@ below makes one unnecessary: unverified text never gets committed in the first p
 - One `#` h1 per file, matching what the file is about.
 - Stubs carry `> **Status:** stub` immediately after the h1. Nothing else marks state.
 - Link between files with relative Markdown links: `[text](../02-concepts/thing.md)`.
-  **No `[[wikilinks]]`** — they do not render on GitHub, and this repo is read on
+  **No `[[wikilinks]]`**, they do not render on GitHub, and this repo is read on
   GitHub.
 
 ---
@@ -111,7 +111,7 @@ knows which is current.
 - In Draw.io: **File → Save as → Editable SVG** (or name the file `*.drawio.svg`).
 - Works in [app.diagrams.net](https://app.diagrams.net), the desktop app, and the VS
   Code extension.
-- **A `.drawio.svg` opens in the desktop app like any other diagram** — *File →
+- **A `.drawio.svg` opens in the desktop app like any other diagram**, *File →
   Open*. The editable XML is embedded in the file. It is not a flat image, and you
   lose nothing by using this format.
 
@@ -120,7 +120,7 @@ to render, so the GitHub-preview argument does not apply, and a plain `.drawio` 
 on double-click. `starter-template.drawio` is whitelisted in `.gitignore`. Diagrams
 with actual content stay `.drawio.svg`.
 - **Never** commit a plain `.png`, `.jpg`, or non-editable `.svg` of a diagram you
-  made here. If you did not make it, a plain image is fine — but note where it came from.
+  made here. If you did not make it, a plain image is fine, but note where it came from.
 
 ### Where they live
 
@@ -167,7 +167,7 @@ a repo full of diagrams that restate their parent with more rectangles.
 ### Versions
 
 Git tracks them. Do not keep `-v2` files, do not keep an `old/` folder. If you need
-to show how a design evolved — which is a genuinely interesting thing to show — write
+to show how a design evolved, which is a genuinely interesting thing to show, write
 it up in prose in a **Change Log** section of the document, and let git hold the
 diagrams.
 
@@ -178,8 +178,8 @@ diagrams.
 **Rule: machine output never gets pasted into this repository.**
 
 The failure this prevents: a repo where AI-generated text and the author's actual
-understanding are mixed together and indistinguishable, so a year later nobody — the
-author included — can tell which parts were thought through and which were generated
+understanding are mixed together and indistinguishable, so a year later nobody, the
+author included, can tell which parts were thought through and which were generated
 and skimmed.
 
 The rule, which needs no folder and no tagging:
@@ -194,7 +194,7 @@ Step 2 is the whole mechanism. Copy-pasting a correct explanation produces a rep
 is correct and useless, because the understanding never moved from the source into you.
 
 **Where the raw material lives:** in [NotebookLM](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73), not in git. That is the right
-home for it — it is searchable, it cites its sources, and keeping it out of the
+home for it, it is searchable, it cites its sources, and keeping it out of the
 repository means the repository stays entirely canonical. Source documents are
 referenced by link, never copied in; this repo is public, and storing other people's
 PDFs is a copyright problem nothing here requires.
@@ -211,7 +211,7 @@ one of them, so nothing ever needs to be selected by hand.
 | Mechanism | Where it appears | Used here for |
 |---|---|---|
 | **Copy button on a code block** | Top-right of every fenced block | Prompts, the rubric self-check, the diagram legend, the unfiled entry format |
-| **Copy raw file** | Top-right of any file page, next to Raw | Templates — `case-study-template.md`, `_TEMPLATE/README.md` |
+| **Copy raw file** | Top-right of any file page, next to Raw | Templates, `case-study-template.md`, `_TEMPLATE/README.md` |
 | **Raw URL** | `raw.githubusercontent.com/...` | Fetching a template from a terminal or an agent |
 
 **Consequence for authors:** anything a reader is meant to reuse goes in a **fenced
@@ -240,7 +240,7 @@ someone eventually.
 
 ## Do not over-engineer this repository
 
-This section exists because every structured repo decays the same way — not by
+This section exists because every structured repo decays the same way, not by
 becoming messy, but by becoming so much work to maintain that nobody maintains it.
 These are the things already considered and deliberately rejected. Reconsider them
 only when a specific problem forces it, not in anticipation.
@@ -270,7 +270,7 @@ only when a specific problem forces it, not in anticipation.
   formats, not ideas, and they are where things go to be never found again.
 - **No separate HLD and LLD trees.** Same system, two zoom levels, one place.
 
-**Signals the structure has gone wrong — watch for these:**
+**Signals the structure has gone wrong, watch for these:**
 
 | Signal | What it means |
 |---|---|

@@ -49,11 +49,11 @@ Verify the load-bearing ones **before** building, not after.
 
 ## 4. Boundary
 
-**Inside** — what you are designing.
+**Inside**, what you are designing.
 
-**Outside but connected** — what you use but do not design.
+**Outside but connected**, what you use but do not design.
 
-**Deliberately not doing** — at least two things.
+**Deliberately not doing**, at least two things.
 
 ---
 
@@ -99,14 +99,14 @@ Expands HLD block: **<name>**
 ## 7. Implementation
 
 What was actually built, and **where it diverged from the design**. The divergences
-are the valuable part — each one is either a design error you found or a shortcut you
+are the valuable part, each one is either a design error you found or a shortcut you
 took, and both are worth knowing.
 
 ---
 
 ## 8. Testing
 
-How you know it works. Tie each test back to a requirement from section 2 — a test
+How you know it works. Tie each test back to a requirement from section 2, a test
 that maps to no requirement is testing something nobody asked for.
 
 | Requirement | Test | Result |

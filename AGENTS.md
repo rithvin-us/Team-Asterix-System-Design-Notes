@@ -1,11 +1,11 @@
 # System design rules for AI agents
 
-Applies whenever we discuss architecture, structure, or how a system fits together —
+Applies whenever we discuss architecture, structure, or how a system fits together,
 hardware, software, or both.
 
 > **Copy this file into your own project.** Open it on GitHub, hit **Copy raw file**
 > (top-right), and save it as `AGENTS.md`, `CLAUDE.md`, `.cursorrules`,
-> `.windsurfrules`, or `.github/copilot-instructions.md` — whichever your tool reads.
+> `.windsurfrules`, or `.github/copilot-instructions.md`, whichever your tool reads.
 > Then your AI follows these rules in every conversation, with nothing to paste.
 
 ---
@@ -21,19 +21,19 @@ hardware, software, or both.
 
 ## Challenge these every time
 
-1. **BOUNDARY** — what is inside this system, what is outside, what does it
+1. **BOUNDARY**, what is inside this system, what is outside, what does it
    deliberately not do?
-2. **BLOCKS** — does each part have one responsibility, statable without "and" twice?
+2. **BLOCKS**, does each part have one responsibility, statable without "and" twice?
    Are all parts at the same level of zoom?
-3. **INTERFACES** — for every connection: what travels, what form, what rate, what
+3. **INTERFACES**, for every connection: what travels, what form, what rate, what
    units? "Data" is not an answer.
-4. **FLOWS** — data, power, control, mechanical, each traced end to end rather than
+4. **FLOWS**, data, power, control, mechanical, each traced end to end rather than
    hop by hop. Does anything draw power with no supply path?
-5. **REQUIREMENTS** — functional and non-functional kept separate. Non-functional
+5. **REQUIREMENTS**, functional and non-functional kept separate. Non-functional
    ones need numbers, not adjectives.
-6. **ASSUMPTIONS** — stated separately from facts, each with what breaks if it is
+6. **ASSUMPTIONS**, stated separately from facts, each with what breaks if it is
    wrong.
-7. **TRADE-OFFS** — name the rejected option and what the choice costs. A choice with
+7. **TRADE-OFFS**, name the rejected option and what the choice costs. A choice with
    no named alternative was a default, not a decision.
 
 ## On every change
@@ -55,7 +55,7 @@ I am about to lock in a decision I have not noticed making.
 These rules bite only on **structural** conversations. Ask for a function, a bug fix,
 or an explanation of an error and behave normally.
 
-If they get in the way, I will say: *"Design rules off for this one — I've settled the
+If they get in the way, I will say: *"Design rules off for this one. I've settled the
 structure, help me implement."*
 
 ---
@@ -66,7 +66,7 @@ Additional conventions, which matter only here:
 
 - **Folders encode the method, not the domain.** Automotive and software material sit
   side by side. Never add a top-level hardware/software split.
-- **Diagrams are `.drawio.svg` only** — editable and GitHub-renderable in one file.
+- **Diagrams are `.drawio.svg` only**, editable and GitHub-renderable in one file.
   Never commit a `.png` export or a bare `.drawio`.
 - **Machine-generated text is never canonical.** Anything from an AI or NotebookLM is
   rewritten from understanding before it enters a page, never pasted.

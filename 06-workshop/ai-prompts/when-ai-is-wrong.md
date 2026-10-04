@@ -14,7 +14,7 @@ An AI does not know when it is wrong.
 
 It produces the most *plausible-sounding* continuation of your conversation. When it
 knows the answer, plausible and correct are the same thing. When it does not, it still
-produces something plausible — at the same confidence, in the same tone, with the same
+produces something plausible, at the same confidence, in the same tone, with the same
 fluent sentences.
 
 There is no wobble in its voice. There is no "I think". A wrong answer and a right
@@ -29,8 +29,8 @@ That is the whole problem. Everything below is a consequence of it.
 ### 1. Invented part numbers and specs
 
 You will be told about a sensor with a part number that does not exist, or a real
-sensor with specifications it does not have. The number will be the right *shape* —
-plausible voltage, plausible range, plausible update rate — and simply not true.
+sensor with specifications it does not have. The number will be the right *shape*,
+plausible voltage, plausible range, plausible update rate, and simply not true.
 
 **Why it happens:** it has seen thousands of datasheets. It has learned what a
 datasheet line *looks like*. It has not memorised yours.
@@ -49,7 +49,7 @@ with units.
 it drift.
 
 **What to do:** do the sum yourself. Calculator, phone, paper. If a number decides
-something — which battery, which wire gauge, whether the Jetson browns out — you
+something, which battery, which wire gauge, whether the Jetson browns out, you
 compute it.
 
 ### 3. Architecture that ignores your real constraints
@@ -59,7 +59,7 @@ budget you do not have, parts you cannot get, weight you cannot carry, and skill
 team does not have.
 
 **Why it happens:** it does not know your budget, your lab, your ATV, your deadline or
-your team — and it will not ask unless the prompt makes it.
+your team, and it will not ask unless the prompt makes it.
 
 **What to do:** this is exactly why
 [the prompts here](prompts-index.md) refuse to produce designs. You hold the constraints. An
@@ -68,7 +68,7 @@ architecture built without them is decoration.
 ### 4. Agreeing with you
 
 Push back on an AI and it very often folds. Say "are you sure?" and watch it
-apologise and change its answer — **even when it was right the first time**.
+apologise and change its answer, **even when it was right the first time**.
 
 **Why it happens:** it is trained to be agreeable. Your disagreement is a strong
 signal about what you want to hear.
@@ -80,7 +80,7 @@ object, it never knew. Ask *"what evidence would change your mind?"* rather than
 ### 5. Defending your design because it helped you build it
 
 An assistant that spent an hour helping you design something is a terrible critic of
-that design. It has absorbed your framing, your assumptions, your vocabulary — and it
+that design. It has absorbed your framing, your assumptions, your vocabulary, and it
 will reflect them back as agreement.
 
 **What to do:** **always review in a fresh chat.** This is not a nicety; it is the
@@ -105,8 +105,8 @@ Models have a training cutoff. Libraries change, parts go out of production, API
 move, prices move. It will not tell you its information is two years old, because it
 does not know which parts of what it learned have since changed.
 
-**What to do:** anything time-sensitive — prices, availability, library versions,
-"the current recommended way" — gets checked against a live source.
+**What to do:** anything time-sensitive, prices, availability, library versions,
+"the current recommended way", gets checked against a live source.
 
 ---
 
@@ -138,7 +138,7 @@ work. Ask it for a design and you get fiction that reads like engineering.
 2. **Every number verified.** If it decides something, you compute or source it.
 3. **Every part checked against its datasheet.** Not the AI's summary of one.
 4. **Treat agreement as noise.** It agreeing with you is not evidence.
-5. **State your constraints up front** — budget, weight, parts, deadline — or you
+5. **State your constraints up front**, budget, weight, parts, deadline, or you
    will get a design for somebody else's vehicle.
 6. **Ask "what would change your mind?"** rather than "are you sure?"
 7. **Keep what it got wrong.** Write it into your project's change log. Real examples
@@ -158,13 +158,13 @@ Reorganising your input is what it is for. Supplying facts is where it fails.
 
 ## For instructors
 
-Collect real failures from these sessions — a hallucinated part number, a power budget
-that does not add up, an architecture that ignored the weight limit — and add them to
+Collect real failures from these sessions, a hallucinated part number, a power budget
+that does not add up, an architecture that ignored the weight limit, and add them to
 the list above. A failure a participant watched happen is worth more than this entire
 page.
 
 ## See also
 
-- [The AI prompts](prompts-index.md) — built around these failure modes
-- [Agent rules](agent-rules.md) — installs the discipline permanently
-- [The rubric](design-rubric.md) — what to check, with or without AI
+- [The AI prompts](prompts-index.md), built around these failure modes
+- [Agent rules](agent-rules.md), installs the discipline permanently
+- [The rubric](design-rubric.md), what to check, with or without AI

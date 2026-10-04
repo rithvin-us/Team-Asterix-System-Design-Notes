@@ -13,7 +13,7 @@ Almost every confused design is a boundary problem wearing a different costume.
 - Three categories: inside, outside-but-connected, irrelevant
 - Stating what the system deliberately does *not* do
 - External dependencies: power source, operator, network, ground, weather, other vehicles
-- Boundary creep — how "the system" quietly grows to mean everything
+- Boundary creep, how "the system" quietly grows to mean everything
 - Choosing where to draw it, and the consequence of each choice
 
 ## Guiding questions
@@ -25,5 +25,5 @@ Almost every confused design is a boundary problem wearing a different costume.
 
 ## See also
 
-- [Move 1 — Decompose](../01-method/1-decompose.md)
+- [Move 1. Decompose](../01-method/1-decompose.md)
 - [Block diagramming conventions](block-diagramming-conventions.md)

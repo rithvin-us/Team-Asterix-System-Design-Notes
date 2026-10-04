@@ -1,6 +1,6 @@
 # System Design Mini Project
 
-> **Status:** stub — brief to be written
+> **Status:** stub, brief to be written
 
 The main deliverable of the system design portion.
 
@@ -16,7 +16,7 @@ To be written. When it is, it states:
 
 ## What to deliver
 
-Expected shape — confirm when the brief is written:
+Expected shape, confirm when the brief is written:
 
 - A context diagram, an HLD, and at least one LLD, as `.drawio.svg`
 - A design record covering boundary, requirements, assumptions, interfaces, flows and trade-offs
@@ -45,7 +45,7 @@ built so the AI interrogates you rather than designing for you.
 
 What is not allowed is handing in a generated architecture. It is also, practically,
 easy to spot: a generated design has no numbers tied to your actual constraints, and
-falls apart on the first "why this and not that?" — which you will be asked.
+falls apart on the first "why this and not that?", which you will be asked.
 
 ## Reference solution
 

@@ -5,10 +5,10 @@ complete design record.
 
 | | |
 |---|---|
-| 🛠 **[How to draw a system](how-to-draw-a-system.md)** | The six-pass method. Read this before studying anything. |
-| 📚 **[Reference architectures](reference-architectures.md)** | Real systems with public sources — Autoware, Apollo, ROS 2, CAN/AUTOSAR, Netflix, Uber, Discord, the classic papers |
-| 📊 **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Paste your design and have it scored, or count the six metrics yourself |
-| 📝 **[Case study template](case-study-template.md)** | The structure every study here follows |
+| **[How to draw a system](how-to-draw-a-system.md)** | The six-pass method. Read this before studying anything. |
+| **[Reference architectures](reference-architectures.md)** | Real systems with public sources. Autoware, Apollo, ROS 2, CAN/AUTOSAR, Netflix, Uber, Discord, the classic papers |
+| **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Paste your design and have it scored, or count the six metrics yourself |
+| **[Case study template](case-study-template.md)** | The structure every study here follows |
 
 ---
 
@@ -24,11 +24,11 @@ sources, and both cite them. A case study with no primary source is a rumour.
 
 ## Good candidates
 
-**Vehicles and robotics** — Autoware perception pipeline · PX4 flight stack ·
+**Vehicles and robotics**. Autoware perception pipeline · PX4 flight stack ·
 a CAN bus network on a real vehicle · ROS 2 node graph for a rover ·
 vehicle diagnostics over UDS · a sensor fusion pipeline
 
-**Software** — a chat application · ride-sharing dispatch · a video platform ·
+**Software**, a chat application · ride-sharing dispatch · a video platform ·
 URL shortener (the classic starter) · notification delivery · a robot fleet
 coordinator, which spans both domains and is the most interesting of these
 
@@ -47,7 +47,7 @@ Each case study is a folder:
     └── <slug>-lld-<subject>.drawio.svg
 ```
 
-Name the write-up after the system, not `README.md` — see
+Name the write-up after the system, not `README.md`, see
 [the naming convention](../CONVENTIONS.md#file-naming).
 
 Start from [`case-study-template.md`](case-study-template.md): open it on GitHub and

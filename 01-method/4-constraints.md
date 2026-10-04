@@ -1,4 +1,4 @@
-# Move 4 — Constraints
+# Move 4. Constraints
 
 > **Status:** stub
 
@@ -8,10 +8,10 @@
 
 Four separate things that get mixed together:
 
-- **Functional requirements** — what it must do
-- **Non-functional requirements** — how well, in numbers
-- **Constraints** — what boxes you in: budget, parts, rules, weight, time, skills
-- **Assumptions** — what you believe but have not checked
+- **Functional requirements**, what it must do
+- **Non-functional requirements**, how well, in numbers
+- **Constraints**, what boxes you in: budget, parts, rules, weight, time, skills
+- **Assumptions**, what you believe but have not checked
 
 An unstated assumption is indistinguishable from a mistake. Writing it down converts
 a future argument into a checkable item.
@@ -29,11 +29,11 @@ a future argument into a checkable item.
 
 - What must it do? List them.
 - How well, in numbers? Measured how? What happens if it falls short?
-- What limits you — budget, parts, rules, time, space, weight, skills?
+- What limits you, budget, parts, rules, time, space, weight, skills?
 - What are you assuming without having verified?
 - For each assumption: what breaks if it is false? Which should you go check now?
 
 ## See also
 
-- [Move 5 — Trade-offs](5-tradeoffs.md)
+- [Move 5. Trade-offs](5-tradeoffs.md)
 - [Assumptions and constraints](../02-concepts/assumptions-and-constraints.md)

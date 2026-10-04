@@ -24,7 +24,7 @@ their parent with more rectangles.
 - Picking the right zoom for the question being asked
 - What belongs in an HLD and what gets pushed down, and the reverse
 - Linking the two: shared system slug, explicit parent-block statement
-- When an LLD reveals the HLD was wrong — a success, not a setback
+- When an LLD reveals the HLD was wrong, a success, not a setback
 - Levels below LLD, and when to stop
 
 ## Guiding questions
@@ -35,5 +35,5 @@ their parent with more rectangles.
 
 ## See also
 
-- [01-method](../01-method/the-five-moves.md) — the loop that produces both
+- [01-method](../01-method/the-five-moves.md), the loop that produces both
 - [Diagram conventions](../CONVENTIONS.md#diagrams)

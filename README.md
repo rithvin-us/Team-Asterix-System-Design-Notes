@@ -1,4 +1,8 @@
-# System Design — Team Asterix
+# System Design for Team Asterix
+
+<p align="center">
+  <img src="download%20(5).jpg" alt="Team Asterix System Design" width="100%" />
+</p>
 
 [![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
 [![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](06-workshop/ai-prompts/prompts-index.md)
@@ -15,8 +19,8 @@ meant to outlive it.
 
 ---
 
-> ### 👋 Never done this before?
-> **[→ START HERE](START-HERE.md)** — a gentler walkthrough that assumes no knowledge
+> ### Never done this before?
+> **[→ START HERE](START-HERE.md)**, a gentler walkthrough that assumes no knowledge
 > of system design, GitHub, Draw.io or AI tools. Built for first-year students.
 
 ---
@@ -47,7 +51,7 @@ you made.
 | Look up a term or an idea | [02-concepts](02-concepts/concepts-index.md) · [Glossary](GLOSSARY.md) |
 | Study a full system end to end | [Autoware](03-case-studies/autoware/autoware.md) · [Netflix](03-case-studies/netflix-streaming/netflix-streaming.md) |
 | Learn to draw one yourself | [How to draw a system](03-case-studies/how-to-draw-a-system.md) |
-| **Score your design** | **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — paste it in and get scored |
+| **Score your design** | **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)**, paste it in and get scored |
 | Read a real company's architecture | [Reference architectures](03-case-studies/reference-architectures.md) |
 | Practise something small | [04-exercises](04-exercises/exercises-index.md) |
 | Build something substantial | [05-projects](05-projects/projects-index.md) |
@@ -62,13 +66,13 @@ you made.
 
 ---
 
-## 📓 The team NotebookLM notebook
+## The team NotebookLM notebook
 
 <table><tr><td>
 
 ### [→ Open the System Design notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
 
-An AI trained **only on our source material** — the books, papers and articles behind
+An AI trained **only on our source material**, the books, papers and articles behind
 these sessions. Ask it anything and it answers *from those sources*, with citations,
 rather than from the open internet.
 
@@ -81,7 +85,7 @@ your budget, your parts or your ATV.
 [Use these prompts for that.](06-workshop/ai-prompts/prompts-index.md)
 
 > **Access:** notebooks are private by default. If you hit a permission error, ask an
-> instructor to share it — the link alone does not grant access.
+> instructor to share it, the link alone does not grant access.
 >
 > **Nothing it writes is canonical here.** To bring something from it into this repo,
 > rewrite it in your own words.
@@ -94,7 +98,7 @@ your budget, your parts or your ATV.
 ## The method
 
 Everything in this repo is organised around five moves. They are the same five
-whether you are designing an ATV or a chat application — only the nouns change.
+whether you are designing an ATV or a chat application, only the nouns change.
 
 ```mermaid
 flowchart LR
@@ -105,7 +109,7 @@ flowchart LR
     E -.->|"and again, deeper"| A
 ```
 
-It loops. You do not finish move 5 and stop — a trade-off reveals a part you missed,
+It loops. You do not finish move 5 and stop, a trade-off reveals a part you missed,
 and you go round again at a finer level of detail. That loop is what HLD and LLD
 actually are: the same five moves at two levels of zoom.
 
@@ -182,7 +186,7 @@ flowchart TD
 ```
 
 **Reading it:** solid arrows are *do this next*. Dotted lines are *related, go when you
-need it*. Pink is the spine — everything else exists to serve those five moves. Orange
+need it*. Pink is the spine, everything else exists to serve those five moves. Orange
 is a tool you use rather than a page you read.
 
 > GitHub renders this map but cannot make it clickable. Use the table above to
@@ -190,16 +194,16 @@ is a tool you use rather than a page you read.
 
 ---
 
-## Prompts — copy and go
+## Prompts, copy and go
 
 Click a row to open it, then hit the **copy button** at the top-right of the black
-block. Paste into any AI — Claude, ChatGPT, Gemini, Antigravity, Cursor, Copilot.
+block. Paste into any AI. Claude, ChatGPT, Gemini, Antigravity, Cursor, Copilot.
 Plain text, no setup, no special syntax.
 
 <table>
 <tr><td>
 
-### 🏗️ Design Something New
+### Design Something New
 *You have a problem but no design yet.* An interviewer that walks you through all
 five moves and refuses to answer for you. 30–60 min. · **~510 tokens** ·
 [full page](06-workshop/ai-prompts/design-something-new.md)
@@ -242,7 +246,7 @@ Add what you want to design on that last line.
 
 <tr><td>
 
-### 🔍 Review My Design
+### Review My Design
 *You have a design and want it audited.* Findings only, severity-tagged. It will not
 rewrite it for you. · **~360 tokens** ·
 [full page](06-workshop/ai-prompts/review-my-design.md)
@@ -281,15 +285,15 @@ Be direct. No praise unless it is load-bearing.
 My design:
 ```
 
-Paste your design under it — description, screenshot, or doc.
+Paste your design under it, description, screenshot, or doc.
 
 </details>
 </td></tr>
 
 <tr><td>
 
-### ⚠️ Check My Change
-*Something changed — what broke?* Traces the blast radius two or three hops out. Run
+### Check My Change
+*Something changed, what broke?* Traces the blast radius two or three hops out. Run
 this often. · **~320 tokens** ·
 [full page](06-workshop/ai-prompts/check-my-change.md)
 
@@ -330,7 +334,7 @@ Paste your design, then what changed.
 
 <tr><td>
 
-### 🤖 Agent Rules — install it permanently
+### Agent Rules, install it permanently
 *For coding agents.* Save as `AGENTS.md` (Antigravity, Codex), `CLAUDE.md` (Claude),
 `.cursorrules` (Cursor), `.windsurfrules` (Windsurf), or
 `.github/copilot-instructions.md`. Then it applies to every conversation without
@@ -383,7 +387,7 @@ when I am about to lock in a decision I have not noticed making.
 
 <tr><td>
 
-### 📋 The Rubric — no AI needed
+### The Rubric, no AI needed
 The full checklist all of the above compress. Also what the mini project is graded
 against. → **[06-workshop/ai-prompts/design-rubric.md](06-workshop/ai-prompts/design-rubric.md)**
 
@@ -392,7 +396,6 @@ against. → **[06-workshop/ai-prompts/design-rubric.md](06-workshop/ai-prompts/
 
 > **All four refuse to design for you.** That is the feature, not a limitation.
 > [Why.](06-workshop/ai-prompts/prompts-index.md#the-rule-all-three-enforce)
-
 
 ---
 
@@ -414,8 +417,8 @@ scorecard/          The HLD Scorecard, as a single HTML file.
 06-workshop/        Asterix session material + the AI prompts.
 ```
 
-Each folder's index is **named after what it holds** — `the-five-moves.md`,
-`concepts-index.md`, `workshop-guide.md` — rather than every one being `README.md`.
+Each folder's index is **named after what it holds**, `the-five-moves.md`,
+`concepts-index.md`, `workshop-guide.md`, rather than every one being `README.md`.
 Easier to tell apart in search results, in editor tabs, and in a list of open files.
 
 Two things worth knowing about how this is laid out:
@@ -426,7 +429,7 @@ same five moves with different nouns. There is no top-level split between hardwa
 and software, and there will not be one.
 
 **Machine output is never canonical.** Nothing from an AI or from NotebookLM gets
-pasted into a page here. To bring an idea in, you rewrite it in your own words — and
+pasted into a page here. To bring an idea in, you rewrite it in your own words, and
 if you cannot rewrite it without looking at it, you do not understand it well enough
 yet. That rule is the main thing keeping this repo trustworthy as it grows.
 
@@ -436,17 +439,17 @@ Details: **[CONVENTIONS.md](CONVENTIONS.md)**
 
 ## Diagrams
 
-All diagrams are `.drawio.svg` — a single file that **renders on GitHub** and is
+All diagrams are `.drawio.svg`, a single file that **renders on GitHub** and is
 **still editable** in Draw.io. No separate source and export, so they cannot drift
 apart.
 
-- **Start from the template**, not a blank page — boundary, legend and all four
+- **Start from the template**, not a blank page, boundary, legend and all four
   arrow styles already drawn:
   [`.drawio.svg`](02-concepts/diagrams/starter-template.drawio.svg) (works everywhere,
   previews on GitHub) or
   [`.drawio`](02-concepts/diagrams/starter-template.drawio) (desktop app,
   double-click).
-- A `.drawio.svg` **opens in the desktop app** too — *File → Open*. The editable XML
+- A `.drawio.svg` **opens in the desktop app** too, *File → Open*. The editable XML
   is inside the file; it is not a flat image.
 - Open at **[app.diagrams.net](https://app.diagrams.net)**, or the desktop app, or
   the VS Code extension.
@@ -458,7 +461,7 @@ apart.
 ## Status
 
 Early. The structure is settled; the content is being written. Pages marked
-`> **Status:** stub` are scaffolds — the headings and the questions are there, the
+`> **Status:** stub` are scaffolds, the headings and the questions are there, the
 prose is not yet.
 
 If you are a workshop participant: the **[AI prompts](06-workshop/ai-prompts/prompts-index.md)** and

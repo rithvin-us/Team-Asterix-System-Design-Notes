@@ -3,7 +3,7 @@
 Three projects chosen to teach system design, not coding. Each is picked because it
 **forces** a specific design problem you cannot avoid by being a good programmer.
 
-Pick one. Do it properly — design first, record the trade-offs, keep the change log.
+Pick one. Do it properly, design first, record the trade-offs, keep the change log.
 One done properly beats three done fast, and it is the one you can defend afterwards.
 
 | | Project | Forces you to learn | Scale |
@@ -17,10 +17,10 @@ and is the best single choice if your team is mixed.
 
 ---
 
-## Project 1 — ATV Health and Telemetry Monitor
+## Project 1. ATV Health and Telemetry Monitor
 
 **Build a system that tells the team, while the vehicle is running, whether the ATV is
-healthy — and warns before something breaks rather than after.**
+healthy, and warns before something breaks rather than after.**
 
 ### Why this one teaches system design
 
@@ -51,7 +51,7 @@ when either leaves a safe band. Everything beyond that is extension.
 
 ### What success looks like
 
-The warning fires before the failure, not after — and you can state, with numbers, how
+The warning fires before the failure, not after, and you can state, with numbers, how
 much warning it gives.
 
 ### Extensions once it works
@@ -61,7 +61,7 @@ needs two sensors to agree · graceful behaviour when a sensor dies mid-run.
 
 ---
 
-## Project 2 — Pit-Lane Race Dashboard
+## Project 2. Pit-Lane Race Dashboard
 
 **A live display, away from the vehicle, showing what the ATV is doing right now.**
 
@@ -71,7 +71,7 @@ Because the hard part is **the link, not the display**. The vehicle moves, the
 connection drops, data arrives late, out of order, or not at all. Every one of those
 is an interface decision you have to make explicitly.
 
-It is also the clearest project for the question *what travels along that arrow?* —
+It is also the clearest project for the question *what travels along that arrow?*,
 the answer changes the design completely depending on whether you send every reading,
 a summary, or only changes.
 
@@ -91,7 +91,7 @@ a summary, or only changes.
 ### Minimum viable scope
 
 One value, transmitted from the vehicle, displayed with its age in seconds. Showing
-*how old the data is* is the whole lesson — make it visible from the first version.
+*how old the data is* is the whole lesson, make it visible from the first version.
 
 ### What success looks like
 
@@ -105,14 +105,14 @@ prioritising safety messages over telemetry when bandwidth is tight.
 
 ---
 
-## Project 3 — Campus Shuttle Tracker
+## Project 3. Campus Shuttle Tracker
 
 **Students see where the campus shuttle is and when it will reach their stop.**
 
 ### Why this one teaches system design
 
-No hardware to hide behind. It is the clearest introduction to the software side —
-state, scale and the question of what counts as correct — and it maps directly onto
+No hardware to hide behind. It is the clearest introduction to the software side,
+state, scale and the question of what counts as correct, and it maps directly onto
 the "design a ride-sharing app" interview question you will meet later.
 
 Its real difficulty is that **the interesting cases are all edge cases**. The happy
@@ -126,7 +126,7 @@ to start tracking, or 400 students open the app at once.
 - **How often does position update?** Battery and bandwidth on one side, accuracy on
   the other. Pick a number and justify it.
 - **What if the shuttle stops moving?** Traffic, a break, or a dead tracker all look
-  identical from the data. How do you tell them apart — or do you admit you cannot?
+  identical from the data. How do you tell them apart, or do you admit you cannot?
 - **400 people at 9am.** What actually breaks first? Be specific.
 - **What is "correct"?** If the shuttle arrives at 9:03 and you said 9:01, was that
   wrong? Define it before you build it.
@@ -134,7 +134,7 @@ to start tracking, or 400 students open the app at once.
 ### Minimum viable scope
 
 One shuttle, one route, a map with a dot and a last-updated time. No predictions in
-version one — add them only after position is trustworthy.
+version one, add them only after position is trustworthy.
 
 ### What success looks like
 
@@ -155,7 +155,7 @@ historical data to improve predictions.
    hour and saves a fortnight.
 2. **Draw it** from the
    [starter template](../02-concepts/diagrams/starter-template.drawio.svg).
-3. **Review it** — [the review prompt](../06-workshop/ai-prompts/review-my-design.md),
+3. **Review it**, [the review prompt](../06-workshop/ai-prompts/review-my-design.md),
    in a fresh chat.
 4. **Copy [the project template](project-template.md)** and fill it as you go, not at
    the end.
@@ -166,5 +166,5 @@ historical data to improve predictions.
 
 The deliverable is **the design record, not the build**. A working prototype with no
 record of why it is shaped that way teaches you nothing and shows a reader nothing. A
-complete design record with a half-working prototype is a far stronger piece of work —
+complete design record with a half-working prototype is a far stronger piece of work,
 and it is the thing you can put in front of a recruiter.

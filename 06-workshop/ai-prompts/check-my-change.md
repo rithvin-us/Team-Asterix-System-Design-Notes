@@ -1,8 +1,8 @@
-# Prompt 3 — Check My Change
+# Prompt 3. Check My Change
 
 Something changed. This finds what it broke, two or three hops out.
 
-Run it often — this is the cheapest habit here and the one most people skip.
+Run it often, this is the cheapest habit here and the one most people skip.
 
 **~320 tokens.**
 
@@ -55,8 +55,8 @@ Prompts 1 and 2 run once or twice per design. This one runs ten times, and it is
 where a design stays alive.
 
 A design document that was correct when written and never re-checked is worse than no
-document, because people trust it. The habit — *every change gets its blast radius
-checked* — is the difference between a living description of a system and a
+document, because people trust it. The habit, *every change gets its blast radius
+checked*, is the difference between a living description of a system and a
 historical record of something that no longer exists.
 
 Keep the output. A project with a change log of ten of these is more convincing
@@ -64,5 +64,5 @@ engineering work than a perfect diagram with no history.
 
 ## See also
 
-- [Project template](../../05-projects/project-template.md) — has the Change Log table
-- [Agent rules](agent-rules.md) — makes a coding agent run this check automatically
+- [Project template](../../05-projects/project-template.md), has the Change Log table
+- [Agent rules](agent-rules.md), makes a coding agent run this check automatically

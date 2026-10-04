@@ -16,12 +16,12 @@ This is a six-pass method. Use it on any system in the
 ## Before you start
 
 Open the [starter template](../02-concepts/diagrams/starter-template.drawio.svg) and
-have the source open in another tab. Keep a scrap page for things you cannot answer —
+have the source open in another tab. Keep a scrap page for things you cannot answer,
 that list is the valuable output.
 
 ---
 
-## Pass 1 — Find the boundary (10 min)
+## Pass 1. Find the boundary (10 min)
 
 Read the overview once, looking for one thing only: **what is this software or system,
 and what is it not?**
@@ -34,7 +34,7 @@ Write two lists. Do not draw yet.
 Then hunt for the hardest thing to find: **what they deliberately excluded**. Search
 the page for "future work", "out of scope", "not currently", "planned", "limitations".
 
-In Autoware this is explicit — fail-safe, HMI, real-time, redundancy and state
+In Autoware this is explicit, fail-safe, HMI, real-time, redundancy and state
 monitoring were all deferred, and they say so. Most sources are less honest, and the
 exclusions have to be inferred from what is simply never mentioned.
 
@@ -42,7 +42,7 @@ exclusions have to be inferred from what is simply never mentioned.
 
 ---
 
-## Pass 2 — Name the blocks (10 min)
+## Pass 2. Name the blocks (10 min)
 
 List the major components **by name, exactly as the source names them**. Using their
 vocabulary matters: it makes your diagram checkable against the source, and it stops
@@ -51,13 +51,13 @@ you quietly renaming something into a thing you understand better than they mean
 Next to each, write its responsibility **in one sentence with no second "and"**.
 
 If you cannot write that sentence, you have found a gap. Write the block name on your
-scrap page and move on — do not invent a responsibility.
+scrap page and move on, do not invent a responsibility.
 
-**Output:** a two-column list — name, responsibility.
+**Output:** a two-column list, name, responsibility.
 
 ---
 
-## Pass 3 — Draw boxes only (10 min)
+## Pass 3. Draw boxes only (10 min)
 
 Now open the template. Place the blocks. **No arrows yet.**
 
@@ -74,7 +74,7 @@ a centre. Try both and keep the one with fewer crossing lines.
 
 ---
 
-## Pass 4 — Add arrows, and label every one (20 min)
+## Pass 4. Add arrows, and label every one (20 min)
 
 This is the pass that teaches. For each connection ask: **what exactly travels here?**
 
@@ -100,7 +100,7 @@ By the end you will have found things the source never said. **That is the point
 
 ---
 
-## Pass 5 — Trace one flow end to end (10 min)
+## Pass 5. Trace one flow end to end (10 min)
 
 Pick one thing and follow it the whole way, out loud, without skipping:
 
@@ -109,7 +109,7 @@ Pick one thing and follow it the whole way, out loud, without skipping:
 > trajectory. Control turns the trajectory into a steering angle. Vehicle Interface
 > turns that into a CAN message."
 
-Where you say "and then it somehow…" — stop. That is a gap. Scrap page.
+Where you say "and then it somehow…", stop. That is a gap. Scrap page.
 
 Then trace a **second** flow of a different type. If it is a physical system, trace
 power: start at the source, reach every consumer. In a software system, trace control:
@@ -119,7 +119,7 @@ who decides, and how does the decision arrive?
 
 ---
 
-## Pass 6 — Compare, then score (10 min)
+## Pass 6. Compare, then score (10 min)
 
 **Now** open their diagram.
 
@@ -129,16 +129,16 @@ which of these it is:
 | Difference | What it means |
 |---|---|
 | They have a box you do not | You missed it, or they expose something you folded in |
-| You have a box they do not | You split something they treat as atomic — why? |
+| You have a box they do not | You split something they treat as atomic, why? |
 | They group differently | Their grouping encodes something. What? |
 | They show a flow you did not | Usually the one you could not label |
 
 The differences are the lesson. A diagram identical to theirs means you copied; a
 diagram with *explicable* differences means you understood.
 
-Finally, score your diagram with the **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** —
+Finally, score your diagram with the **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)**,
 upload the `.drawio` file and it counts your blocks and labelled arrows for you.
-Score it honestly — it is your own diagram of someone else's system, and nobody is
+Score it honestly, it is your own diagram of someone else's system, and nobody is
 marking it. The number that matters is the weakest dimension, not the total.
 
 ---
@@ -149,10 +149,10 @@ Fill in [the case study template](case-study-template.md). Four sections carry t
 value:
 
 1. **Boundary**, including what they excluded.
-2. **Why this cut** — their stated reasons if they gave any, your inference if not,
+2. **Why this cut**, their stated reasons if they gave any, your inference if not,
    clearly marked as inference.
-3. **Trade-offs** — the decision, the rejected option, the cost.
-4. **What they do not tell you** — your scrap page, cleaned up.
+3. **Trade-offs**, the decision, the rejected option, the cost.
+4. **What they do not tell you**, your scrap page, cleaned up.
 
 Section 4 is the one most people skip and the one most worth having. A list of honest
 unknowns is a more useful artifact than a confident summary, and it is the part a
@@ -164,9 +164,9 @@ reviewer will trust you for.
 
 Two case studies in this repository were produced with exactly this method:
 
-- **[Autoware](autoware/autoware.md)** — a vehicle stack, including its architecture
+- **[Autoware](autoware/autoware.md)**, a vehicle stack, including its architecture
   rewrite and why it happened
-- **[Netflix](netflix-streaming/netflix-streaming.md)** — control plane and data plane
+- **[Netflix](netflix-streaming/netflix-streaming.md)**, control plane and data plane
   as genuinely separate systems
 
 Read one *after* you have attempted your own. Reading it first turns the exercise into

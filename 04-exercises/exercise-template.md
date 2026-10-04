@@ -19,7 +19,7 @@ Inputs, constraints, any starting diagram.
 
 ## What to produce
 
-The deliverable, concretely. "A block diagram with every arrow labelled" — not
+The deliverable, concretely. "A block diagram with every arrow labelled", not
 "a design".
 
 ## Done when
@@ -28,8 +28,8 @@ A short checklist the participant can self-apply. Pull the relevant rows from
 [the rubric](../06-workshop/ai-prompts/design-rubric.md) rather than inventing new
 criteria.
 
-- [ ]
-- [ ]
+- []
+- []
 
 ---
 
@@ -39,7 +39,7 @@ Run [Review My Design](../06-workshop/ai-prompts/review-my-design.md) on what yo
 produced before looking below.
 
 <details>
-<summary><b>Reference solution</b> — try the exercise first</summary>
+<summary><b>Reference solution</b>, try the exercise first</summary>
 
 The solution, and more importantly **why** it is this and not something else.
 

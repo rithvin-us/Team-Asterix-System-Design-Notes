@@ -1,7 +1,7 @@
 # <System Name>
 
 <!-- Links here use ../../ because a copy of this file lives at
-     03-case-studies/<slug>/<slug>.md — two levels down.
+     03-case-studies/<slug>/<slug>.md, two levels down.
      They look broken from the template's own location. They are not. -->
 
 One sentence: what this system does, for whom, and what counts as success.
@@ -17,11 +17,11 @@ One sentence: what this system does, for whom, and what counts as success.
 
 ## 1. Boundary
 
-**Inside** — what is being designed.
+**Inside**, what is being designed.
 
-**Outside but connected** — what it talks to and depends on.
+**Outside but connected**, what it talks to and depends on.
 
-**Deliberately not doing** — at least two things excluded on purpose.
+**Deliberately not doing**, at least two things excluded on purpose.
 
 ---
 
@@ -60,7 +60,7 @@ The blocks, each with one responsibility stated in a sentence.
 |---|---|
 | | |
 
-**Why this cut** — and what the alternative cut would have been.
+**Why this cut**, and what the alternative cut would have been.
 
 ![HLD](diagrams/<slug>-hld.drawio.svg)
 
@@ -76,13 +76,13 @@ The blocks, each with one responsibility stated in a sentence.
 
 ## 6. Flows
 
-**Data / signal** — one measurement traced from sensing to action, every hop.
+**Data / signal**, one measurement traced from sensing to action, every hop.
 
-**Power** — energy from source to every consumer.
+**Power**, energy from source to every consumer.
 
-**Control** — one command traced from decision to actuator. What if it is late or wrong?
+**Control**, one command traced from decision to actuator. What if it is late or wrong?
 
-**Mechanical / physical** — load paths, attachment, motion. *(State explicitly if not applicable.)*
+**Mechanical / physical**, load paths, attachment, motion. *(State explicitly if not applicable.)*
 
 ---
 

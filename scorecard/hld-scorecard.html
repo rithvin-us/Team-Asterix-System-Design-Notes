@@ -21,12 +21,15 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0;line-height:1.5}
 .wrap{max-width:1080px;margin:0 auto;padding-block:28px 56px;padding-left:20px;padding-right:20px}
-header{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin:0 0 6px}
-h1{font-family:var(--display);font-size:clamp(28px,6vw,44px);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
-.sub{color:var(--ink-dim);margin:10px 0 0;max-width:62ch;font-size:14px}
-.cols{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;margin-top:26px}
-@media(max-width:860px){.cols{grid-template-columns:1fr}}
+header{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:8px 40px;align-items:end;
+  border-bottom:1px solid var(--ink);padding-bottom:18px}
+@media(max-width:760px){header{grid-template-columns:1fr;align-items:start}}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--signal);margin:0 0 10px}
+h1{font-family:var(--display);font-size:clamp(30px,5.2vw,46px);line-height:.98;margin:0;letter-spacing:-.02em}
+.sub{color:var(--ink-dim);margin:0;max-width:40ch;font-size:13.5px;line-height:1.55}
+.cols{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:48px;align-items:start;margin-top:34px}
+@media(max-width:860px){.cols{grid-template-columns:1fr;gap:34px}}
 section{min-width:0}
 h2{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);
    margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
@@ -60,35 +63,56 @@ input[type=range]{width:100%;margin:9px 0 4px;accent-color:var(--signal)}
 .anchor{font-size:12.5px;color:var(--ink-dim);min-height:2.6em}
 
 /* right rail */
-.rail{position:sticky;top:env(safe-area-inset-top,0px);display:flex;flex-direction:column;gap:14px}
+.rail{position:sticky;top:env(safe-area-inset-top,0px);display:flex;flex-direction:column}
 @media(max-width:860px){.rail{position:static}}
-.card{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:16px}
-.card h3{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink-dim);margin:0 0 10px}
+.card{padding:0 0 22px;border-bottom:1px solid var(--rule);margin-bottom:22px}
+.card:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.card h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-dim);margin:0 0 12px}
 canvas{width:100%;height:auto;display:block}
-.verdict{font-family:var(--display);font-size:30px;line-height:1.05;margin:0 0 4px}
-.verdict small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;font-weight:400}
+.verdict{font-family:var(--display);font-size:46px;line-height:.9;margin:0;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.verdict small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px;font-weight:400}
 .weak{font-size:13px;color:var(--ink-dim);margin:10px 0 0;padding-top:10px;border-top:1px solid var(--rule)}
 .weak b{color:var(--bad)}
-button{font-family:var(--body);font-size:13px;font-weight:600;padding:9px 14px;cursor:pointer;
-  background:var(--ink);color:var(--bg);border:1px solid var(--ink);border-radius:3px;width:100%}
+button{font-family:var(--body);font-size:13px;font-weight:600;padding:10px 16px;cursor:pointer;
+  background:var(--ink);color:var(--bg);border:1px solid var(--ink);border-radius:2px;width:100%;
+  transition:transform .12s cubic-bezier(.16,1,.3,1),opacity .12s}
 button.ghost{background:transparent;color:var(--ink)}
-button:hover{opacity:.88}
+button:hover:not(:disabled){opacity:.86}
+button:active:not(:disabled){transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:default}
 .note{font-size:11.5px;color:var(--ink-dim);margin:10px 0 0}
 .flag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
   padding:2px 7px;border-radius:2px;border:1px solid currentColor}
 .flag.ex{color:var(--signal)}
 textarea{width:100%;height:150px;font-family:var(--mono);font-size:11px;background:var(--bg);color:var(--ink);
   border:1px solid var(--rule);border-radius:3px;padding:9px;margin-top:10px;resize:vertical}
-.auto{border:2px solid var(--signal);border-radius:4px;padding:16px;margin-top:20px;background:var(--panel)}
-.auto-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.auto h2{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.auto{border-left:2px solid var(--signal);padding:2px 0 2px 20px;margin-top:30px}
+@media(max-width:620px){.auto{padding-left:14px}}
+.auto-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.auto h2{font-family:var(--display);font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink)}
 .auto textarea{height:132px}
 .auto-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .auto-row button{width:auto}
-.filelab{font-size:12.5px;color:var(--ink-dim);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.filelab{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);cursor:pointer;
+  border:1px solid var(--rule);border-radius:2px;padding:7px 11px;background:var(--panel);
+  transition:border-color .15s,transform .12s}
+.filelab:hover{border-color:var(--signal)}
+.filelab:active{transform:translateY(1px)}
+.filelab svg{width:14px;height:14px;flex:none;stroke:var(--ink-dim);fill:none;stroke-width:1.5}
+.filelab.set{border-color:var(--good)}
+.filelab.set svg{stroke:var(--good)}
 .status{font-size:12.5px;color:var(--ink-dim);min-width:0;flex:1}
+.skel{display:none;margin-top:14px}
+.skel.on{display:block}
+.skel i{display:block;height:9px;border-radius:2px;margin-bottom:8px;
+  background:linear-gradient(90deg,var(--rule) 0%,var(--panel) 50%,var(--rule) 100%);
+  background-size:220% 100%;animation:sh 1.3s linear infinite}
+.skel i:nth-child(2){width:78%} .skel i:nth-child(3){width:54%}
+@keyframes sh{from{background-position:120% 0}to{background-position:-120% 0}}
+@media(prefers-reduced-motion:reduce){.skel i{animation:none}}
 .unknowns{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-dim)}
 .unknowns b{color:var(--signal)}
 .unknowns ul{margin:6px 0 0;padding-left:18px}
@@ -103,30 +127,31 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <div class="wrap">
 <header>
-  <p class="eyebrow">Team Asterix · System Design</p>
-  <h1>HLD Scorecard</h1>
-  <p class="sub">Measure a high-level design instead of describing it. Six numbers you count straight off the
-  diagram, eight judgements you make yourself. Nothing is saved anywhere but this browser.</p>
+  <div>
+    <p class="eyebrow">Team Asterix · System Design</p>
+    <h1>HLD Scorecard</h1>
+  </div>
+  <p class="sub">Six numbers counted off the diagram, eight judgements made by you. Nothing leaves this
+  browser.</p>
 </header>
 
-<p class="note"><span class="flag ex">example values loaded</span> &nbsp;Figures below are a worked example so you
-can see how it reads. Replace them with your own.</p>
+<p class="note">Loaded with a worked example so you can see how it reads. Replace the figures with yours,
+or upload a diagram below.</p>
 
 <div class="auto" id="auto" hidden>
   <div class="auto-head">
     <h2 style="margin:0;border:0;padding:0">Score it for me</h2>
-    <span class="flag ex" id="auto_flag">reads your design, fills the numbers</span>
   </div>
-  <p class="hint">Paste your design — block list, arrow list, requirements, trade-offs, or the whole document.
-  Claude reads it and proposes every number below. <b>You then check each one.</b> It will mark anything your
-  design does not say rather than inventing it.</p>
-  <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing — reads wheel RPM&#10;- Control Unit — decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because..."
+  <p class="hint">Upload the <code>.drawio</code> file and the counts are read straight out of it. Paste the
+  written design too and Claude judges the rest. It proposes; you check. Anything your design does not say is
+  listed as unknown rather than invented.</p>
+  <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing, reads wheel RPM&#10;- Control Unit, decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because.."
     aria-label="Your design"></textarea>
   <div class="auto-row">
-    <input type="file" id="dio" accept=".drawio,.svg,.xml,.drawio.svg" hidden aria-label="Draw.io file">
-    <label for="dio" class="filelab" id="diolab">📐 Upload your .drawio file</label>
+    <input type="file" id="dio" accept=".drawio.svg.xml.drawio.svg" hidden aria-label="Draw.io file">
+    <label for="dio" class="filelab" id="diolab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg><span>Upload.drawio or.drawio.svg</span></label>
     <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
-    <label for="shot" class="filelab" id="shotlab" hidden>🖼 or a photo of the diagram</label>
+    <label for="shot" class="filelab" id="shotlab" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg><span>Photo of the diagram</span></label>
   </div>
   <div id="parsed" class="parsed" hidden></div>
   <div class="auto-row">
@@ -134,6 +159,7 @@ can see how it reads. Replace them with your own.</p>
     <button class="ghost" id="stop" hidden>Stop</button>
     <span class="status" id="status"></span>
   </div>
+  <div class="skel" id="skel"><i></i><i></i><i></i></div>
   <div id="unknowns" class="unknowns" hidden></div>
 </div>
 
@@ -141,7 +167,7 @@ can see how it reads. Replace them with your own.</p>
 <section>
 
   <h2>Counted from the diagram</h2>
-  <p class="hint">Open your HLD and count. These are facts, not opinions — two people counting the same diagram
+  <p class="hint">Open your HLD and count. These are facts, not opinions, two people counting the same diagram
   should get the same answer.</p>
 
   <div class="metric">
@@ -151,7 +177,7 @@ can see how it reads. Replace them with your own.</p>
       <input type="number" id="ifc_n" min="0" value="9" aria-label="labelled arrows">
       <span class="slash">/</span>
       <input type="number" id="ifc_d" min="0" value="14" aria-label="total arrows">
-      <span class="readout" id="ifc_out">—</span>
+      <span class="readout" id="ifc_out">, </span>
     </span>
     <span class="bar"><i id="ifc_bar"></i></span>
   </div>
@@ -160,7 +186,7 @@ can see how it reads. Replace them with your own.</p>
     <span class="name">Orphan blocks</span>
     <span class="formula">outputs nobody consumes + inputs nobody produces</span>
     <span class="inputs"><input type="number" id="orp" min="0" value="2" aria-label="orphan count">
-      <span class="readout" id="orp_out">—</span></span>
+      <span class="readout" id="orp_out">, </span></span>
     <span class="bar"><i id="orp_bar"></i></span>
   </div>
 
@@ -169,12 +195,12 @@ can see how it reads. Replace them with your own.</p>
     <span class="formula">consumers with a supply path ÷ all consumers</span>
     <span class="inputs">
       <select id="pwr_na" aria-label="power applicable">
-        <option value="no">applies</option><option value="yes">software only — N/A</option>
+        <option value="no">applies</option><option value="yes">software only. N/A</option>
       </select>
       <input type="number" id="pwr_n" min="0" value="4" aria-label="consumers supplied">
       <span class="slash">/</span>
       <input type="number" id="pwr_d" min="0" value="6" aria-label="total consumers">
-      <span class="readout" id="pwr_out">—</span>
+      <span class="readout" id="pwr_out">, </span>
     </span>
     <span class="bar"><i id="pwr_bar"></i></span>
   </div>
@@ -186,7 +212,7 @@ can see how it reads. Replace them with your own.</p>
       <input type="number" id="req_n" min="0" value="3" aria-label="measurable requirements">
       <span class="slash">/</span>
       <input type="number" id="req_d" min="0" value="7" aria-label="total requirements">
-      <span class="readout" id="req_out">—</span>
+      <span class="readout" id="req_out">, </span>
     </span>
     <span class="bar"><i id="req_bar"></i></span>
   </div>
@@ -198,7 +224,7 @@ can see how it reads. Replace them with your own.</p>
       <input type="number" id="tdo_n" min="0" value="1" aria-label="complete trade-offs">
       <span class="slash">/</span>
       <input type="number" id="tdo_d" min="0" value="4" aria-label="total decisions">
-      <span class="readout" id="tdo_out">—</span>
+      <span class="readout" id="tdo_out">, </span>
     </span>
     <span class="bar"><i id="tdo_bar"></i></span>
   </div>
@@ -210,7 +236,7 @@ can see how it reads. Replace them with your own.</p>
       <select id="zoom" aria-label="zoom consistency">
         <option value="1">consistent</option><option value="0" selected>mixed levels</option>
       </select>
-      <span class="readout" id="zoom_out">—</span>
+      <span class="readout" id="zoom_out">, </span>
     </span>
     <span class="bar"><i id="zoom_bar"></i></span>
   </div>
@@ -230,13 +256,13 @@ can see how it reads. Replace them with your own.</p>
   </div>
 
   <div class="card">
-    <h3>Readout</h3>
-    <p class="verdict"><small id="band">—</small><span id="score">—</span></p>
-    <p class="weak" id="weak">—</p>
+    <h3>Score</h3>
+    <p class="verdict"><small id="band">, </small><span id="score">, </span></p>
+    <p class="weak" id="weak">, </p>
   </div>
 
   <div class="card">
-    <h3>Export</h3>
+    <h3>Record it</h3>
     <button id="copy">Copy as markdown</button>
     <button class="ghost" id="reset" style="margin-top:8px">Reset to blank</button>
     <textarea id="md" readonly aria-label="Markdown export"></textarea>
@@ -247,50 +273,42 @@ can see how it reads. Replace them with your own.</p>
 </div>
 
 <footer>
-  A design that scores well is not automatically good — but one that scores badly is reliably incomplete, and
-  incomplete is the failure that actually shows up when you build. Pair this with the written rubric.
+  A good score does not make a design good. A bad score does make it incomplete, and incomplete is what
+  actually bites when you build.
 </footer>
 </div>
 
 <script>
-const DIMS = [
-  {k:'bnd', label:'Boundary', a:[
+const DIMS = [{k:'bnd', label:'Boundary', a:[
     'No statement of what is inside or outside.',
     'Inside is implied; outside is not stated.',
     'Inside and outside both stated; most dependencies named.',
     'Inside, outside, every external dependency, and at least two things deliberately excluded.']},
-  {k:'blk', label:'Blocks', a:[
-    'Boxes with no stated responsibility.',
+  {k:'blk', label:'Blocks', a:['Boxes with no stated responsibility.',
     'Named, but some do two jobs or sit at the wrong level.',
     'One responsibility each, mostly consistent zoom.',
     'One statable responsibility each, consistent zoom, and the cut is justified against an alternative.']},
-  {k:'ifc', label:'Interfaces', a:[
-    'Unlabelled arrows.',
+  {k:'ifc', label:'Interfaces', a:['Unlabelled arrows.',
     'Arrows labelled with a name only — "data", "signal".',
     'Most carry content and units.',
     'Every one states what travels, in what form, at what rate, in what units.']},
-  {k:'flw', label:'Flows', a:[
-    'One undifferentiated arrow type.',
+  {k:'flw', label:'Flows', a:['One undifferentiated arrow type.',
     'Types distinguished but nothing traced end to end.',
     'Types distinguished, one flow traced fully.',
     'All applicable flows distinguished and traced; inapplicable ones explicitly ruled out.']},
-  {k:'req', label:'Requirements', a:[
-    'None stated.',
+  {k:'req', label:'Requirements', a:['None stated.',
     'A list, functional and non-functional mixed together.',
     'Separated; some carry numbers.',
     'Separated, every non-functional one measurable, each tied to part of the design.']},
-  {k:'asm', label:'Assumptions', a:[
-    'None stated — so they are indistinguishable from facts.',
+  {k:'asm', label:'Assumptions', a:['None stated — so they are indistinguishable from facts.',
     'A few noted in passing.',
     'Listed separately from facts.',
     'Listed, each with what breaks if wrong, and the load-bearing one flagged for verification.']},
-  {k:'tdo', label:'Trade-offs', a:[
-    'No decisions identified.',
+  {k:'tdo', label:'Trade-offs', a:['No decisions identified.',
     'Choices stated without alternatives — defaults, not decisions.',
     'Rejected options named.',
     'Rejected option, reason tied to a constraint, and the cost of the choice all named.']},
-  {k:'clr', label:'Clarity', a:[
-    'Needs the author present to interpret.',
+  {k:'clr', label:'Clarity', a:['Needs the author present to interpret.',
     'Readable with effort; naming drifts.',
     'Legend present, naming consistent.',
     'A stranger could understand the system from the diagram plus one page.']}
@@ -423,9 +441,7 @@ function writeMd(overall, band){
   $('md').value =
 `## HLD score — ${new Date().toISOString().slice(0,10)}
 
-**${overall}% · ${band}**
-
-| Metric | Value |
+**${overall}% · ${band}**| Metric | Value |
 |---|---|
 | Interface completeness | ${f('ifc_n')}/${f('ifc_d')} arrows labelled |
 | Orphan blocks | ${f('orp')} |
@@ -438,7 +454,7 @@ function writeMd(overall, band){
 |---|---|---|
 ${rows}
 
-**Fix first:** ${DIMS.reduce((a,b)=> scores[b.k]<scores[a.k]?b:a).label}
+**Fix first:**${DIMS.reduce((a,b)=> scores[b.k]<scores[a.k]?b:a).label}
 `;
 }
 
@@ -477,7 +493,7 @@ $('reset').addEventListener('click', () => {
   [['ifc_n',0],['ifc_d',0],['orp',0],['pwr_n',0],['pwr_d',0],['req_n',0],['req_d',0],
    ['tdo_n',0],['tdo_d',0]].forEach(([k,v]) => $(k).value = v);
   $('zoom').value='0'; $('pwr_na').value='no';
-  document.querySelector('.note').innerHTML = 'Blank. Open your HLD and start counting.';
+  document.querySelector('.note').textContent = 'Blank. Open your diagram and start counting.';
   update();
 });
 
@@ -548,11 +564,14 @@ ${design}`;
   const setBusy = on => {
     $('evaluate').disabled = on;
     $('stop').hidden = !on;
+    $('skel').classList.toggle('on', on);
   };
 
   $('shot').addEventListener('change', () => {
     const f = $('shot').files[0];
-    $('shotlab').textContent = f ? '🖼 ' + f.name : '🖼 or a photo of the diagram';
+    const lab = $('shotlab');
+    lab.classList.toggle('set', !!f);
+    lab.querySelector('span').textContent = f ? f.name : 'Photo of the diagram';
   });
 
   /* --- Draw.io parsing: .drawio is mxGraphModel XML; .drawio.svg carries the
@@ -625,7 +644,8 @@ ${design}`;
       describe.byId = {};
       p.blocks.forEach(b => { describe.byId[b.id] = b.label || '(unnamed block)'; });
       diagram = p;
-      $('diolab').textContent = '📐 ' + f.name;
+      $('diolab').classList.add('set');
+      $('diolab').querySelector('span').textContent = f.name;
       $('ifc_d').value = p.edges.length;
       $('ifc_n').value = p.labelled.length;
       $('orp').value = p.isolated.length + p.dangling.length;
@@ -656,18 +676,18 @@ ${design}`;
 
     ctl = new AbortController();
     setBusy(true);
-    status.textContent = 'Reading your design…';
+    status.textContent = 'Reading your design';
     $('unknowns').hidden = true;
 
     const opts = { signal: ctl.signal, modelTier: 'default', cache: false,
-      onText: () => { status.textContent = 'Scoring…'; } };
+      onText: () => { status.textContent = 'Scoring'; } };
     if (file && caps && caps.images) opts.images = file;
 
     try {
       const r = await sample.json(
         buildPrompt(design || '(no text given — read the attached diagram)', !!file, diagram), opts);
       applyResult(r);
-      status.textContent = 'Proposed. Check every number before you trust it.';
+      status.textContent = 'Done. Check every number before you trust it.';
       panel.classList.add('done');
     } catch (e) {
       const c = e && e.code;
@@ -714,9 +734,8 @@ ${design}`;
     });
 
     document.querySelectorAll('.metric').forEach(el => el.classList.add('proposed'));
-    document.querySelector('.note').innerHTML =
-      '<span class="flag ex">proposed by Claude</span> &nbsp;Every number below was read off your design. ' +
-      'Check each one — it is a reviewer, not an authority.';
+    document.querySelector('.note').textContent =
+      'Numbers below were read off your design by Claude. Check each one: it is a reviewer, not an authority.';
 
     const u = Array.isArray(r && r.unknowns) ? r.unknowns.filter(x => x && String(x).trim()) : [];
     const box = $('unknowns');

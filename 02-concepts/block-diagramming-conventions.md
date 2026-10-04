@@ -4,7 +4,7 @@ How to draw a system so that someone else can read it without you standing next 
 them explaining it.
 
 There is no universal standard for block diagrams. What follows is the convention
-used in this repository. Consistency matters more than which convention you pick —
+used in this repository. Consistency matters more than which convention you pick,
 but pick one and hold it.
 
 ---
@@ -12,7 +12,7 @@ but pick one and hold it.
 ## Do not start from a blank page
 
 The starter template already has the boundary, the legend, all four arrow styles and
-three placeholder blocks. Rename the boxes, replace the `[ ... ]` labels, delete what
+three placeholder blocks. Rename the boxes, replace the `[... ]` labels, delete what
 you do not need.
 
 | Download | Use it in |
@@ -21,7 +21,7 @@ you do not need.
 | **[starter-template.drawio](diagrams/starter-template.drawio)** | Desktop app, by double-click. Same diagram, no GitHub preview. |
 
 Either is fine. When you save your own work, save it as **Editable SVG** so it
-previews on GitHub — *File → Save as → Editable SVG*.
+previews on GitHub, *File → Save as → Editable SVG*.
 
 ---
 
@@ -29,10 +29,10 @@ previews on GitHub — *File → Save as → Editable SVG*.
 
 A block diagram that works has four things. Miss any one and readers start guessing.
 
-1. **A boundary** — a line showing what is inside the system and what is outside.
-2. **Blocks** — named after responsibilities, at one consistent level of zoom.
-3. **Arrows with labels** — every arrow says what travels along it.
-4. **A legend** — what your line styles mean.
+1. **A boundary**, a line showing what is inside the system and what is outside.
+2. **Blocks**, named after responsibilities, at one consistent level of zoom.
+3. **Arrows with labels**, every arrow says what travels along it.
+4. **A legend**, what your line styles mean.
 
 If you have those four, the diagram is readable. Everything below is refinement.
 
@@ -50,7 +50,7 @@ If you have those four, the diagram is readable. Everything below is refinement.
 
 Why this matters more than it sounds: `Arduino Nano` locks in a component before you
 have decided you need it. `Wheel Speed Sensing` describes a job that still has to be
-done whatever you put there, which leaves the choice available — and makes it a
+done whatever you put there, which leaves the choice available, and makes it a
 *choice*, which means it can appear in your trade-offs.
 
 Rules:
@@ -78,7 +78,7 @@ genuinely different things and a reader needs to tell them apart at a glance.
 | **Mechanical** | Solid, heavy, or distinct colour | Force, torque, motion, physical attachment |
 
 Pick styles that survive being printed in black and white. Colour alone is not a
-distinction — it fails on a projector, a photocopy, and for colour-blind readers.
+distinction, it fails on a projector, a photocopy, and for colour-blind readers.
 
 **Every arrow gets a label.** The label states what travels, and where a quantity is
 involved, its rate and units:
@@ -104,7 +104,7 @@ ground, a part you are buying rather than building.
 
 Why it is first and not cosmetic: without a boundary, "the system" quietly expands
 until it means everything, and then nothing can be specified. It is also the thing
-that makes an interface definable at all — an interface is a thing that crosses the
+that makes an interface definable at all, an interface is a thing that crosses the
 boundary, so no boundary means no interfaces.
 
 ---
@@ -118,7 +118,7 @@ boundary, so no boundary means no interfaces.
 | **LLD** | One HLD block, opened up | 5–9 |
 
 **Five to nine blocks per diagram.** Fewer than five and you probably have not
-decomposed anything. More than nine and the reader cannot hold it — split it, and
+decomposed anything. More than nine and the reader cannot hold it, split it, and
 make the overflow an LLD of one block.
 
 An LLD **states which HLD block it expands**, in its first line. Without that, a
@@ -149,7 +149,7 @@ matters.
 
 ## File format
 
-**Save as `.drawio.svg`** — "Editable SVG" in Draw.io.
+**Save as `.drawio.svg`**, "Editable SVG" in Draw.io.
 
 One file that renders inline on GitHub and still opens as an editable diagram. No
 separate source and export, so no chance of them drifting apart and nobody knowing
@@ -172,24 +172,24 @@ a global image folder. See [CONVENTIONS.md](../CONVENTIONS.md#diagrams).
 
 ## Checklist before you call it done
 
-- [ ] Boundary drawn, inside and outside visible
-- [ ] Every block named after a responsibility, not a technology
-- [ ] Every block at the same level of zoom
-- [ ] 5–9 blocks
-- [ ] Every arrow labelled with what travels, plus rate and units
-- [ ] Four flow types visually distinct, and distinguishable in black and white
-- [ ] Legend present
-- [ ] No block with outputs nothing consumes, or inputs nothing produces
-- [ ] Power traced to every consumer
-- [ ] Names consistent throughout
-- [ ] Readable at the size it will actually be viewed
-- [ ] Saved as `.drawio.svg`
+- [] Boundary drawn, inside and outside visible
+- [] Every block named after a responsibility, not a technology
+- [] Every block at the same level of zoom
+- [] 5–9 blocks
+- [] Every arrow labelled with what travels, plus rate and units
+- [] Four flow types visually distinct, and distinguishable in black and white
+- [] Legend present
+- [] No block with outputs nothing consumes, or inputs nothing produces
+- [] Power traced to every consumer
+- [] Names consistent throughout
+- [] Readable at the size it will actually be viewed
+- [] Saved as `.drawio.svg`
 
 Then check it:
 
-- **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — upload the
+- **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)**, upload the
   `.drawio` file itself. It reads your blocks and arrow labels and counts them exactly.
-- **[The review prompt](../06-workshop/ai-prompts/review-my-design.md)** — for the judgement
+- **[The review prompt](../06-workshop/ai-prompts/review-my-design.md)**, for the judgement
   a count cannot make.
 
 ---
