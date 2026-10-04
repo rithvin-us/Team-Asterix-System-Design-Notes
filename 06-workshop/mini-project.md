@@ -28,7 +28,9 @@ apply.
 
 ## How it is graded
 
-Against **[the rubric](ai-prompts/design-rubric.md)**. Same checklist, no hidden
+Against **[the rubric](ai-prompts/design-rubric.md)**, which the
+**[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** applies for you. Upload your `.drawio` file there before
+you submit and fix whatever scores lowest. Same checklist, no hidden
 criteria. Self-check against it before submitting.
 
 The two things that most separate a strong submission from a weak one:

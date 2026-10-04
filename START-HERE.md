@@ -129,6 +129,14 @@ Paste or screenshot your design under the prompt. It will list what is missing.
 
 Fix those things yourself.
 
+### Step 7, score it (2 min)
+
+Open the **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** and upload the `.drawio` file you just saved. It
+counts your blocks, how many arrows actually say what travels, and whether anything
+is connected to nothing. No account needed for that part.
+
+Look at the weakest line, not the total. That is the thing to fix next.
+
 ---
 
 ## Jargon you will hear, in plain words

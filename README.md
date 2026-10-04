@@ -36,7 +36,7 @@ git clone https://github.com/rithvin-us/Team-Asterix-System-Design-Playbook.git
 
 ---
 
-## New here? Start with these three
+## New here? Start with these four
 
 You need no prior knowledge. Thirty minutes gets you from zero to your first design.
 
@@ -45,9 +45,19 @@ You need no prior knowledge. Thirty minutes gets you from zero to your first des
 | **1** | Read **[What system design actually is](01-method/the-five-moves.md)** | The five moves that every design is made of. One page. |
 | **2** | Read **[Block diagramming conventions](02-concepts/block-diagramming-conventions.md)** | How to draw one so other people can read it. |
 | **3** | Design something, using **[the design prompt](06-workshop/ai-prompts/design-something-new.md)** | An AI interviews you through the five moves. You do the thinking. |
+| **4** | Score it in the **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Upload your diagram, get your arrows and orphans counted. |
 
 Then run **[the review prompt](06-workshop/ai-prompts/review-my-design.md)** on what
 you made.
+
+### The three tools, open in a browser
+
+| Tool | What it does | Account needed |
+|---|---|---|
+| **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Upload a `.drawio` file. Counts your blocks, labelled arrows and orphans. | **No** |
+| ^ same page | Claude also scores the eight judged dimensions from your written design | Yes, a Claude account |
+| **[The AI prompts](06-workshop/ai-prompts/prompts-index.md)** | Copy and paste into any assistant. Design, review, change-check. | No, works in any AI |
+| **[NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)** | Ask the workshop's source material a question | Google account, and access from an instructor |
 
 > **Important:** the AI prompts here will not design for you. They ask questions and
 > refuse to hand over answers, on purpose. [Why.](06-workshop/ai-prompts/prompts-index.md#the-rule-all-three-enforce)

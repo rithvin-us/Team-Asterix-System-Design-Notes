@@ -19,6 +19,7 @@ still stands on its own.
 | **2** | [Block diagramming conventions](../02-concepts/block-diagramming-conventions.md), how to draw one |
 | **3** | [The AI prompts](ai-prompts/prompts-index.md), design something, then get it reviewed |
 | **4** | [The rubric](ai-prompts/design-rubric.md), what your work is measured against |
+| **5** | [The HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR), upload your diagram and get it counted |
 
 The rubric is not secret. It is the same checklist used to grade the mini project, and
 you should self-check against it before submitting anything.

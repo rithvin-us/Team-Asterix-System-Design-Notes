@@ -138,29 +138,41 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <p class="note">Loaded with a worked example so you can see how it reads. Replace the figures with yours,
 or upload a diagram below.</p>
 
-<div class="auto" id="auto" hidden>
+<div class="auto">
   <div class="auto-head">
-    <h2 style="margin:0;border:0;padding:0">Score it for me</h2>
+    <h2 style="margin:0;border:0;padding:0">Upload your diagram</h2>
   </div>
-  <p class="hint">Upload the <code>.drawio</code> file and the counts are read straight out of it. Paste the
-  written design too and Claude judges the rest. It proposes; you check. Anything your design does not say is
-  listed as unknown rather than invented.</p>
-  <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing, reads wheel RPM&#10;- Control Unit, decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because.."
-    aria-label="Your design"></textarea>
+  <p class="hint">Works for everyone, no account needed. A <code>.drawio</code> file holds your block names
+  and arrow labels as text, so the counts below are read straight out of it rather than estimated.</p>
   <div class="auto-row">
-    <input type="file" id="dio" accept=".drawio.svg.xml.drawio.svg" hidden aria-label="Draw.io file">
-    <label for="dio" class="filelab" id="diolab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg><span>Upload.drawio or.drawio.svg</span></label>
-    <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
-    <label for="shot" class="filelab" id="shotlab" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg><span>Photo of the diagram</span></label>
+    <input type="file" id="dio" accept=".drawio,.svg,.xml" hidden aria-label="Draw.io file">
+    <label for="dio" class="filelab" id="diolab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg><span>Choose a .drawio or .drawio.svg file</span></label>
   </div>
   <div id="parsed" class="parsed" hidden></div>
-  <div class="auto-row">
-    <button id="evaluate">Evaluate my design</button>
-    <button class="ghost" id="stop" hidden>Stop</button>
-    <span class="status" id="status"></span>
+
+  <div id="auto" hidden>
+    <h2 style="margin:22px 0 0;border:0;padding:0">Have Claude judge the rest</h2>
+    <p class="hint">Counting is only half of it. Paste the written design and Claude scores the eight
+    judged dimensions too. It proposes; you check. Anything your design does not say is listed as unknown
+    rather than invented.</p>
+    <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing, reads wheel RPM&#10;- Control Unit, decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because..."
+      aria-label="Your design"></textarea>
+    <div class="auto-row">
+      <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
+      <label for="shot" class="filelab" id="shotlab" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg><span>Photo of the diagram</span></label>
+    </div>
+    <div class="auto-row">
+      <button id="evaluate">Evaluate my design</button>
+      <button class="ghost" id="stop" hidden>Stop</button>
+      <span class="status" id="status"></span>
+    </div>
+    <div class="skel" id="skel"><i></i><i></i><i></i></div>
+    <div id="unknowns" class="unknowns" hidden></div>
   </div>
-  <div class="skel" id="skel"><i></i><i></i><i></i></div>
-  <div id="unknowns" class="unknowns" hidden></div>
+
+  <p class="hint" id="noai" hidden style="margin:14px 0 0">Signed in to Claude? It can also score the eight
+  judged dimensions from your written design. That part needs an account and uses your own Claude usage.
+  Everything else on this page works without one.</p>
 </div>
 
 <div class="cols">
@@ -500,6 +512,104 @@ $('reset').addEventListener('click', () => {
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
 load(); update();
 
+/* ---------- Draw.io upload: runs for every viewer ---------- */
+let diagram = null;
+/* --- Draw.io parsing: .drawio is mxGraphModel XML; .drawio.svg carries the
+       same XML in the root <svg content="..."> attribute. Both are text, so we
+       read the real block and arrow labels instead of guessing from a picture. --- */
+function unwrap(text){
+  const t = text.trim();
+  if (t.startsWith('<mxfile') || t.startsWith('<mxGraphModel')) return t;
+  try {
+    const doc = new DOMParser().parseFromString(t, 'image/svg+xml');
+    const svg = doc.querySelector('svg');
+    const c = svg && svg.getAttribute('content');
+    if (c) return c;
+  } catch(e) {}
+  return null;
+}
+
+function parseDrawio(xml){
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  if (doc.querySelector('parsererror')) return null;
+  const cells = [...doc.querySelectorAll('mxCell')];
+  if (!cells.length) return null;
+  const strip = v => (v || '').replace(/<[^>]*>/g, ' ').replace(/&[a-z]+;/gi, ' ')
+                               .replace(/\s+/g, ' ').trim();
+  const blocks = [], edges = [], byId = {};
+  for (const c of cells) {
+    const id = c.getAttribute('id'), v = strip(c.getAttribute('value'));
+    if (c.getAttribute('vertex') === '1') {
+      const style = c.getAttribute('style') || '';
+      // Not every vertex is a block. Skip captions, legends, the system
+      // boundary and group containers, so they do not read as orphans.
+      const isText = /^text;/.test(style) || /\btext\b/.test(style.split(';')[0]);
+      const isContainer = /dashPattern|container=1|swimlane/.test(style);
+      if (isText || isContainer || v.length > 80) continue;
+      blocks.push({ id, label: v }); byId[id] = v || '(unnamed)';
+    } else if (c.getAttribute('edge') === '1') {
+      edges.push({ label: v, s: c.getAttribute('source'), t: c.getAttribute('target') });
+    }
+  }
+  // an arrow counts as labelled only if it says what travels, not just "data"
+  const weak = /^(data|signal|info|information|flow|value|input|output|msg|message|link)$/i;
+  const labelled = edges.filter(e => e.label && e.label.length > 2 && !weak.test(e.label));
+  const touched = new Set();
+  edges.forEach(e => { if (e.s) touched.add(e.s); if (e.t) touched.add(e.t); });
+  const isolated = blocks.filter(b => b.label && !touched.has(b.id));
+  const dangling = edges.filter(e => !e.s || !e.t);
+  return { blocks, edges, labelled, isolated, dangling };
+}
+
+function describe(p){
+  const L = [];
+  L.push('BLOCKS (' + p.blocks.length + '):');
+  p.blocks.forEach(b => L.push('- ' + (b.label || '(unnamed block)')));
+  L.push('', 'CONNECTIONS (' + p.edges.length + '):');
+  p.edges.forEach(e => {
+    const nm = v => v ? (describe.byId[v] || v) : '(nothing)';
+    L.push('- ' + nm(e.s) + ' -> ' + nm(e.t) + ' : ' + (e.label || '(UNLABELLED)'));
+  });
+  return L.join('\n');
+}
+
+$('dio').addEventListener('change', async () => {
+  const f = $('dio').files[0];
+  if (!f) return;
+  const box = $('parsed');
+  try {
+    const xml = unwrap(await f.text());
+    const p = xml && parseDrawio(xml);
+    if (!p || !p.blocks.length) throw new Error('no cells');
+    describe.byId = {};
+    p.blocks.forEach(b => { describe.byId[b.id] = b.label || '(unnamed block)'; });
+    diagram = p;
+    $('diolab').classList.add('set');
+    $('diolab').querySelector('span').textContent = f.name;
+    $('ifc_d').value = p.edges.length;
+    $('ifc_n').value = p.labelled.length;
+    $('orp').value = p.isolated.length + p.dangling.length;
+    const missing = p.edges.length - p.labelled.length;
+    box.innerHTML = '<b>Read your diagram.</b> Counts below are measured, not estimated — '
+      + 'only the judged dimensions still need Claude or you.'
+      + '<div class="tally">' + p.blocks.length + ' blocks &nbsp;·&nbsp; '
+      + p.edges.length + ' connections &nbsp;·&nbsp; ' + missing + ' with no usable label'
+      + (p.isolated.length ? ' &nbsp;·&nbsp; ' + p.isolated.length + ' block(s) connected to nothing' : '')
+      + '</div>';
+    box.hidden = false;
+    if (!$('design').value.trim()) $('design').value = describe(p);
+    update();
+  } catch (err) {
+    box.innerHTML = '<b style="color:var(--bad)">Could not read that file.</b> '
+      + 'Save it from Draw.io as <code>.drawio</code> or Editable SVG, or attach a photo instead.';
+    box.hidden = false;
+    $('shot').hidden = false; $('shotlab').hidden = false;
+  }
+});
+
+$('stop').addEventListener('click', () => ctl && ctl.abort());
+
+
 /* ---------- Score it for me ---------- */
 const SCHEMA = `Reply with ONLY this JSON object, no other text:
 {"metrics":{"arrowsLabelled":0,"arrowsTotal":0,"orphans":0,"powerApplicable":true,
@@ -552,14 +662,15 @@ ${design}`;
 
 (async () => {
   const sample = await claude.use('sample');
-  if (!sample) return;                          // not available: manual mode only
-  const panel = $('auto'); panel.hidden = false;
+  const panel = $('auto');
+  if (!sample) { $('noai').hidden = false; return; }   // counting still works for everyone
+  panel.hidden = false;
 
   let caps = null;
   try { caps = await sample.limits(); } catch(e) {}
   if (caps && caps.images) { $('shot').hidden = false; $('shotlab').hidden = false; }
 
-  let ctl = null, diagram = null;
+  let ctl = null;
   const status = $('status');
   const setBusy = on => {
     $('evaluate').disabled = on;
@@ -573,101 +684,6 @@ ${design}`;
     lab.classList.toggle('set', !!f);
     lab.querySelector('span').textContent = f ? f.name : 'Photo of the diagram';
   });
-
-  /* --- Draw.io parsing: .drawio is mxGraphModel XML; .drawio.svg carries the
-         same XML in the root <svg content="..."> attribute. Both are text, so we
-         read the real block and arrow labels instead of guessing from a picture. --- */
-  function unwrap(text){
-    const t = text.trim();
-    if (t.startsWith('<mxfile') || t.startsWith('<mxGraphModel')) return t;
-    try {
-      const doc = new DOMParser().parseFromString(t, 'image/svg+xml');
-      const svg = doc.querySelector('svg');
-      const c = svg && svg.getAttribute('content');
-      if (c) return c;
-    } catch(e) {}
-    return null;
-  }
-
-  function parseDrawio(xml){
-    const doc = new DOMParser().parseFromString(xml, 'application/xml');
-    if (doc.querySelector('parsererror')) return null;
-    const cells = [...doc.querySelectorAll('mxCell')];
-    if (!cells.length) return null;
-    const strip = v => (v || '').replace(/<[^>]*>/g, ' ').replace(/&[a-z]+;/gi, ' ')
-                                 .replace(/\s+/g, ' ').trim();
-    const blocks = [], edges = [], byId = {};
-    for (const c of cells) {
-      const id = c.getAttribute('id'), v = strip(c.getAttribute('value'));
-      if (c.getAttribute('vertex') === '1') {
-        const style = c.getAttribute('style') || '';
-        // Not every vertex is a block. Skip captions, legends, the system
-        // boundary and group containers, so they do not read as orphans.
-        const isText = /^text;/.test(style) || /\btext\b/.test(style.split(';')[0]);
-        const isContainer = /dashPattern|container=1|swimlane/.test(style);
-        if (isText || isContainer || v.length > 80) continue;
-        blocks.push({ id, label: v }); byId[id] = v || '(unnamed)';
-      } else if (c.getAttribute('edge') === '1') {
-        edges.push({ label: v, s: c.getAttribute('source'), t: c.getAttribute('target') });
-      }
-    }
-    // an arrow counts as labelled only if it says what travels, not just "data"
-    const weak = /^(data|signal|info|information|flow|value|input|output|msg|message|link)$/i;
-    const labelled = edges.filter(e => e.label && e.label.length > 2 && !weak.test(e.label));
-    const touched = new Set();
-    edges.forEach(e => { if (e.s) touched.add(e.s); if (e.t) touched.add(e.t); });
-    const isolated = blocks.filter(b => b.label && !touched.has(b.id));
-    const dangling = edges.filter(e => !e.s || !e.t);
-    return { blocks, edges, labelled, isolated, dangling };
-  }
-
-  function describe(p){
-    const L = [];
-    L.push('BLOCKS (' + p.blocks.length + '):');
-    p.blocks.forEach(b => L.push('- ' + (b.label || '(unnamed block)')));
-    L.push('', 'CONNECTIONS (' + p.edges.length + '):');
-    p.edges.forEach(e => {
-      const nm = v => v ? (describe.byId[v] || v) : '(nothing)';
-      L.push('- ' + nm(e.s) + ' -> ' + nm(e.t) + ' : ' + (e.label || '(UNLABELLED)'));
-    });
-    return L.join('\n');
-  }
-
-  $('dio').addEventListener('change', async () => {
-    const f = $('dio').files[0];
-    if (!f) return;
-    const box = $('parsed');
-    try {
-      const xml = unwrap(await f.text());
-      const p = xml && parseDrawio(xml);
-      if (!p || !p.blocks.length) throw new Error('no cells');
-      describe.byId = {};
-      p.blocks.forEach(b => { describe.byId[b.id] = b.label || '(unnamed block)'; });
-      diagram = p;
-      $('diolab').classList.add('set');
-      $('diolab').querySelector('span').textContent = f.name;
-      $('ifc_d').value = p.edges.length;
-      $('ifc_n').value = p.labelled.length;
-      $('orp').value = p.isolated.length + p.dangling.length;
-      const missing = p.edges.length - p.labelled.length;
-      box.innerHTML = '<b>Read your diagram.</b> Counts below are measured, not estimated — '
-        + 'only the judged dimensions still need Claude or you.'
-        + '<div class="tally">' + p.blocks.length + ' blocks &nbsp;·&nbsp; '
-        + p.edges.length + ' connections &nbsp;·&nbsp; ' + missing + ' with no usable label'
-        + (p.isolated.length ? ' &nbsp;·&nbsp; ' + p.isolated.length + ' block(s) connected to nothing' : '')
-        + '</div>';
-      box.hidden = false;
-      if (!$('design').value.trim()) $('design').value = describe(p);
-      update();
-    } catch (err) {
-      box.innerHTML = '<b style="color:var(--bad)">Could not read that file.</b> '
-        + 'Save it from Draw.io as <code>.drawio</code> or Editable SVG, or attach a photo instead.';
-      box.hidden = false;
-      $('shot').hidden = false; $('shotlab').hidden = false;
-    }
-  });
-
-  $('stop').addEventListener('click', () => ctl && ctl.abort());
 
   $('evaluate').addEventListener('click', async () => {
     const design = $('design').value.trim();
@@ -693,7 +709,7 @@ ${design}`;
       const c = e && e.code;
       if (c === 'cancelled') { status.textContent = 'Stopped.'; }
       else if (c === 'not_granted' || c === 'sampling_disabled' || c === 'not_declared'
-            || c === 'capability_disabled' || c === 'capability_removed') { panel.hidden = true; }
+            || c === 'capability_disabled' || c === 'capability_removed') { panel.hidden = true; $('noai').hidden = false; }
       else if (c === 'rate_limited') { status.textContent = 'Too many requests just now. Wait a minute and try again.'; }
       else if (c === 'session_expired') { status.textContent = 'Sign in to Claude again, then retry.'; }
       else if (c === 'image_rejected') { status.textContent = 'That image was refused. Try a smaller PNG or JPEG.'; }

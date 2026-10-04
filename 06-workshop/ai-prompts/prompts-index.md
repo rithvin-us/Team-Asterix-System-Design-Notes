@@ -12,6 +12,7 @@ permanently.
 | **[Agent Rules](agent-rules.md)** | Every session, automatically | ~460 tok |
 | **[The Rubric](design-rubric.md)** | Self-check, no AI needed |, |
 | **[When AI Is Wrong](when-ai-is-wrong.md)** | Before trusting any of it |, |
+| **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** | Scoring a diagram you have drawn | browser |
 
 The three prompts compress [the rubric](design-rubric.md). The rubric is the full
 version and stands alone with no AI involved.
