@@ -10,7 +10,7 @@
 [![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](06-workshop/ai-prompts/prompts-index.md)
 [![Diagrams](https://img.shields.io/badge/diagrams-.drawio.svg-blue?style=flat-square&logo=diagramsdotnet&logoColor=white)](CONVENTIONS.md#diagrams)
 [![NotebookLM](https://img.shields.io/badge/NotebookLM-ask_the_sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/rithvin-us/Team-Asterix-System-Design-Playbook?style=flat-square&color=lightgrey)](LICENSE)
 
 </div>
 
@@ -20,6 +20,13 @@ break it into parts, define what passes between them, and defend the choices you
 Built for the Team Asterix Software & Perception Workshop, then kept going. The
 workshop material lives in one folder and links out to everything else. The rest is
 meant to outlive it.
+
+You do not need to clone this to read it. Clone it if you want the diagram template
+and the design templates on your own machine.
+
+```bash
+git clone https://github.com/rithvin-us/Team-Asterix-System-Design-Playbook.git
+```
 
 ---
 
