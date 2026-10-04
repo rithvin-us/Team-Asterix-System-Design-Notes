@@ -132,37 +132,37 @@ Read it properly: **[01-method](01-method/the-five-moves.md)**
 
 ```mermaid
 flowchart TD
-    START("🚩 START-HERE"):::entry
-    METHOD("⬡ The five moves<br/><i>decompose · interfaces · flows<br/>constraints · trade-offs</i>"):::core
+    START("START-HERE"):::entry
+    METHOD("The five moves<br/><i>decompose, interfaces, flows<br/>constraints, trade-offs</i>"):::core
 
-    subgraph LEARN ["📖 Understand"]
+    subgraph LEARN ["Understand"]
         CONCEPTS("Concepts"):::n
         GLOSSARY("Glossary"):::n
         CONV("Conventions"):::n
     end
 
-    subgraph STUDY ["🔭 Study real systems"]
+    subgraph STUDY ["Study real systems"]
         HOWTO("How to draw a system"):::n
         REFS("Reference architectures"):::n
         AUTO("Autoware"):::leaf
         NFLX("Netflix"):::leaf
     end
 
-    subgraph MAKE ["✏️ Make your own"]
+    subgraph MAKE ["Make your own"]
         TMPL("Starter diagram"):::tool
         EXER("Exercises"):::n
         PROJ("Projects"):::n
     end
 
-    subgraph CHECK ["🔍 Check it"]
+    subgraph CHECK ["Check it"]
         PROMPTS("AI prompts"):::tool
         SCORE("HLD Scorecard"):::tool
         RUBRIC("The rubric"):::n
         AIWRONG("Where AI is wrong"):::n
     end
 
-    NB("📓 NotebookLM<br/>source material"):::ext
-    WS("🎓 Workshop sessions"):::ws
+    NB("NotebookLM<br/>source material"):::ext
+    WS("Workshop sessions"):::ws
 
     START --> METHOD
     METHOD --> CONCEPTS
