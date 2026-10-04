@@ -1,14 +1,18 @@
+<div align="center">
+
 # System Design for Team Asterix
 
-<p align="center">
-  <img src="assets/banner.jpg" alt="Team Asterix System Design" width="100%" />
-</p>
+<img src="assets/banner.jpg" alt="Team Asterix System Design" width="100%" />
+
+<br/>
 
 [![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
 [![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](06-workshop/ai-prompts/prompts-index.md)
 [![Diagrams](https://img.shields.io/badge/diagrams-.drawio.svg-blue?style=flat-square&logo=diagramsdotnet&logoColor=white)](CONVENTIONS.md#diagrams)
 [![NotebookLM](https://img.shields.io/badge/NotebookLM-ask_the_sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
+
+</div>
 
 A working notebook for learning to design systems: how to take something complicated,
 break it into parts, define what passes between them, and defend the choices you made.
