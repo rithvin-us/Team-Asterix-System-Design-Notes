@@ -1,5 +1,9 @@
 # <System Name>
 
+<!-- Links here use ../../../ because a copy of this file lives at
+     04-case-studies/<domain>/<slug>/README.md — three levels down.
+     They look broken from the template's own location. They are not. -->
+
 One sentence: what this system does, for whom, and what counts as success.
 
 | | |

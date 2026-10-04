@@ -1,33 +1,47 @@
 # AI Prompts for System Design
 
-Three prompts. They cover the whole loop: make a design, check a design, keep a
-design honest as things change.
+Four files. They cover the whole loop: make a design, check a design, keep it honest
+as things change — and one that installs the discipline into your coding agent
+permanently.
 
-| Prompt | Use when | Time |
+| | Use when | Size |
 |---|---|---|
-| **[Design Something New](design-something-new.md)** | You have a problem, no design yet | 30–60 min |
-| **[Review My Design](review-my-design.md)** | You have a design, want it audited | 5–10 min |
-| **[Check My Change](check-my-change.md)** | Something changed, you want to know what broke | 5 min, run often |
+| **[Design Something New](design-something-new.md)** | Problem, no design yet | ~510 tok |
+| **[Review My Design](review-my-design.md)** | Design exists, want it audited | ~360 tok |
+| **[Check My Change](check-my-change.md)** | Something changed, what broke? | ~320 tok |
+| **[Agent Rules](agent-rules.md)** | Every session, automatically | ~460 tok |
+| **[The Rubric](design-rubric.md)** | Self-check, no AI needed | — |
 
-All three read from the same **[design rubric](design-rubric.md)**. You can use that
-rubric on its own, with no AI at all, as a self-check before you submit anything.
+The three prompts compress [the rubric](design-rubric.md). The rubric is the full
+version and stands alone with no AI involved.
+
+## Compatibility
+
+Plain text. No tool calls, no XML tags, no model-specific syntax, no markdown the
+model has to parse. Pasting works in Claude, ChatGPT, Gemini, Antigravity, Cursor,
+Copilot, Windsurf, Codex, and anything else that takes text.
+
+[Agent Rules](agent-rules.md) additionally installs as a rules file —
+`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `.windsurfrules`,
+`.github/copilot-instructions.md` — so it loads once per session instead of being
+pasted per message.
 
 ## The rule all three enforce
 
 **The AI does not design. You design. The AI interrogates.**
 
-Every one of these prompts is built to refuse when you ask it to just produce the
-answer. That refusal is the feature.
+Every one of these refuses when you ask it to just produce the answer. That refusal
+is the feature.
 
 Here is why, concretely. Two participants hand in the same architecture. One was
-generated; one was interviewed out of the author. Asked "why did you put the
-processing here instead of on the sensor?", the first has nothing and the second has
+generated; one was interviewed out of the author. Asked *"why did you put the
+processing here instead of on the sensor?"*, the first has nothing and the second has
 a reason tied to a power budget. The diagrams are identical. The engineering is not,
-and the difference becomes visible the first time a requirement changes.
+and the difference surfaces the first time a requirement changes.
 
-Also: an AI with no access to your actual constraints — your real budget, the parts
-in your lab, your team's skills, the weight you cannot exceed — will produce
-something plausible and wrong. It does not know your ATV. You do.
+Also: an AI with no access to your real constraints — your budget, the parts in your
+lab, your team's skills, the weight you cannot exceed — produces something plausible
+and wrong. It does not know your ATV. You do.
 
 ## Suggested loop
 
@@ -61,20 +75,26 @@ will defend your choices back to you.
 
 ## Tips
 
-- **Paste your diagram as an image.** Most assistants read images now, and a picture
-  catches naming inconsistencies that a text description smooths over.
-- **Answer "I don't know" honestly.** It turns into a stated assumption, which is a
-  legitimate and valuable design output.
+- **Paste your diagram as an image.** Most assistants read images, and a picture
+  catches naming inconsistencies a text description smooths over.
+- **Answer "I don't know" honestly.** It becomes a stated assumption, which is a
+  legitimate design output.
 - **Keep the output.** Paste findings into your project README. A record of what was
   found and fixed is itself evidence of engineering.
-- **Push back on the AI.** If a finding is wrong because of something it does not
-  know about your context, say so. It is a reviewer, not an authority.
-- **Any assistant works.** These are plain text with no tool dependencies.
+- **Push back.** If a finding is wrong because of context the AI lacks, say so. It is
+  a reviewer, not an authority.
+
+## Where the text lives
+
+The prompt text appears in two places: the [repo README](../../README.md), so it can
+be copied from the front page, and on each prompt's own page here. If you edit one,
+edit the other. Two copies of twenty lines is a deliberate trade — the alternative
+was making people navigate away from the front page to copy anything.
 
 ## Bringing your own notes
 
 If you keep a [NotebookLM](../../99-inbox/notebooklm-raw/README.md) notebook of
-source material, you can ask it questions about concepts — but keep the roles
-separate. NotebookLM answers *"what does this source say about X?"*. These prompts
-answer *"is my design any good?"*. Different jobs. Do not ask NotebookLM to review
-your design; it is grounded in your sources, not in your constraints.
+source material, keep the roles separate. NotebookLM answers *"what does this source
+say about X?"*. These prompts answer *"is my design any good?"*. Do not ask
+NotebookLM to review your design — it is grounded in your sources, not your
+constraints.
