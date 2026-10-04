@@ -1,0 +1,16 @@
+# OS cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Draw.io backups
+*.bkp
+*.dtmp
+
+# Never commit non-editable exports of diagrams made here.
+# Use .drawio.svg instead - see CONVENTIONS.md
+*.drawio
