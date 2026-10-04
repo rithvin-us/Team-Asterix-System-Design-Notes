@@ -93,6 +93,9 @@ textarea{width:100%;height:150px;font-family:var(--mono);font-size:11px;backgrou
 .unknowns b{color:var(--signal)}
 .unknowns ul{margin:6px 0 0;padding-left:18px}
 .why{font-size:12px;color:var(--signal);margin:4px 0 0;font-style:italic}
+.parsed{margin-top:10px;padding:10px 12px;border:1px solid var(--good);border-radius:3px;font-size:12.5px}
+.parsed b{color:var(--good)}
+.parsed .tally{font-family:var(--mono);font-size:12px;margin-top:6px;color:var(--ink-dim)}
 .proposed input[type=number],.proposed select{border-color:var(--signal)}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-dim)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -120,10 +123,15 @@ can see how it reads. Replace them with your own.</p>
   <textarea id="design" placeholder="Blocks:&#10;- Wheel Speed Sensing — reads wheel RPM&#10;- Control Unit — decides when to cut ignition&#10;&#10;Arrows:&#10;- Wheel Speed Sensing -> Control Unit: wheel RPM, 50 Hz, integer&#10;- Battery -> sensor bus: 12 V, 4 A&#10;&#10;Requirements:&#10;- Must warn the driver before the engine overheats&#10;- Responds in under 200 ms&#10;&#10;Trade-offs:&#10;- Chose on-vehicle processing over sending raw data, because..."
     aria-label="Your design"></textarea>
   <div class="auto-row">
+    <input type="file" id="dio" accept=".drawio,.svg,.xml,.drawio.svg" hidden aria-label="Draw.io file">
+    <label for="dio" class="filelab" id="diolab">📐 Upload your .drawio file</label>
+    <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
+    <label for="shot" class="filelab" id="shotlab" hidden>🖼 or a photo of the diagram</label>
+  </div>
+  <div id="parsed" class="parsed" hidden></div>
+  <div class="auto-row">
     <button id="evaluate">Evaluate my design</button>
     <button class="ghost" id="stop" hidden>Stop</button>
-    <input type="file" id="shot" accept="image/*" hidden aria-label="Diagram image">
-    <label for="shot" class="filelab" id="shotlab" hidden>+ add a photo of the diagram</label>
     <span class="status" id="status"></span>
   </div>
   <div id="unknowns" class="unknowns" hidden></div>
@@ -485,10 +493,17 @@ const SCHEMA = `Reply with ONLY this JSON object, no other text:
 "reasons":{"bnd":"","blk":"","ifc":"","flw":"","req":"","asm":"","tdo":"","clr":""},
 "unknowns":[""]}`;
 
-function buildPrompt(design, hasImage){
+function buildPrompt(design, hasImage, measured){
   const anchors = DIMS.map(d => `${d.k} (${d.label}): ` + d.a.map((t,i)=>`${i}=${t}`).join(' ')).join('\n');
+  const m = measured ? `
+ALREADY MEASURED from their Draw.io file — use these exact numbers, do not recount:
+- arrowsTotal = ${measured.edges.length}
+- arrowsLabelled = ${measured.labelled.length}
+- orphans = ${measured.isolated.length + measured.dangling.length}
+Judge everything else from the content.
+` : '';
   return `You are scoring a student's high-level system design for an engineering workshop.
-${hasImage ? 'An image of their block diagram is attached. Read it together with the text below.\n' : ''}
+${hasImage ? 'An image of their block diagram is attached. Read it together with the text below.\n' : ''}${m}
 Count strictly from what is actually present. Where the design does not say something, score it low and add a
 short note to "unknowns". NEVER invent a component, a number, or a requirement they did not give. Being
 generous teaches them nothing.
@@ -528,7 +543,7 @@ ${design}`;
   try { caps = await sample.limits(); } catch(e) {}
   if (caps && caps.images) { $('shot').hidden = false; $('shotlab').hidden = false; }
 
-  let ctl = null;
+  let ctl = null, diagram = null;
   const status = $('status');
   const setBusy = on => {
     $('evaluate').disabled = on;
@@ -537,7 +552,99 @@ ${design}`;
 
   $('shot').addEventListener('change', () => {
     const f = $('shot').files[0];
-    $('shotlab').textContent = f ? '📎 ' + f.name : '+ add a photo of the diagram';
+    $('shotlab').textContent = f ? '🖼 ' + f.name : '🖼 or a photo of the diagram';
+  });
+
+  /* --- Draw.io parsing: .drawio is mxGraphModel XML; .drawio.svg carries the
+         same XML in the root <svg content="..."> attribute. Both are text, so we
+         read the real block and arrow labels instead of guessing from a picture. --- */
+  function unwrap(text){
+    const t = text.trim();
+    if (t.startsWith('<mxfile') || t.startsWith('<mxGraphModel')) return t;
+    try {
+      const doc = new DOMParser().parseFromString(t, 'image/svg+xml');
+      const svg = doc.querySelector('svg');
+      const c = svg && svg.getAttribute('content');
+      if (c) return c;
+    } catch(e) {}
+    return null;
+  }
+
+  function parseDrawio(xml){
+    const doc = new DOMParser().parseFromString(xml, 'application/xml');
+    if (doc.querySelector('parsererror')) return null;
+    const cells = [...doc.querySelectorAll('mxCell')];
+    if (!cells.length) return null;
+    const strip = v => (v || '').replace(/<[^>]*>/g, ' ').replace(/&[a-z]+;/gi, ' ')
+                                 .replace(/\s+/g, ' ').trim();
+    const blocks = [], edges = [], byId = {};
+    for (const c of cells) {
+      const id = c.getAttribute('id'), v = strip(c.getAttribute('value'));
+      if (c.getAttribute('vertex') === '1') {
+        const style = c.getAttribute('style') || '';
+        // Not every vertex is a block. Skip captions, legends, the system
+        // boundary and group containers, so they do not read as orphans.
+        const isText = /^text;/.test(style) || /\btext\b/.test(style.split(';')[0]);
+        const isContainer = /dashPattern|container=1|swimlane/.test(style);
+        if (isText || isContainer || v.length > 80) continue;
+        blocks.push({ id, label: v }); byId[id] = v || '(unnamed)';
+      } else if (c.getAttribute('edge') === '1') {
+        edges.push({ label: v, s: c.getAttribute('source'), t: c.getAttribute('target') });
+      }
+    }
+    // an arrow counts as labelled only if it says what travels, not just "data"
+    const weak = /^(data|signal|info|information|flow|value|input|output|msg|message|link)$/i;
+    const labelled = edges.filter(e => e.label && e.label.length > 2 && !weak.test(e.label));
+    const touched = new Set();
+    edges.forEach(e => { if (e.s) touched.add(e.s); if (e.t) touched.add(e.t); });
+    const isolated = blocks.filter(b => b.label && !touched.has(b.id));
+    const dangling = edges.filter(e => !e.s || !e.t);
+    return { blocks, edges, labelled, isolated, dangling };
+  }
+
+  function describe(p){
+    const L = [];
+    L.push('BLOCKS (' + p.blocks.length + '):');
+    p.blocks.forEach(b => L.push('- ' + (b.label || '(unnamed block)')));
+    L.push('', 'CONNECTIONS (' + p.edges.length + '):');
+    p.edges.forEach(e => {
+      const nm = v => v ? (describe.byId[v] || v) : '(nothing)';
+      L.push('- ' + nm(e.s) + ' -> ' + nm(e.t) + ' : ' + (e.label || '(UNLABELLED)'));
+    });
+    return L.join('\n');
+  }
+
+  $('dio').addEventListener('change', async () => {
+    const f = $('dio').files[0];
+    if (!f) return;
+    const box = $('parsed');
+    try {
+      const xml = unwrap(await f.text());
+      const p = xml && parseDrawio(xml);
+      if (!p || !p.blocks.length) throw new Error('no cells');
+      describe.byId = {};
+      p.blocks.forEach(b => { describe.byId[b.id] = b.label || '(unnamed block)'; });
+      diagram = p;
+      $('diolab').textContent = '📐 ' + f.name;
+      $('ifc_d').value = p.edges.length;
+      $('ifc_n').value = p.labelled.length;
+      $('orp').value = p.isolated.length + p.dangling.length;
+      const missing = p.edges.length - p.labelled.length;
+      box.innerHTML = '<b>Read your diagram.</b> Counts below are measured, not estimated — '
+        + 'only the judged dimensions still need Claude or you.'
+        + '<div class="tally">' + p.blocks.length + ' blocks &nbsp;·&nbsp; '
+        + p.edges.length + ' connections &nbsp;·&nbsp; ' + missing + ' with no usable label'
+        + (p.isolated.length ? ' &nbsp;·&nbsp; ' + p.isolated.length + ' block(s) connected to nothing' : '')
+        + '</div>';
+      box.hidden = false;
+      if (!$('design').value.trim()) $('design').value = describe(p);
+      update();
+    } catch (err) {
+      box.innerHTML = '<b style="color:var(--bad)">Could not read that file.</b> '
+        + 'Save it from Draw.io as <code>.drawio</code> or Editable SVG, or attach a photo instead.';
+      box.hidden = false;
+      $('shot').hidden = false; $('shotlab').hidden = false;
+    }
   });
 
   $('stop').addEventListener('click', () => ctl && ctl.abort());
@@ -545,7 +652,7 @@ ${design}`;
   $('evaluate').addEventListener('click', async () => {
     const design = $('design').value.trim();
     const file = $('shot').files && $('shot').files[0];
-    if (!design && !file) { status.textContent = 'Paste your design first, or attach a diagram.'; return; }
+    if (!design && !file) { status.textContent = 'Paste your design, upload a .drawio file, or attach a photo.'; return; }
 
     ctl = new AbortController();
     setBusy(true);
@@ -557,7 +664,8 @@ ${design}`;
     if (file && caps && caps.images) opts.images = file;
 
     try {
-      const r = await sample.json(buildPrompt(design || '(no text given — read the attached diagram)', !!file), opts);
+      const r = await sample.json(
+        buildPrompt(design || '(no text given — read the attached diagram)', !!file, diagram), opts);
       applyResult(r);
       status.textContent = 'Proposed. Check every number before you trust it.';
       panel.classList.add('done');
@@ -582,8 +690,14 @@ ${design}`;
   function applyResult(r){
     const m = (r && r.metrics) || {}, d = (r && r.dimensions) || {}, why = (r && r.reasons) || {};
     const set = (id,v) => { $(id).value = num(v); };
-    set('ifc_n', m.arrowsLabelled); set('ifc_d', m.arrowsTotal);
-    set('orp', m.orphans);
+    if (diagram) {
+      $('ifc_d').value = diagram.edges.length;
+      $('ifc_n').value = diagram.labelled.length;
+      $('orp').value = diagram.isolated.length + diagram.dangling.length;
+    } else {
+      set('ifc_n', m.arrowsLabelled); set('ifc_d', m.arrowsTotal);
+      set('orp', m.orphans);
+    }
     $('pwr_na').value = (m.powerApplicable === false) ? 'yes' : 'no';
     set('pwr_n', m.consumersSupplied); set('pwr_d', m.consumersTotal);
     set('req_n', m.nfrMeasurable); set('req_d', m.nfrTotal);

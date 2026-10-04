@@ -2,7 +2,7 @@
 
 Substantial builds with a full design record. Days to weeks, open-ended.
 
-Shorter practice goes in [05-exercises](../04-exercises/).
+Shorter practice goes in [Exercises](../04-exercises/exercises-index.md).
 
 | | |
 |---|---|

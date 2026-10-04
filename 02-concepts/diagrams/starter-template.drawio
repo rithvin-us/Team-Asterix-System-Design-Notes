@@ -9,17 +9,17 @@
       <mxGeometry x="250" y="120" width="460" height="250" as="geometry"/></mxCell>
     <mxCell id="out" value="OUTPUT&#10;&#10;what the system&#10;does or shows" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#4493f8;fontColor=#4493f8;" vertex="1" parent="1">
       <mxGeometry x="760" y="170" width="140" height="110" as="geometry"/></mxCell>
-    <mxCell id="s1" value="SENSE / READ&#10;(delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
+    <mxCell id="s1" value="INGEST / SENSE&#10;(delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
       <mxGeometry x="275" y="185" width="125" height="70" as="geometry"/></mxCell>
     <mxCell id="s2" value="DECIDE / COMPUTE&#10;(delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
       <mxGeometry x="415" y="185" width="125" height="70" as="geometry"/></mxCell>
-    <mxCell id="s3" value="ACT / DRIVE&#10;(delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
+    <mxCell id="s3" value="ACT / RESPOND&#10;(delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
       <mxGeometry x="555" y="185" width="125" height="70" as="geometry"/></mxCell>
     <mxCell id="s4" value="STORE / LOG  (delete if unused)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
       <mxGeometry x="275" y="285" width="405" height="55" as="geometry"/></mxCell>
-    <mxCell id="pwr" value="POWER SOURCE&#10;(outside)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#f0883e;fontColor=#f0883e;" vertex="1" parent="1">
+    <mxCell id="pwr" value="POWER SOURCE&#10;(physical only)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#f0883e;fontColor=#f0883e;" vertex="1" parent="1">
       <mxGeometry x="415" y="425" width="140" height="50" as="geometry"/></mxCell>
-    <mxCell id="chs" value="CHASSIS / MOUNT&#10;(outside)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
+    <mxCell id="chs" value="MOUNTING / HOUSING&#10;(physical only)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;strokeColor=#8b949e;fontColor=#8b949e;" vertex="1" parent="1">
       <mxGeometry x="760" y="425" width="140" height="50" as="geometry"/></mxCell>
     <mxCell id="e1" value="[ what, rate, units ]" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4493f8;strokeWidth=2;dashed=0;fontColor=#4493f8;fontSize=10;" edge="1" parent="1" source="in" target="bb">
       <mxGeometry relative="1" as="geometry"/></mxCell>

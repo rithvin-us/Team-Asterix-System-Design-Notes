@@ -136,7 +136,8 @@ which of these it is:
 The differences are the lesson. A diagram identical to theirs means you copied; a
 diagram with *explicable* differences means you understood.
 
-Finally, score your diagram with the **[HLD Scorecard](../scorecard/hld-scorecard.html)**.
+Finally, score your diagram with the **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** —
+upload the `.drawio` file and it counts your blocks and labelled arrows for you.
 Score it honestly — it is your own diagram of someone else's system, and nobody is
 marking it. The number that matters is the weakest dimension, not the total.
 

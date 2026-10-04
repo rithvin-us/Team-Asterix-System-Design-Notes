@@ -2,7 +2,7 @@
 
 Short practice tasks. One sitting, 15–60 minutes, one skill each.
 
-Longer open-ended work goes in [06-projects](../05-projects/).
+Longer open-ended work goes in [Projects](../05-projects/projects-index.md).
 
 ## Index
 

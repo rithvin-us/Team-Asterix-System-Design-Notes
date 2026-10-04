@@ -201,7 +201,7 @@ Ten minutes, and it will save you a lot of pain:
 | The five moves, in depth | [01-method](01-method/the-five-moves.md) |
 | Look up a word | [Glossary](GLOSSARY.md) |
 | Draw better diagrams | [Block diagramming conventions](02-concepts/block-diagramming-conventions.md) |
-| The workshop sessions | [07-workshop](06-workshop/workshop-guide.md) |
+| The workshop sessions | [Workshop guide](06-workshop/workshop-guide.md) |
 | All the AI prompts | [06-workshop/ai-prompts](06-workshop/ai-prompts/prompts-index.md) |
 
 You do not need to read everything. Most of this repository is reference — things you

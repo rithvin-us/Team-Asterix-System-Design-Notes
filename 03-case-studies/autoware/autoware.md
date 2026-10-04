@@ -5,7 +5,7 @@
 | **Domain** | Automotive / robotics |
 | **Difficulty** | Intermediate |
 | **Illustrates** | Boundaries · decomposition · interfaces · a real architecture rewrite |
-| **Primary sources** | [Autoware Documentation — Architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture/) · [Autoware 2.0 Architecture](https://docs.autoware.org/pr-803/design/autoware-architecture-v2/) · [Autoware Foundation](https://autoware.org/) |
+| **Primary sources** | [Autoware Documentation — Architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/) · [Autoware 2.0 Architecture](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v2/) · [Autoware Foundation](https://autoware.org/) |
 
 > **Why this one first.** It is the only complete autonomous-vehicle architecture that
 > is fully public, *and* its documentation states the reasoning — including what was
@@ -203,13 +203,14 @@ are worth listing.
 
 ## 8. Do this yourself
 
-1. Open the [architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture/) and read it properly.
+1. Open the [architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/) and read it properly.
 2. Pick **one** stack — Perception is the richest — and follow it into the component
    docs.
 3. Draw **that stack's** LLD from the
    [starter template](../../02-concepts/diagrams/starter-template.drawio.svg). Do not
    copy their diagram.
-4. Score it with the [HLD Scorecard](../../scorecard/hld-scorecard.html).
+4. Score it with the [HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR) — upload your
+   `.drawio` file directly.
 5. Then answer: **where would an ATV's architecture differ, and why?** You have no HD
    map, far less compute, and a driver in the seat. Which stacks survive, which
    collapse, which disappear?
@@ -218,4 +219,4 @@ Question 5 is the one worth your evening.
 
 ---
 
-**Sources:** [Autoware Documentation — Architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture/) · [Autoware 2.0 Architecture](https://docs.autoware.org/pr-803/design/autoware-architecture-v2/) · [Perception component design](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture/perception/) · [Autoware Foundation](https://autoware.org/)
+**Sources:** [Autoware Documentation — Architecture overview](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/) · [Autoware 2.0 Architecture](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v2/) · [Perception component design](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/perception/) · [Autoware Foundation](https://autoware.org/)

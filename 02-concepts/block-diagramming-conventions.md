@@ -185,7 +185,12 @@ a global image folder. See [CONVENTIONS.md](../CONVENTIONS.md#diagrams).
 - [ ] Readable at the size it will actually be viewed
 - [ ] Saved as `.drawio.svg`
 
-Then run **[the review prompt](../06-workshop/ai-prompts/review-my-design.md)** on it.
+Then check it:
+
+- **[HLD Scorecard](https://claude.ai/artifact/2tr1jH6Zyyt6LCDXTPfsGR)** — upload the
+  `.drawio` file itself. It reads your blocks and arrow labels and counts them exactly.
+- **[The review prompt](../06-workshop/ai-prompts/review-my-design.md)** — for the judgement
+  a count cannot make.
 
 ---
 
