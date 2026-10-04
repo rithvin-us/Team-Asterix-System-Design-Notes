@@ -25,7 +25,9 @@ Each case study is a folder:
     └── <slug>-lld-<subject>.drawio.svg
 ```
 
-Use **[_TEMPLATE.md](_TEMPLATE.md)** as the starting `README.md`.
+Use **[_TEMPLATE.md](_TEMPLATE.md)** as the starting `README.md`. Open it on GitHub
+and hit **Copy raw file** (top-right, next to Raw) to get the whole thing in one
+click.
 
 One `README.md` with sections, not nine subfolders. Nine subfolders per study means
 nine mostly-empty folders per study, and the headings do the same job for free.

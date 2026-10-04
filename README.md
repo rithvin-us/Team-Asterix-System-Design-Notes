@@ -1,5 +1,11 @@
 # System Design — Team Asterix
 
+[![Status](https://img.shields.io/badge/status-early-orange?style=flat-square)](#status)
+[![AI prompts](https://img.shields.io/badge/AI_prompts-4_ready-brightgreen?style=flat-square&logo=anthropic&logoColor=white)](07-workshop/ai-prompts/)
+[![Diagrams](https://img.shields.io/badge/diagrams-.drawio.svg-blue?style=flat-square&logo=diagramsdotnet&logoColor=white)](CONVENTIONS.md#diagrams)
+[![NotebookLM](https://img.shields.io/badge/NotebookLM-sources-4285F4?style=flat-square&logo=googlegemini&logoColor=white)](99-inbox/notebooklm-raw/)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
+
 A working notebook for learning to design systems: how to take something complicated,
 break it into parts, define what passes between them, and defend the choices you made.
 
@@ -42,7 +48,14 @@ you made.
 | See automotive / ATV material | [examples](03-examples/automotive/) · [case studies](04-case-studies/automotive/) |
 | See software / backend material | [examples](03-examples/software/) · [case studies](04-case-studies/software/) |
 | Learn HLD vs LLD | [hld-vs-lld.md](02-concepts/hld-vs-lld.md) |
+| Ask questions of the source material | [NotebookLM notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73) ⚠️ |
 | Know how this repo is organised | [CONVENTIONS.md](CONVENTIONS.md) |
+
+> ⚠️ **The NotebookLM notebook is source material, not teaching material.** It
+> answers *"what does this source say about X?"* — it does not know this repo's
+> conventions or Team Asterix's actual constraints. Nothing it generates is
+> canonical here. [How to use it, and how to promote something out of
+> it.](99-inbox/notebooklm-raw/)
 
 ---
 

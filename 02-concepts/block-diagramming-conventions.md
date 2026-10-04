@@ -112,14 +112,17 @@ reader cannot locate it in the system. See [HLD vs LLD](hld-vs-lld.md).
 
 ## The legend
 
-Bottom-left corner, every diagram, no exceptions:
+Bottom-left corner, every diagram, no exceptions. **Copy this into your Draw.io
+canvas as a text box:**
 
 ```
----- data        (solid thin)
-==== power       (thick)
-- -  control     (dashed)
-███  mechanical  (heavy)
-[  ] system boundary (dashed box)
+LEGEND
+──────  data / signal
+══════  power
+┄┄┄┄┄┄  control
+▰▰▰▰▰▰  mechanical
+┌ ─ ┐   system boundary
+└ ─ ┘
 ```
 
 It takes thirty seconds and it is the difference between a diagram that stands alone

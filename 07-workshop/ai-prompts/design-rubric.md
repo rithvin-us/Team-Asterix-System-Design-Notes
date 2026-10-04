@@ -13,6 +13,62 @@ actually shows up in practice.
 
 ---
 
+## Pocket version — copy this
+
+Paste into your notes and tick it off before you submit anything. No AI needed.
+
+```
+SYSTEM DESIGN SELF-CHECK
+
+BOUNDARY
+[ ] what is inside the system is stated
+[ ] what is outside but connected is stated
+[ ] at least two things it deliberately does NOT do
+[ ] every external dependency named
+
+BLOCKS
+[ ] each block has one responsibility, no double "and"
+[ ] all blocks at the same level of zoom
+[ ] 5-9 blocks
+[ ] no box exists just because I had nowhere else to put something
+
+INTERFACES
+[ ] every block declares inputs and outputs
+[ ] every one has a type: what, what form, what rate, what units
+[ ] no output nobody consumes, no input nobody produces
+[ ] I can say what travels along EVERY arrow
+
+FLOWS
+[ ] data, power, control, mechanical are visually distinct
+[ ] at least one flow traced end to end with no gap
+[ ] nothing draws power with no supply path
+[ ] software-only: said so explicitly rather than omitting
+
+REQUIREMENTS
+[ ] functional and non-functional kept separate
+[ ] every non-functional one has a NUMBER, not an adjective
+[ ] each says how it will be measured
+
+CONSTRAINTS AND ASSUMPTIONS
+[ ] constraints stated
+[ ] assumptions stated separately from facts
+[ ] each assumption says what breaks if it is wrong
+[ ] the load-bearing one is identified for verification
+
+TRADE-OFFS
+[ ] at least one real decision named
+[ ] the REJECTED option is named
+[ ] reason ties back to a requirement or constraint
+[ ] the cost of my choice is named
+
+CLARITY
+[ ] legend present
+[ ] naming consistent throughout
+[ ] a stranger could understand it from diagram + one page
+```
+
+---
+
 ## How to score
 
 Each item is **Pass**, **Partial**, or **Fail**. There is no numeric total, on purpose

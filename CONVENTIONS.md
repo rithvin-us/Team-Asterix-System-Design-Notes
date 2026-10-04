@@ -212,6 +212,27 @@ that way are the good ones — the ones that only occur to you while teaching.
 
 ---
 
+## Copying things out of this repo
+
+GitHub gives you three copy mechanisms for free. Everything here is written to use
+one of them, so nothing ever needs to be selected by hand.
+
+| Mechanism | Where it appears | Used here for |
+|---|---|---|
+| **Copy button on a code block** | Top-right of every fenced block | Prompts, the rubric self-check, the diagram legend, the unfiled entry format |
+| **Copy raw file** | Top-right of any file page, next to Raw | Templates — `_TEMPLATE.md`, `_TEMPLATE/README.md` |
+| **Raw URL** | `raw.githubusercontent.com/...` | Fetching a template from a terminal or an agent |
+
+**Consequence for authors:** anything a reader is meant to reuse goes in a **fenced
+code block**, not in prose or a table. A checklist written as Markdown bullets cannot
+be copied cleanly; the same checklist in a code block is one click.
+
+That is why the rubric has a plain-text pocket version, why the diagram legend is a
+code block, and why `unfiled.md` shows its entry format as a block rather than
+describing it.
+
+---
+
 ## Status marking
 
 Exactly one marker, and it is removed when no longer true:

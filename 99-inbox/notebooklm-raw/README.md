@@ -13,7 +13,11 @@
 
 ## The notebook
 
-[System Design notebook](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)
+**[System Design notebook on NotebookLM](https://notebook.google.com/notebook/669e8f3c-7a1f-4733-9250-6411c2543e73)**
+
+> **Access:** this link only works for people the notebook has been shared with. If
+> you get a permission error, ask an instructor to share it — NotebookLM notebooks
+> are private by default, and a link alone does not grant access.
 
 Sources are listed in **[sources.md](sources.md)** — links only, no copies. This
 repository is public, and storing copies of other people's documents in it is a

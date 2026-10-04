@@ -23,7 +23,8 @@ Each project is a folder:
     └── <slug>-lld-<subject>.drawio.svg
 ```
 
-Start from **[`_TEMPLATE/`](_TEMPLATE/)**.
+Start from **[`_TEMPLATE/`](_TEMPLATE/)**. Open its `README.md` on GitHub and hit
+**Copy raw file** (top-right, next to Raw).
 
 ### Why one file and not nine folders
 
